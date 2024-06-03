@@ -1,0 +1,31 @@
+{
+  "name": "vite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_ENV=development vite",
+    "build": "tsc && vite build",
+    "lint": "eslint ./src",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.74.1",
+    "react-native-reanimated-carousel": "workspace:*",
+    "react-native-reanimated-carousel-example-app": "workspace:*"
+  },
+  "devDependencies": {
+    "@testing-library/react-native": "^12.5.1",
+    "@types/react": "~18.2.79",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "flow-remove-types": "^2.237.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.12",
+    "vite-tsconfig-paths": "^4.3.2"
+  }
+}

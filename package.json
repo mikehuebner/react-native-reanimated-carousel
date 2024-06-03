@@ -1,0 +1,63 @@
+{
+  "name": "react-native-reanimated-carousel-2",
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "pnpm@9.1.2+sha512.127dc83b9ea10c32be65d22a8efb4a65fb952e8fefbdfded39bdc3c97efc32d31b48b00420df2c1187ace28c921c902f0cb5a134a4d032b8b5295cbfa2c681e2",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:vite": "pnpm --filter vite dev",
+    "dev:expo:ios": "pnpm --filter expo ios",
+    "dev:expo:android": "pnpm --filter expo android",
+    "dev:expo:web": "pnpm --filter expo web",
+    "dev:bare": "pnpm --filter bare dev",
+    "dev:next": "pnpm --filter website dev",
+    "pnpm:clean": "find apps packages -depth -type d -name \"node_modules\" -exec git clean -xdf '{}' \\; && git clean -xdf node_modules",
+    "pnpm:nuke": "pnpm pnpm:clean; rm -rf pnpm-lock.yaml;",
+    "clean": "pnpm pnpm:clean",
+    "nuke": "pnpm pnpm:nuke"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "latest",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@dohooo/eslint-config": "^0.0.7",
+    "@eslint/js": "^9.4.0",
+    "@react-native-community/eslint-config": "^3.2.0",
+    "@stylistic/eslint-plugin-js": "^2.1.0",
+    "commitlint": "^19.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "del-cli": "^5.0.0",
+    "eslint": "^9.4.0",
+    "eslint-plugin-jest": "^28.5.0",
+    "eslint-plugin-react-native": "^4.1.0",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "husky": "^9.0.11",
+    "pod-install": "^0.1.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.11.0",
+    "watch": "^1.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "yarn test && yarn lint && yarn typescript"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

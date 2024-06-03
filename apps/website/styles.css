@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#summary-item div {
+  max-height: 180px;
+  overflow: hidden;
+}
+
+#summary-item img {
+  width: 100%;
+  height: auto;
+}
+
+html[class~=dark] .ss-content {
+  color: rgb(17, 17, 17);
+  background-color: rgb(241, 245, 249);
+}
+
+html[class~=light] .ss-content {
+  color: rgb(241, 245, 249);
+  background-color: rgb(17, 17, 17);
+}
