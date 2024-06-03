@@ -11,7 +11,6 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { App } from 'react-native-reanimated-carousel-example-app';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const ViteApp = () => {
   const arrowValue = useSharedValue(0);
@@ -27,7 +26,7 @@ const ViteApp = () => {
           }),
         },
       ],
-      // opacity: interpolate(arrowValue.value, [0, 0.5, 0.8, 1], [-0.5, 1, 1, 0]),
+      opacity: interpolate(arrowValue.value, [0, 0.5, 0.8, 1], [-0.5, 1, 1, 0]),
     }),
     [arrowValue],
   );
@@ -51,28 +50,25 @@ const ViteApp = () => {
     );
   }, []);
 
-  console.log(arrowValue.value);
-
   return (
-    <App />
-    // <>
-    //   <Animated.View
-    //     style={[
-    //       {
-    //         transform: [
-    //           { translateY: 0 },
-    //           {
-    //             scale: 0,
-    //           },
-    //         ],
-    //       },
-    //       animatedStyle,
-    //     ]}
-    //   >
-    //     <Text>Open up App.tsx to start working on your app!</Text>
-    //   </Animated.View>
-    //   <App />
-    // </>
+    <>
+      <Animated.View
+        style={[
+          {
+            transform: [
+              { translateY: 0 },
+              {
+                scale: 0,
+              },
+            ],
+          },
+          animatedStyle,
+        ]}
+      >
+        <Text>Open up App.tsx to start working on your app!</Text>
+      </Animated.View>
+      {/* <App /> */}
+    </>
   );
 };
 

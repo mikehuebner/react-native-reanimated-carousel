@@ -19,6 +19,7 @@ const WebContainer = ({ children }: PropsWithChildren) => {
             width,
             alignSelf: 'center',
             margin: 'auto',
+            flex: 1,
           }}
         >
           {children}
