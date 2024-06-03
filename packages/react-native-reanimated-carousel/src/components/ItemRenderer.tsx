@@ -1,35 +1,33 @@
-import React from "react";
-import type { FC } from "react";
-import type {
-  SharedValue,
-  useAnimatedStyle,
-} from "react-native-reanimated";
+import React from 'react';
+import type { FC } from 'react';
+import type { SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import {
   useAnimatedReaction,
   runOnJS,
-} from "react-native-reanimated";
+  useDerivedValue,
+} from 'react-native-reanimated';
 
-import type { TAnimationStyle } from "./BaseLayout";
-import { BaseLayout } from "./BaseLayout";
+import type { TAnimationStyle } from './BaseLayout';
+import { BaseLayout } from './BaseLayout';
 
-import type { VisibleRanges } from "../hooks/useVisibleRanges";
-import { useVisibleRanges } from "../hooks/useVisibleRanges";
-import type { CarouselRenderItem } from "../types";
-import { computedRealIndexWithAutoFillData } from "../utils/computed-with-auto-fill-data";
+import type { VisibleRanges } from '../hooks/useVisibleRanges';
+import { useVisibleRanges } from '../hooks/useVisibleRanges';
+import type { CarouselRenderItem } from '../types';
+import { computedRealIndexWithAutoFillData } from '../utils/computed-with-auto-fill-data';
 
 interface Props {
-  data: any[]
-  dataLength: number
-  rawDataLength: number
-  loop: boolean
-  size: number
-  windowSize?: number
-  autoFillData: boolean
-  offsetX: SharedValue<number>
-  handlerOffset: SharedValue<number>
-  layoutConfig: TAnimationStyle
-  renderItem: CarouselRenderItem<any>
-  customAnimation?: (value: number) => ReturnType<typeof useAnimatedStyle>
+  data: any[];
+  dataLength: number;
+  rawDataLength: number;
+  loop: boolean;
+  size: number;
+  windowSize?: number;
+  autoFillData: boolean;
+  offsetX: SharedValue<number>;
+  handlerOffset: SharedValue<number>;
+  layoutConfig: TAnimationStyle;
+  renderItem: CarouselRenderItem<any>;
+  customAnimation?: (value: number) => ReturnType<typeof useAnimatedStyle>;
 }
 
 export const ItemRenderer: FC<Props> = (props) => {
@@ -56,17 +54,24 @@ export const ItemRenderer: FC<Props> = (props) => {
     loop,
   });
 
+  const animateStyle = useDerivedValue(() => {
+    console.log('animate style change2', handlerOffset.value);
+    return handlerOffset;
+  }, [handlerOffset]);
+
   const [displayedItems, setDisplayedItems] = React.useState<VisibleRanges>(
     null!,
   );
 
   useAnimatedReaction(
     () => visibleRanges.value,
-    ranges => runOnJS(setDisplayedItems)(ranges),
+    (ranges) => runOnJS(setDisplayedItems)(ranges),
     [visibleRanges],
   );
 
   if (!displayedItems) return null;
+
+  console.log('item renderer', props);
 
   return (
     <>
@@ -77,14 +82,15 @@ export const ItemRenderer: FC<Props> = (props) => {
           loop,
           autoFillData,
         });
-
         const { negativeRange, positiveRange } = displayedItems;
 
-        const shouldRender
-          = (index >= negativeRange[0] && index <= negativeRange[1])
-          || (index >= positiveRange[0] && index <= positiveRange[1]);
+        const shouldRender =
+          (index >= negativeRange[0] && index <= negativeRange[1]) ||
+          (index >= positiveRange[0] && index <= positiveRange[1]);
 
         if (!shouldRender) return null;
+
+        console.log('item render offset', offsetX.value);
 
         return (
           <BaseLayout

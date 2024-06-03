@@ -1,7 +1,11 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { runOnJS, useDerivedValue } from 'react-native-reanimated';
+import {
+  runOnJS,
+  useAnimatedStyle,
+  useDerivedValue,
+} from 'react-native-reanimated';
 
 import { ItemRenderer } from './ItemRenderer';
 import { ScrollViewGesture } from './ScrollViewGesture';
@@ -62,7 +66,7 @@ const Carousel = React.forwardRef<ICarouselInstance, TCarouselProps<any>>(
       if (!loop) return handlerOffset.value;
 
       return isNaN(x) ? 0 : x;
-    }, [loop, size, dataLength]);
+    }, [loop, size, dataLength, handlerOffset]);
 
     // @ts-expect-error == types do not exist
     usePropsErrorBoundary({ ...props, dataLength });
@@ -124,11 +128,13 @@ const Carousel = React.forwardRef<ICarouselInstance, TCarouselProps<any>>(
     const scrollViewGestureOnScrollStart = React.useCallback(() => {
       pauseAutoPlay();
       onScrollStart?.();
+      console.log('on scroll gesture start');
     }, [onScrollStart, pauseAutoPlay]);
 
     const scrollViewGestureOnScrollEnd = React.useCallback(() => {
       startAutoPlay();
       _onScrollEnd();
+      console.log('on scroll gesture end');
     }, [_onScrollEnd, startAutoPlay]);
 
     const scrollViewGestureOnTouchBegin = React.useCallback(pauseAutoPlay, [
@@ -155,7 +161,7 @@ const Carousel = React.forwardRef<ICarouselInstance, TCarouselProps<any>>(
     const layoutConfig = useLayoutConfig({ ...props, size });
 
     return (
-      <GestureHandlerRootView>
+      <GestureHandlerRootView style={{ flex: 1 }}>
         <CTX.Provider value={{ props, common: commonVariables }}>
           <ScrollViewGesture
             key={mode}

@@ -1,11 +1,11 @@
-import type { PropsWithChildren } from "react";
-import React, { useCallback } from "react";
-import type { StyleProp, ViewStyle } from "react-native";
+import type { PropsWithChildren } from 'react';
+import React, { useCallback } from 'react';
+import type { StyleProp, ViewStyle } from 'react-native';
 import type {
   GestureStateChangeEvent,
   PanGestureHandlerEventPayload,
-} from "react-native-gesture-handler";
-import { GestureDetector } from "react-native-gesture-handler";
+} from 'react-native-gesture-handler';
+import { GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   cancelAnimation,
   measure,
@@ -16,13 +16,13 @@ import Animated, {
   useSharedValue,
   withDecay,
   type SharedValue,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
-import { Easing } from "../constants";
-import { usePanGestureProxy } from "../hooks/usePanGestureProxy";
-import { CTX } from "../store";
-import type { WithTimingAnimation } from "../types";
-import { dealWithAnimation } from "../utils/deal-with-animation";
+import { Easing } from '../constants';
+import { usePanGestureProxy } from '../hooks/usePanGestureProxy';
+import { CTX } from '../store';
+import type { WithTimingAnimation } from '../types';
+import { dealWithAnimation } from '../utils/deal-with-animation';
 
 interface Props {
   size: number;
@@ -76,13 +76,13 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
   const scrollEndVelocity = useSharedValue(0);
   const containerRef = useAnimatedRef<Animated.View>();
   const maxScrollDistancePerSwipeIsSet =
-    typeof maxScrollDistancePerSwipe === "number";
+    typeof maxScrollDistancePerSwipe === 'number';
   const minScrollDistancePerSwipeIsSet =
-    typeof minScrollDistancePerSwipe === "number";
+    typeof minScrollDistancePerSwipe === 'number';
 
   // Get the limit of the scroll.
   const getLimit = React.useCallback(() => {
-    "worklet";
+    'worklet';
 
     if (!loop && !overscrollEnabled) {
       const layout = measure(containerRef);
@@ -103,9 +103,9 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
 
   const withSpring = React.useCallback(
     (toValue: number, onFinished?: () => void) => {
-      "worklet";
+      'worklet';
       const defaultWithAnimation: WithTimingAnimation = {
-        type: "timing",
+        type: 'timing',
         config: {
           duration: scrollAnimationDuration + 100,
           easing: Easing.easeOutQuart,
@@ -115,7 +115,7 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
       return dealWithAnimation(withAnimation ?? defaultWithAnimation)(
         toValue,
         (isFinished: boolean) => {
-          "worklet";
+          'worklet';
           if (isFinished) onFinished && runOnJS(onFinished)();
         },
       );
@@ -129,7 +129,7 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
       scrollEndVelocityValue: number,
       onFinished?: () => void,
     ) => {
-      "worklet";
+      'worklet';
       const origin = translation.value;
       const velocity = scrollEndVelocityValue;
       // Default to scroll in the direction of the slide (with deceleration)
@@ -210,7 +210,7 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
 
   const onFinish = React.useCallback(
     (isFinished: boolean) => {
-      "worklet";
+      'worklet';
       if (isFinished) {
         touching.value = false;
         onScrollEnd && runOnJS(onScrollEnd)();
@@ -220,7 +220,7 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
   );
 
   const activeDecay = React.useCallback(() => {
-    "worklet";
+    'worklet';
     touching.value = true;
     translation.value = withDecay(
       { velocity: scrollEndVelocity.value },
@@ -229,7 +229,7 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
   }, [onFinish, scrollEndVelocity.value, touching, translation]);
 
   const resetBoundary = React.useCallback(() => {
-    "worklet";
+    'worklet';
     if (touching.value) return;
 
     if (translation.value > 0) {
@@ -270,7 +270,7 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
   );
 
   function withProcessTranslation(translation: number) {
-    "worklet";
+    'worklet';
 
     if (!loop && !overscrollEnabled) {
       const limit = getLimit();
@@ -283,7 +283,7 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
 
   const onGestureStart = useCallback(
     (_: PanGestureHandlerEventPayload) => {
-      "worklet";
+      'worklet';
 
       touching.value = true;
       validStart.value = true;
@@ -311,7 +311,7 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
 
   const onGestureUpdate = useCallback(
     (e: PanGestureHandlerEventPayload) => {
-      "worklet";
+      'worklet';
 
       if (validStart.value) {
         validStart.value = false;
@@ -322,9 +322,9 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
 
       let panTranslation = isHorizontal.value ? translationX : translationY;
 
-      if (fixedDirection === "negative")
+      if (fixedDirection === 'negative')
         panTranslation = -Math.abs(panTranslation);
-      else if (fixedDirection === "positive")
+      else if (fixedDirection === 'positive')
         panTranslation = +Math.abs(panTranslation);
 
       if (!loop) {
@@ -338,6 +338,7 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
       }
 
       const translationValue = panOffset.value + panTranslation;
+      console.log('translation value update', translationValue);
       translation.value = translationValue;
     },
     [
@@ -358,7 +359,7 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
       e: GestureStateChangeEvent<PanGestureHandlerEventPayload>,
       _success: boolean,
     ) => {
-      "worklet";
+      'worklet';
 
       const { velocityX, velocityY, translationX, translationY } = e;
       const scrollEndVelocityValue = isHorizontal.value ? velocityX : velocityY;
@@ -366,9 +367,9 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
 
       let panTranslation = isHorizontal.value ? translationX : translationY;
 
-      if (fixedDirection === "negative")
+      if (fixedDirection === 'negative')
         panTranslation = -Math.abs(panTranslation);
-      else if (fixedDirection === "positive")
+      else if (fixedDirection === 'positive')
         panTranslation = +Math.abs(panTranslation);
 
       scrollEndTranslation.value = panTranslation; // may update async: see https://docs.swmansion.com/react-native-reanimated/docs/core/useSharedValue#remarks
@@ -449,6 +450,7 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
     <GestureDetector gesture={gesture}>
       <Animated.View
         ref={containerRef}
+        id="animated-view-test"
         testID={testID}
         style={style}
         onTouchStart={onTouchBegin}

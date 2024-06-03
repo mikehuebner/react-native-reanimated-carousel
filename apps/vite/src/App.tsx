@@ -9,12 +9,12 @@ import Animated, {
   withRepeat,
   withSequence,
   withTiming,
+  useAnimatedReaction,
 } from 'react-native-reanimated';
 import { App } from 'react-native-reanimated-carousel-example-app';
 
 const ViteApp = () => {
   const arrowValue = useSharedValue(0);
-
   const animatedStyle = useAnimatedStyle(
     () => ({
       transform: [
@@ -30,6 +30,8 @@ const ViteApp = () => {
     }),
     [arrowValue],
   );
+
+  console.log(arrowValue, animatedStyle, 'test2');
 
   useEffect(() => {
     arrowValue.value = withRepeat(
@@ -52,7 +54,7 @@ const ViteApp = () => {
 
   return (
     <>
-      <Animated.View
+      {/* <Animated.View
         style={[
           {
             transform: [
@@ -66,8 +68,8 @@ const ViteApp = () => {
         ]}
       >
         <Text>Open up App.tsx to start working on your app!</Text>
-      </Animated.View>
-      {/* <App /> */}
+      </Animated.View> */}
+      <App />
     </>
   );
 };

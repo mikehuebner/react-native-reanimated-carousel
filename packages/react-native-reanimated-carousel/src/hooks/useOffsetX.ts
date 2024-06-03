@@ -3,16 +3,16 @@ import {
   SharedValue,
   interpolate,
   useDerivedValue,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
-import type { IVisibleRanges } from "./useVisibleRanges";
+import type { IVisibleRanges } from './useVisibleRanges';
 
 export interface IOpts {
   index: number;
   size: number;
   handlerOffset: SharedValue<number>;
   dataLength: number;
-  type?: "positive" | "negative";
+  type?: 'positive' | 'negative';
   viewCount?: number;
   loop?: boolean;
 }
@@ -24,7 +24,7 @@ export const useOffsetX = (opts: IOpts, visibleRanges: IVisibleRanges) => {
     size,
     loop,
     dataLength,
-    type = "positive",
+    type = 'positive',
     viewCount: _viewCount,
   } = opts;
 
@@ -35,7 +35,7 @@ export const useOffsetX = (opts: IOpts, visibleRanges: IVisibleRanges) => {
 
   const viewCount = _viewCount ?? Math.round((ITEM_LENGTH - 1) / 2);
   const positiveCount =
-    type === "positive" ? viewCount : VALID_LENGTH - viewCount;
+    type === 'positive' ? viewCount : VALID_LENGTH - viewCount;
 
   let startPos = size * index;
   if (index > positiveCount) startPos = (index - ITEM_LENGTH) * size;
@@ -83,7 +83,7 @@ export const useOffsetX = (opts: IOpts, visibleRanges: IVisibleRanges) => {
     }
 
     return Number.MAX_SAFE_INTEGER;
-  }, [loop, dataLength, viewCount, type, size, visibleRanges]);
+  }, [loop, dataLength, viewCount, type, size, visibleRanges, handlerOffset]);
 
   return x;
 };

@@ -2,13 +2,13 @@ import {
   useSharedValue,
   useAnimatedReaction,
   type SharedValue,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
-import type { TInitializeCarouselProps } from "./useInitProps";
+import type { TInitializeCarouselProps } from './useInitProps';
 
-import { computeOffsetIfDataChanged } from "../utils/compute-offset-if-data-changed";
-import { computeOffsetIfSizeChanged } from "../utils/compute-offset-if-size-changed";
-import { handlerOffsetDirection } from "../utils/handleroffset-direction";
+import { computeOffsetIfDataChanged } from '../utils/compute-offset-if-data-changed';
+import { computeOffsetIfSizeChanged } from '../utils/compute-offset-if-size-changed';
+import { handlerOffsetDirection } from '../utils/handleroffset-direction';
 
 interface ICommonVariables {
   size: number;
@@ -94,6 +94,7 @@ export function useCommonVariables(
           prevSize: previousSize,
           size,
         });
+        console.log(' handlerOffset.value', handlerOffset.value);
       }
     },
     [size],

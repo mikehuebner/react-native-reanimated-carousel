@@ -1,19 +1,20 @@
-import * as React from "react";
-import { ScrollView } from "react-native-gesture-handler";
-import type { ICarouselInstance } from "react-native-reanimated-carousel";
-import Carousel from "react-native-reanimated-carousel";
-import { SafeAreaView } from "react-native-safe-area-context";
+import * as React from 'react';
+import { ScrollView } from 'react-native-gesture-handler';
+import type { ICarouselInstance } from 'react-native-reanimated-carousel';
+import Carousel from 'react-native-reanimated-carousel';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { SBItem } from "../../components/SBItem";
-import SButton from "../../components/SButton";
-import { ElementsText } from "../../constants";
-import { useWindowDimensions } from "react-native";
-import { useSharedValue } from "react-native-reanimated";
+import { SBItem } from '../../components/SBItem';
+import SButton from '../../components/SButton';
+import { ElementsText } from '../../constants';
+import { useWindowDimensions } from 'react-native';
+import { useSharedValue } from 'react-native-reanimated';
 
 function Index() {
   const windowWidth = useWindowDimensions().width;
   const scrollOffsetValue = useSharedValue<number>(0);
   const [data, setData] = React.useState([...new Array(4).keys()]);
+  console.log(data);
   const [isVertical, setIsVertical] = React.useState(false);
   const [isFast, setIsFast] = React.useState(false);
   const [isAutoPlay, setIsAutoPlay] = React.useState(false);
@@ -33,27 +34,27 @@ function Index() {
       } as const);
 
   return (
-    <SafeAreaView edges={["bottom"]} style={{ flex: 1 }}>
+    <SafeAreaView edges={['bottom']} style={{ flex: 1 }}>
       <Carousel
         {...baseOptions}
         loop
         enabled // Default is true, just for demo
         ref={ref}
         defaultScrollOffsetValue={scrollOffsetValue}
-        testID={"xxx"}
-        style={{ width: "100%" }}
+        testID={'xxx'}
+        style={{ width: '100%' }}
         autoPlay={isAutoPlay}
         autoPlayInterval={isFast ? 100 : 2000}
         data={data}
         onScrollStart={() => {
-          console.log("===1");
+          console.log('===1');
         }}
         onScrollEnd={() => {
-          console.log("===2");
+          console.log('===2');
         }}
         onConfigurePanGesture={(g) => g.enabled(false)}
         pagingEnabled={isPagingEnabled}
-        onSnapToItem={(index) => console.log("current index:", index)}
+        onSnapToItem={(index) => console.log('current index:', index)}
         renderItem={({ index }) => <SBItem key={index} index={index} />}
       />
       <ScrollView style={{ flex: 1 }}>
@@ -62,28 +63,28 @@ function Index() {
             setData([...new Array(5).keys()]);
           }}
         >
-          {"Change the data length to 5"}
+          {'Change the data length to 5'}
         </SButton>
         <SButton
           onPress={() => {
             setData([...new Array(3).keys()]);
           }}
         >
-          {"Change the data length to 3"}
+          {'Change the data length to 3'}
         </SButton>
         <SButton
           onPress={() => {
             setIsVertical(!isVertical);
           }}
         >
-          {isVertical ? "Set horizontal" : "Set Vertical"}
+          {isVertical ? 'Set horizontal' : 'Set Vertical'}
         </SButton>
         <SButton
           onPress={() => {
             setIsFast(!isFast);
           }}
         >
-          {isFast ? "NORMAL" : "FAST"}
+          {isFast ? 'NORMAL' : 'FAST'}
         </SButton>
         <SButton
           onPress={() => {

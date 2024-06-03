@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import Animated, {
   useAnimatedStyle,
   useDerivedValue,
   SharedValue,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
-import type { IOpts } from "../hooks/useOffsetX";
-import { useOffsetX } from "../hooks/useOffsetX";
-import type { IVisibleRanges } from "../hooks/useVisibleRanges";
-import type { ILayoutConfig } from "../layouts/stack";
-import { CTX } from "../store";
+import type { IOpts } from '../hooks/useOffsetX';
+import { useOffsetX } from '../hooks/useOffsetX';
+import type { IVisibleRanges } from '../hooks/useVisibleRanges';
+import type { ILayoutConfig } from '../layouts/stack';
+import { CTX } from '../store';
 
 export type TAnimationStyle = (
   value: number,
@@ -48,10 +48,10 @@ export const BaseLayout = (props: {
     size,
     dataLength,
     loop,
-    ...(typeof customConfig === "function" ? customConfig() : {}),
+    ...(typeof customConfig === 'function' ? customConfig() : {}),
   };
 
-  if (mode === "horizontal-stack") {
+  if (mode === 'horizontal-stack') {
     const { snapDirection, showLength } = modeConfig as ILayoutConfig;
 
     offsetXConfig = {
@@ -60,24 +60,32 @@ export const BaseLayout = (props: {
       size,
       dataLength,
       loop,
-      type: snapDirection === "right" ? "negative" : "positive",
+      type: snapDirection === 'right' ? 'negative' : 'positive',
       viewCount: showLength,
     };
   }
 
+  useDerivedValue(() => {
+    console.log(
+      'animate style change3 offsetXConfig.handlerOffset',
+      offsetXConfig.handlerOffset.value,
+    );
+    return offsetXConfig.handlerOffset;
+  }, [offsetXConfig.handlerOffset]);
   const x = useOffsetX(offsetXConfig, visibleRanges);
   const animationValue = useDerivedValue(() => x.value / size, [x, size]);
   const animatedStyle = useAnimatedStyle(() => {
+    console.log('x animatedStyle', animationStyle(x.value / size));
     return animationStyle(x.value / size);
-  }, [animationStyle]);
+  }, [animationStyle, x]);
 
   return (
     <Animated.View
       style={[
         {
-          width: width || "100%",
-          height: height || "100%",
-          position: "absolute",
+          width: width || '100%',
+          height: height || '100%',
+          position: 'absolute',
         },
         animatedStyle,
       ]}

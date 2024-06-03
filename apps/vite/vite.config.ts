@@ -67,10 +67,10 @@ const reactNativeWeb = () =>
       },
       optimizeDeps: {
         include: [
-          'react-native-reanimated',
           '@react-navigation/native',
-          'react-native-gesture-handler',
           '@react-navigation/stack',
+          'react-native-gesture-handler',
+          'react-native-reanimated',
         ],
         jsx: 'transform',
         esbuildOptions: {
