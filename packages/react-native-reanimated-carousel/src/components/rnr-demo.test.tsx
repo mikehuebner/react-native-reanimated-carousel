@@ -5,7 +5,7 @@ import Animated, {
   useDerivedValue,
 } from 'react-native-reanimated';
 
-import { render, cleanup } from '@testing-library/react-native';
+import { cleanup, render } from '@testing-library/react-native';
 
 describe('useSharedValue', () => {
   afterEach(cleanup);

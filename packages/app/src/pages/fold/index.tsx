@@ -1,15 +1,16 @@
-import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import type Animated from "react-native-reanimated";
-import { Extrapolate, interpolate } from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { faker } from "@faker-js/faker";
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import type Animated from 'react-native-reanimated';
+import { Extrapolate, interpolate } from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
-import { SBImageItem } from "../../components/SBImageItem";
-import SButton from "../../components/SButton";
-import { ElementsText, windowDimensions } from "../../constants";
+import { faker } from '@faker-js/faker';
+
+import { SBImageItem } from '../../components/SBImageItem';
+import SButton from '../../components/SButton';
+import { ElementsText, windowDimensions } from '../../constants';
 
 const PAGE_WIDTH = windowDimensions.width;
 
@@ -26,7 +27,7 @@ function Index() {
 
   const animationStyle: TAnimationStyle = React.useCallback(
     (value: number) => {
-      "worklet";
+      'worklet';
 
       const itemOffsetInput = new Array(sideItemCount * 2 + 1)
         .fill(null)
@@ -65,7 +66,7 @@ function Index() {
           },
         ],
         width,
-        overflow: "hidden",
+        overflow: 'hidden',
       };
     },
     [centerOffset, itemSize, sideItemWidth, sideItemCount],
@@ -79,7 +80,7 @@ function Index() {
         style={{
           width: PAGE_WIDTH,
           height: PAGE_WIDTH / 2,
-          backgroundColor: "black",
+          backgroundColor: 'black',
         }}
         loop
         windowSize={Math.round(dataLength / 2)}
@@ -97,7 +98,7 @@ function Index() {
           setIsFast(!isFast);
         }}
       >
-        {isFast ? "NORMAL" : "FAST"}
+        {isFast ? 'NORMAL' : 'FAST'}
       </SButton>
       <SButton
         onPress={() => {
@@ -124,11 +125,11 @@ const Item: React.FC<{
     >
       <View
         style={{
-          backgroundColor: "white",
+          backgroundColor: 'white',
           flex: 1,
-          justifyContent: "center",
-          overflow: "hidden",
-          alignItems: "center",
+          justifyContent: 'center',
+          overflow: 'hidden',
+          alignItems: 'center',
         }}
       >
         <SBImageItem
@@ -139,11 +140,11 @@ const Item: React.FC<{
         />
         <Text
           style={{
-            color: "white",
-            fontWeight: "600",
+            color: 'white',
+            fontWeight: '600',
             fontSize: 40,
             width: 100,
-            textAlign: "center",
+            textAlign: 'center',
           }}
         >
           {faker.name.fullName().slice(0, 2).toUpperCase()}
@@ -155,9 +156,9 @@ const Item: React.FC<{
 
 const styles = StyleSheet.create({
   image: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
     borderRadius: 0,
   },
 });

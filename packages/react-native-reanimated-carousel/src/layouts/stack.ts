@@ -1,47 +1,48 @@
-import { useMemo } from "react";
-import type { TransformsStyle, ViewStyle } from "react-native";
-import { Dimensions } from "react-native";
-import { Extrapolate, interpolate } from "react-native-reanimated";
+import { useMemo } from 'react';
+import type { TransformsStyle, ViewStyle } from 'react-native';
+import { Dimensions } from 'react-native';
 
-import type { IComputedDirectionTypes, CustomConfig } from "../types";
+import { Extrapolate, interpolate } from 'react-native-reanimated';
 
-const screen = Dimensions.get("window");
+import type { CustomConfig, IComputedDirectionTypes } from '../types';
+
+const screen = Dimensions.get('window');
 
 export interface ILayoutConfig {
-  showLength?: number
-  moveSize?: number
-  stackInterval?: number
-  scaleInterval?: number
-  opacityInterval?: number
-  rotateZDeg?: number
-  snapDirection?: "left" | "right"
+  showLength?: number;
+  moveSize?: number;
+  stackInterval?: number;
+  scaleInterval?: number;
+  opacityInterval?: number;
+  rotateZDeg?: number;
+  snapDirection?: 'left' | 'right';
 }
 
 export type TStackModeProps = IComputedDirectionTypes<{
   /**
-     * Carousel Animated transitions.
-     */
-  mode?: "horizontal-stack" | "vertical-stack"
+   * Carousel Animated transitions.
+   */
+  mode?: 'horizontal-stack' | 'vertical-stack';
   /**
-     * Stack animation style.
-     * @default
-     *     mode: 'vertical',
-     *     snapDirection: 'right',
-     *     moveSize: window.width,
-     *     stackInterval: 30,
-     *     scaleInterval: 0.08,
-     *     rotateZDeg: 135,
-     */
-  modeConfig?: ILayoutConfig
+   * Stack animation style.
+   * @default
+   *     mode: 'vertical',
+   *     snapDirection: 'right',
+   *     moveSize: window.width,
+   *     stackInterval: 30,
+   *     scaleInterval: 0.08,
+   *     rotateZDeg: 135,
+   */
+  modeConfig?: ILayoutConfig;
 }>;
 
 export function horizontalStackLayout(modeConfig: ILayoutConfig = {}) {
   return (_value: number) => {
-    "worklet";
+    'worklet';
 
     const {
       showLength,
-      snapDirection = "left",
+      snapDirection = 'left',
       moveSize = screen.width,
       stackInterval = 18,
       scaleInterval = 0.04,
@@ -49,7 +50,7 @@ export function horizontalStackLayout(modeConfig: ILayoutConfig = {}) {
       rotateZDeg = 30,
     } = modeConfig;
 
-    const transform: TransformsStyle["transform"] = [];
+    const transform: TransformsStyle['transform'] = [];
     const { validLength, value, inputRange } = getCommonVariables({
       showLength: showLength!,
       value: _value,
@@ -72,7 +73,7 @@ export function horizontalStackLayout(modeConfig: ILayoutConfig = {}) {
     let scale: number;
     let rotateZ: string;
 
-    if (snapDirection === "left") {
+    if (snapDirection === 'left') {
       translateX = interpolate(
         value,
         inputRange,
@@ -91,8 +92,7 @@ export function horizontalStackLayout(modeConfig: ILayoutConfig = {}) {
         [-rotateZDeg, 0, 0],
         Extrapolate.CLAMP,
       )}deg`;
-    }
-    else if (snapDirection === "right") {
+    } else if (snapDirection === 'right') {
       translateX = interpolate(
         value,
         inputRange,
@@ -136,9 +136,9 @@ export function useHorizontalStackLayout(
   const config = useMemo(
     () => ({
       type:
-                customAnimationConfig.snapDirection === "right"
-                  ? "negative"
-                  : "positive",
+        customAnimationConfig.snapDirection === 'right'
+          ? 'negative'
+          : 'positive',
       viewCount: customAnimationConfig.showLength,
       ...customConfig,
     }),
@@ -153,18 +153,18 @@ export function useHorizontalStackLayout(
 
 export function verticalStackLayout(modeConfig: ILayoutConfig = {}) {
   return (_value: number) => {
-    "worklet";
+    'worklet';
 
     const {
       showLength,
-      snapDirection = "left",
+      snapDirection = 'left',
       moveSize = screen.width,
       stackInterval = 18,
       scaleInterval = 0.04,
       opacityInterval = 0.1,
       rotateZDeg = 30,
     } = modeConfig;
-    const transform: TransformsStyle["transform"] = [];
+    const transform: TransformsStyle['transform'] = [];
     const { validLength, value, inputRange } = getCommonVariables({
       showLength: showLength!,
       value: _value,
@@ -188,7 +188,7 @@ export function verticalStackLayout(modeConfig: ILayoutConfig = {}) {
     let rotateZ: string;
     let translateY: number;
 
-    if (snapDirection === "left") {
+    if (snapDirection === 'left') {
       translateX = interpolate(
         value,
         inputRange,
@@ -213,8 +213,7 @@ export function verticalStackLayout(modeConfig: ILayoutConfig = {}) {
         [0, 0, validLength * stackInterval],
         Extrapolate.CLAMP,
       );
-    }
-    else if (snapDirection === "right") {
+    } else if (snapDirection === 'right') {
       translateX = interpolate(
         value,
         inputRange,
@@ -261,11 +260,11 @@ export function verticalStackLayout(modeConfig: ILayoutConfig = {}) {
 }
 
 function getCommonVariables(opts: {
-  value: number
-  showLength: number
-  snapDirection: "left" | "right"
+  value: number;
+  showLength: number;
+  snapDirection: 'left' | 'right';
 }) {
-  "worklet";
+  'worklet';
 
   const { showLength, value: _value, snapDirection } = opts;
   function easeInOutCubic(v: number): number {
@@ -273,20 +272,15 @@ function getCommonVariables(opts: {
   }
   const page = Math.floor(Math.abs(_value));
   const diff = Math.abs(_value) % 1;
-  const value
-        = _value < 0
-          ? -(page + easeInOutCubic(diff))
-          : page + easeInOutCubic(diff);
+  const value =
+    _value < 0 ? -(page + easeInOutCubic(diff)) : page + easeInOutCubic(diff);
   const validLength = showLength! - 1;
 
   let inputRange: [number, number, number];
 
-  if (snapDirection === "left")
-    inputRange = [-1, 0, validLength];
-  else if (snapDirection === "right")
-    inputRange = [-validLength, 0, 1];
-  else
-    throw new Error("snapDirection must be set to either left or right");
+  if (snapDirection === 'left') inputRange = [-1, 0, validLength];
+  else if (snapDirection === 'right') inputRange = [-validLength, 0, 1];
+  else throw new Error('snapDirection must be set to either left or right');
 
   return {
     inputRange,
@@ -296,31 +290,25 @@ function getCommonVariables(opts: {
 }
 
 function getCommonStyles(opts: {
-  value: number
-  validLength: number
-  opacityInterval: number
-  snapDirection: "left" | "right"
+  value: number;
+  validLength: number;
+  opacityInterval: number;
+  snapDirection: 'left' | 'right';
 }) {
-  "worklet";
+  'worklet';
 
   const { snapDirection, validLength, value, opacityInterval } = opts;
 
   let zIndex: number;
   let opacity: number;
 
-  if (snapDirection === "left") {
-    zIndex
-            = Math.floor(
+  if (snapDirection === 'left') {
+    zIndex =
+      Math.floor(
         interpolate(
           value,
           [-1.5, -1, -1 + Number.MIN_VALUE, 0, validLength],
-          [
-            Number.MIN_VALUE,
-            validLength,
-            validLength,
-            validLength - 1,
-            -1,
-          ],
+          [Number.MIN_VALUE, validLength, validLength, validLength - 1, -1],
         ) * 10000,
       ) / 100;
 
@@ -329,20 +317,13 @@ function getCommonStyles(opts: {
       [-1, 0, validLength - 1, validLength],
       [0.25, 1, 1 - (validLength - 1) * opacityInterval, 0.25],
     );
-  }
-  else if (snapDirection === "right") {
-    zIndex
-            = Math.floor(
+  } else if (snapDirection === 'right') {
+    zIndex =
+      Math.floor(
         interpolate(
           value,
           [-validLength, 0, 1 - Number.MIN_VALUE, 1, 1.5],
-          [
-            1,
-            validLength - 1,
-            validLength,
-            validLength,
-            Number.MIN_VALUE,
-          ],
+          [1, validLength - 1, validLength, validLength, Number.MIN_VALUE],
         ) * 10000,
       ) / 100;
     opacity = interpolate(
@@ -350,9 +331,8 @@ function getCommonStyles(opts: {
       [-validLength, 1 - validLength, 0, 1],
       [0.25, 1 - (validLength - 1) * opacityInterval, 1, 0.25],
     );
-  }
-  else {
-    throw new Error("snapDirection must be set to either left or right");
+  } else {
+    throw new Error('snapDirection must be set to either left or right');
   }
 
   return {

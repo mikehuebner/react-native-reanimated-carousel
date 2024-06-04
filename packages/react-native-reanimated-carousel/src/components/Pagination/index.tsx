@@ -1,4 +1,4 @@
-import { Basic } from "./Basic";
+import { Basic } from './Basic';
 
 export const Pagination = {
   Basic,

@@ -1,17 +1,17 @@
-import type { TransformsStyle } from "react-native";
+import type { TransformsStyle } from 'react-native';
 
 export interface Point {
-  x: number
-  y: number
+  x: number;
+  y: number;
 }
 
 export interface Size {
-  width: number
-  height: number
+  width: number;
+  height: number;
 }
 
 const isValidSize = (size: Size): boolean => {
-  "worklet";
+  'worklet';
 
   return size && size.width > 0 && size.height > 0;
 };
@@ -23,14 +23,12 @@ export const withAnchorPoint = (
   anchorPoint: Point,
   size: Size,
 ) => {
-  "worklet";
+  'worklet';
 
-  if (!isValidSize(size))
-    return transform;
+  if (!isValidSize(size)) return transform;
 
   let injectedTransform = transform.transform;
-  if (!injectedTransform)
-    return transform;
+  if (!injectedTransform) return transform;
 
   if (anchorPoint.x !== defaultAnchorPoint.x && size.width) {
     const shiftTranslateX = [];

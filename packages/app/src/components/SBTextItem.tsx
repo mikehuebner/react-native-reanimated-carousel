@@ -1,4 +1,3 @@
-import React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -7,8 +6,7 @@ interface Props {
   index?: number;
 }
 
-export const SBTextItem: React.FC<Props> = ({ style, index }) => {
-  console.log('RENDERED SBTEXT ITEM', index);
+export const SBTextItem = ({ style, index }: Props) => {
   return (
     <View style={[styles.container, style]}>
       {typeof index === 'number' && (

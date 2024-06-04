@@ -1,12 +1,13 @@
-import * as React from "react";
-import { Text, View, Image } from "react-native";
-import { interpolate } from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { Image, Text, View } from 'react-native';
 
-import { faker } from "@faker-js/faker";
-import { BlurView } from "expo-blur";
+import { interpolate } from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
-import { windowDimensions } from "../../constants";
+import { faker } from '@faker-js/faker';
+import { BlurView } from 'expo-blur';
+
+import { windowDimensions } from '../../constants';
 
 function Index() {
   const headerHeight = 100;
@@ -22,7 +23,7 @@ function Index() {
 
   const animationStyle: TAnimationStyle = React.useCallback(
     (value: number) => {
-      "worklet";
+      'worklet';
 
       const translateY = interpolate(
         value,
@@ -54,7 +55,7 @@ function Index() {
         style={{
           width: PAGE_WIDTH,
           height: PAGE_HEIGHT,
-          position: "absolute",
+          position: 'absolute',
         }}
       />
       <BlurView
@@ -63,14 +64,14 @@ function Index() {
         style={{
           width: PAGE_WIDTH,
           height: PAGE_HEIGHT,
-          position: "absolute",
+          position: 'absolute',
         }}
       />
       <Carousel
         loop
         vertical
         style={{
-          justifyContent: "center",
+          justifyContent: 'center',
           width: PAGE_WIDTH,
           height: PAGE_HEIGHT,
         }}
@@ -83,17 +84,17 @@ function Index() {
             <View key={index} style={{ flex: 1, padding: 10 }}>
               <View
                 style={{
-                  alignItems: "flex-start",
+                  alignItems: 'flex-start',
                   flex: 1,
-                  justifyContent: "space-between",
-                  flexDirection: "row",
+                  justifyContent: 'space-between',
+                  flexDirection: 'row',
                   borderRadius: 20,
                 }}
               >
                 <View
                   style={{
-                    flexDirection: "row",
-                    alignItems: "center",
+                    flexDirection: 'row',
+                    alignItems: 'center',
                   }}
                 >
                   <Image
@@ -114,7 +115,7 @@ function Index() {
                     numberOfLines={1}
                     style={{
                       maxWidth: ITEM_WIDTH * 0.3 - 40,
-                      color: "white",
+                      color: 'white',
                     }}
                   >
                     {faker.animal.dog()}
@@ -125,7 +126,7 @@ function Index() {
                     width: ITEM_WIDTH * 0.6,
                     height: ITEM_HEIGHT - 20,
                     borderRadius: 10,
-                    overflow: "hidden",
+                    overflow: 'hidden',
                   }}
                 >
                   <Image

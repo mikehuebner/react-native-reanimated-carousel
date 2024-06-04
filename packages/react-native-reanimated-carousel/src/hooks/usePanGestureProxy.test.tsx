@@ -1,4 +1,5 @@
 import { Text } from 'react-native';
+
 import type {
   PanGesture,
   PanGestureHandler,
@@ -10,12 +11,12 @@ import {
   GestureHandlerRootView,
   State,
 } from 'react-native-gesture-handler';
-
-import { cleanup, render } from '@testing-library/react-native';
 import {
   fireGestureHandler,
   getByGestureTestId,
 } from 'react-native-gesture-handler/jest-utils';
+
+import { cleanup, render } from '@testing-library/react-native';
 
 import { usePanGestureProxy } from './usePanGestureProxy';
 

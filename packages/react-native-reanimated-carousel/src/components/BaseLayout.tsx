@@ -1,15 +1,18 @@
 import React from 'react';
+
 import Animated, {
+  SharedValue,
   useAnimatedStyle,
   useDerivedValue,
-  SharedValue,
 } from 'react-native-reanimated';
 
-import type { IOpts } from '../hooks/useOffsetX';
 import { useOffsetX } from '../hooks/useOffsetX';
+import { CTX } from '../store';
+
+import type { IOpts } from '../hooks/useOffsetX';
 import type { IVisibleRanges } from '../hooks/useVisibleRanges';
 import type { ILayoutConfig } from '../layouts/stack';
-import { CTX } from '../store';
+
 
 export type TAnimationStyle = (
   value: number,
@@ -65,17 +68,9 @@ export const BaseLayout = (props: {
     };
   }
 
-  useDerivedValue(() => {
-    console.log(
-      'animate style change3 offsetXConfig.handlerOffset',
-      offsetXConfig.handlerOffset.value,
-    );
-    return offsetXConfig.handlerOffset;
-  }, [offsetXConfig.handlerOffset]);
   const x = useOffsetX(offsetXConfig, visibleRanges);
   const animationValue = useDerivedValue(() => x.value / size, [x, size]);
   const animatedStyle = useAnimatedStyle(() => {
-    console.log('x animatedStyle', animationStyle(x.value / size));
     return animationStyle(x.value / size);
   }, [animationStyle, x]);
 

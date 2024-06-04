@@ -1,27 +1,27 @@
-import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import type { SharedValue } from 'react-native-reanimated';
 import Animated, {
-  useSharedValue,
   useAnimatedStyle,
+  useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
 
 function Ball({ offset }: { offset: SharedValue<{ x: number; y: number }> }) {
   const isPressed = useSharedValue(false);
 
-  const animatedStyles = useAnimatedStyle(() => {
-    console.log('animate styles change');
-    return {
+  const animatedStyles = useAnimatedStyle(
+    () => ({
       transform: [
         { translateX: offset.value.x },
         { translateY: offset.value.y },
         { scale: withSpring(isPressed.value ? 1.2 : 1) },
       ],
       backgroundColor: isPressed.value ? 'yellow' : 'blue',
-    };
-  }, [isPressed, offset]);
+    }),
+    [isPressed, offset],
+  );
 
   const gesture = Gesture.Pan()
     .onBegin(() => {
@@ -32,8 +32,6 @@ function Ball({ offset }: { offset: SharedValue<{ x: number; y: number }> }) {
         x: e.changeX + offset.value.x,
         y: e.changeY + offset.value.y,
       };
-
-      console.log('changinggggg');
     })
     .onFinalize(() => {
       isPressed.value = false;

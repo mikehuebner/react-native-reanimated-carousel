@@ -1,8 +1,9 @@
-import * as React from "react";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import * as React from 'react';
+
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import Animated, {
-  cancelAnimation,
   Extrapolate,
+  cancelAnimation,
   interpolate,
   useAnimatedReaction,
   useAnimatedStyle,
@@ -11,7 +12,7 @@ import Animated, {
   withSequence,
   withSpring,
   withTiming,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
 export enum ArrowDirection {
   IS_VERTICAL = 0,
@@ -96,21 +97,21 @@ export const Arrow: React.FC<{
       }}
     >
       <Animated.View
-        style={[arrowContainerUpStyle, { width: "100%", height: 150 }]}
+        style={[arrowContainerUpStyle, { width: '100%', height: 150 }]}
       >
         <Animated.Image
-          source={{ uri: "../../../assets/arrow-up.png" }}
+          source={{ uri: '../../../assets/arrow-up.png' }}
           resizeMode="center"
-          style={[arrowStyle, { height: "100%" }]}
+          style={[arrowStyle, { height: '100%' }]}
         />
       </Animated.View>
       <Animated.View
-        style={[arrowContainerDownStyle, { width: "100%", height: 150 }]}
+        style={[arrowContainerDownStyle, { width: '100%', height: 150 }]}
       >
         <Animated.Image
-          source={{ uri: "../../../assets/arrow-up.png" }}
+          source={{ uri: '../../../assets/arrow-up.png' }}
           resizeMode="center"
-          style={[arrowStyle, { height: "100%" }]}
+          style={[arrowStyle, { height: '100%' }]}
         />
       </Animated.View>
     </TouchableWithoutFeedback>

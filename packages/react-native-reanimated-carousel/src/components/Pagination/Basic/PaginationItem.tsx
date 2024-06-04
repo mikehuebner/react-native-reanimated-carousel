@@ -1,14 +1,15 @@
-import type { PropsWithChildren } from "react";
-import React from "react";
-import type { ViewStyle } from "react-native";
-import { View } from "react-native";
+import type { PropsWithChildren } from 'react';
+import React from 'react';
+import type { ViewStyle } from 'react-native';
+import { View } from 'react-native';
+
 import Animated, {
   Extrapolation,
   interpolate,
   useAnimatedStyle,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
-export type DotStyle = Omit<ViewStyle, "width" | "height"> & {
+export type DotStyle = Omit<ViewStyle, 'width' | 'height'> & {
   width?: number;
   height?: number;
 };
@@ -84,10 +85,10 @@ export const PaginationItem: React.FC<
         {
           width,
           height,
-          overflow: "hidden",
+          overflow: 'hidden',
           transform: [
             {
-              rotateZ: horizontal ? "90deg" : "0deg",
+              rotateZ: horizontal ? '90deg' : '0deg',
             },
           ],
         },
@@ -97,7 +98,7 @@ export const PaginationItem: React.FC<
       <Animated.View
         style={[
           {
-            backgroundColor: "black",
+            backgroundColor: 'black',
             flex: 1,
           },
           animStyle,

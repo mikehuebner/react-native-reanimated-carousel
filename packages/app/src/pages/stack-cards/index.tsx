@@ -1,5 +1,6 @@
-import * as React from "react";
-import { View } from "react-native";
+import * as React from 'react';
+import { View } from 'react-native';
+
 import Animated, {
   interpolate,
   interpolateColor,
@@ -7,12 +8,11 @@ import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
-} from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+} from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
-import { Arrow, ArrowDirection } from "./Arrow";
-
-import { windowDimensions } from "../../constants";
+import { Arrow, ArrowDirection } from './Arrow';
+import { windowDimensions } from '../../constants';
 
 function Index() {
   const headerHeight = 100;
@@ -25,7 +25,7 @@ function Index() {
 
   const animationStyle: TAnimationStyle = React.useCallback(
     (value: number) => {
-      "worklet";
+      'worklet';
       const translateY = interpolate(value, [-1, 0, 1], [-PAGE_HEIGHT, 0, 0]);
 
       const translateX = interpolate(value, [-1, 0, 1], [-PAGE_WIDTH, 0, 0]);
@@ -64,9 +64,9 @@ function Index() {
         style={{
           width: PAGE_WIDTH,
           height: PAGE_HEIGHT,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "black",
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'black',
         }}
         vertical={isVertical}
         width={PAGE_WIDTH}
@@ -101,7 +101,7 @@ const Item: React.FC<{
     const backgroundColor = interpolateColor(
       animationValue.value,
       [-1, 0, 1],
-      ["transparent", "transparent", "rgba(0,0,0,0.3)"],
+      ['transparent', 'transparent', 'rgba(0,0,0,0.3)'],
     );
 
     return {
@@ -113,17 +113,17 @@ const Item: React.FC<{
   return (
     <View
       style={{
-        backgroundColor: "white",
+        backgroundColor: 'white',
         flex: 1,
         borderRadius: 20,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Animated.View
         style={[
           maskStyle,
-          { position: "absolute", width: "100%", height: "100%" },
+          { position: 'absolute', width: '100%', height: '100%' },
         ]}
       />
       <Arrow directionAnim={directionAnim} />

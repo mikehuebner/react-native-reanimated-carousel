@@ -1,7 +1,8 @@
-const path = require('path');
 const fs = require('fs');
-const exclusionList = require('metro-config/src/defaults/exclusionList');
+const path = require('path');
+
 const escape = require('escape-string-regexp');
+const exclusionList = require('metro-config/src/defaults/exclusionList');
 
 const root = path.resolve(__dirname, '../..');
 const rootPak = JSON.parse(

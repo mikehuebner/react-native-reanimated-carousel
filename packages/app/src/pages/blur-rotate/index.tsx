@@ -1,20 +1,20 @@
-import * as React from "react";
-import type { ImageSourcePropType } from "react-native";
-import { Image, StyleSheet, View } from "react-native";
+import * as React from 'react';
+import type { ImageSourcePropType } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
+
 import Animated, {
   interpolate,
   useAnimatedStyle,
-} from "react-native-reanimated";
-import Carousel from "react-native-reanimated-carousel";
+} from 'react-native-reanimated';
+import Carousel from 'react-native-reanimated-carousel';
 
-import { BlurView as _BlurView } from "expo-blur";
+import { BlurView as _BlurView } from 'expo-blur';
 
-import { parallaxLayout } from "./parallax";
-
-import { SBItem } from "../../components/SBItem";
-import SButton from "../../components/SButton";
-import { ElementsText, HEADER_HEIGHT, windowDimensions } from "../../constants";
-import { fruitItems } from "../../utils/items";
+import { parallaxLayout } from './parallax';
+import { SBItem } from '../../components/SBItem';
+import SButton from '../../components/SButton';
+import { ElementsText, HEADER_HEIGHT, windowDimensions } from '../../constants';
+import { fruitItems } from '../../utils/items';
 
 const BlurView = Animated.createAnimatedComponent(_BlurView);
 
@@ -33,7 +33,7 @@ function Index() {
         style={{
           width: PAGE_WIDTH,
           height: PAGE_HEIGHT,
-          alignItems: "center",
+          alignItems: 'center',
         }}
         width={ITEM_WIDTH}
         height={ITEM_WIDTH}
@@ -87,18 +87,18 @@ const CustomItem: React.FC<ItemProps> = ({ source, animationValue }) => {
       style={{
         flex: 1,
         borderRadius: 30,
-        overflow: "hidden",
-        justifyContent: "center",
-        alignItems: "center",
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
-      <View style={{ width: "100%", height: "100%", position: "absolute" }}>
+      <View style={{ width: '100%', height: '100%', position: 'absolute' }}>
         <SBItem pretty style={{ flex: 1 }} />
       </View>
       <Image
         source={source}
-        resizeMode={"contain"}
-        style={{ width: "80%", height: "80%" }}
+        resizeMode={'contain'}
+        style={{ width: '80%', height: '80%' }}
       />
       <BlurView
         intensity={50}

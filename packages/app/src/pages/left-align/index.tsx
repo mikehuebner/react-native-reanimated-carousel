@@ -1,11 +1,12 @@
-import * as React from "react";
-import { View } from "react-native";
-import type { ICarouselInstance } from "react-native-reanimated-carousel";
-import Carousel from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { View } from 'react-native';
 
-import { SBItem } from "../../components/SBItem";
-import SButton from "../../components/SButton";
-import { ElementsText, windowDimensions } from "../../constants";
+import type { ICarouselInstance } from 'react-native-reanimated-carousel';
+import Carousel from 'react-native-reanimated-carousel';
+
+import { SBItem } from '../../components/SBItem';
+import SButton from '../../components/SButton';
+import { ElementsText, windowDimensions } from '../../constants';
 
 const PAGE_WIDTH = windowDimensions.width;
 
@@ -28,14 +29,14 @@ function Index() {
         {...baseOptions}
         loop={false}
         ref={ref}
-        style={{ width: "100%" }}
+        style={{ width: '100%' }}
         autoPlay={isAutoPlay}
         autoPlayInterval={isFast ? 100 : 2000}
         data={data}
         pagingEnabled={isPagingEnabled}
-        onSnapToItem={(index) => console.log("current index:", index)}
+        onSnapToItem={(index) => console.log('current index:', index)}
         renderItem={({ index }) => (
-          <View style={{ flex: 1, marginLeft: "2.5%" }}>
+          <View style={{ flex: 1, marginLeft: '2.5%' }}>
             <SBItem key={index} index={index} />
           </View>
         )}
@@ -45,7 +46,7 @@ function Index() {
           setIsFast(!isFast);
         }}
       >
-        {isFast ? "NORMAL" : "FAST"}
+        {isFast ? 'NORMAL' : 'FAST'}
       </SButton>
       <SButton
         onPress={() => {

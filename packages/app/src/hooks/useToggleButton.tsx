@@ -1,10 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
 
-import SButton from "../components/SButton";
+import SButton from '../components/SButton';
 
 export function useToggleButton(opts: {
-  defaultValue: boolean
-  buttonTitle: string
+  defaultValue: boolean;
+  buttonTitle: string;
 }) {
   const { buttonTitle, defaultValue = false } = opts;
   const [status, setStatus] = React.useState(defaultValue);

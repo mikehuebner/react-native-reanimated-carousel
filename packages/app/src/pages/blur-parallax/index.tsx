@@ -1,19 +1,19 @@
-import * as React from "react";
-import type { ImageSourcePropType } from "react-native";
-import { Image, StyleSheet, View } from "react-native";
+import * as React from 'react';
+import type { ImageSourcePropType } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
+
 import Animated, {
   interpolate,
   useAnimatedStyle,
-} from "react-native-reanimated";
-import Carousel from "react-native-reanimated-carousel";
+} from 'react-native-reanimated';
+import Carousel from 'react-native-reanimated-carousel';
 
-import { BlurView as _BlurView } from "expo-blur";
+import { BlurView as _BlurView } from 'expo-blur';
 
-import { parallaxLayout } from "./parallax";
-
-import SButton from "../../components/SButton";
-import { ElementsText, windowDimensions } from "../../constants";
-import { fruitItems } from "../../utils/items";
+import { parallaxLayout } from './parallax';
+import SButton from '../../components/SButton';
+import { ElementsText, windowDimensions } from '../../constants';
+import { fruitItems } from '../../utils/items';
 
 const BlurView = Animated.createAnimatedComponent(_BlurView);
 
@@ -30,8 +30,8 @@ function Index() {
         style={{
           width: windowDimensions.width,
           height: 240,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
         width={PAGE_WIDTH}
         data={[...fruitItems, ...fruitItems]}
@@ -86,15 +86,15 @@ const CustomItem: React.FC<ItemProps> = ({ source, animationValue }) => {
       style={{
         flex: 1,
         borderRadius: 10,
-        overflow: "hidden",
-        justifyContent: "center",
-        alignItems: "center",
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Image
         source={source}
-        resizeMode={"contain"}
-        style={{ width: "80%", height: "80%" }}
+        resizeMode={'contain'}
+        style={{ width: '80%', height: '80%' }}
       />
       <BlurView
         intensity={50}

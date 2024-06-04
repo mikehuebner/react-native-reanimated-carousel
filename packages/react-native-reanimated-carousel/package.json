@@ -21,8 +21,8 @@
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "react-native": "src/index.tsx",
-  "types": "lib/typescript/index.d.ts",
-  "source": "src/index",
+  "types": "lib/typescript",
+  "source": "src/index.tsx",
   "files": [
     "lib",
     "src"
@@ -31,8 +31,6 @@
     "test": "jest run src/**/*",
     "test:dev": "jest dev src/**/* --watch",
     "typescript": "tsc --noEmit",
-    "lint": "eslint 'src/**/*.{js,ts,tsx}' && prettier --check 'src/**/*.{js,ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{js,ts,tsx}' --fix && prettier --write 'src/**/*.{js,ts,tsx}'",
     "dev": "watch 'pnpm prepare' ./src",
     "prepare": "bob build",
     "clean": "del-cli lib"
@@ -90,7 +88,13 @@
     "output": "lib",
     "targets": [
       "commonjs",
-      "module"
+      "module",
+       [
+        "typescript",
+        {
+          "tsc": "../../node_modules/.bin/tsc"
+        }
+      ]
     ]
   }
 }

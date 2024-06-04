@@ -1,15 +1,16 @@
-import * as React from "react";
-import { Image, ImageSourcePropType, View } from "react-native";
+import * as React from 'react';
+import { Image, ImageSourcePropType, View } from 'react-native';
+
 import Animated, {
   Extrapolate,
   FadeInDown,
   interpolate,
   useSharedValue,
-} from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+} from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
-import { windowDimensions } from "../../constants";
-import { getImages } from "../../utils/get-images";
+import { windowDimensions } from '../../constants';
+import { getImages } from '../../utils/get-images';
 
 const data = getImages();
 
@@ -22,7 +23,7 @@ function Index() {
 
   const animationStyle: TAnimationStyle = React.useCallback(
     (value: number) => {
-      "worklet";
+      'worklet';
       const translateY = interpolate(value, [0, 1], [0, -18]);
 
       const translateX =
@@ -70,9 +71,9 @@ function Index() {
         style={{
           width: PAGE_WIDTH,
           height: PAGE_HEIGHT,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "white",
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'white',
         }}
         defaultIndex={0}
         vertical={false}
@@ -100,20 +101,20 @@ const Item: React.FC<{ img: ImageSourcePropType }> = ({ img }) => {
   return (
     <Animated.View
       entering={FadeInDown.duration(300)}
-      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
     >
       <View
         style={{
           width,
           height,
           borderWidth: 1,
-          borderColor: "black",
+          borderColor: 'black',
           borderRadius: 20,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "white",
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'white',
 
-          shadowColor: "#000000d1",
+          shadowColor: '#000000d1',
           shadowOffset: {
             width: 0,
             height: 10,

@@ -1,158 +1,161 @@
-import * as React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import * as React from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import type { NavigationProp } from "@react-navigation/native";
-import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import AdvancedParallaxComponent from "./pages/advanced-parallax";
-import AnimTabBarComponent from "./pages/anim-tab-bar";
-import BlurParallax from "./pages/blur-parallax";
-import BlurRotate from "./pages/blur-rotate";
-import Tinder from "./pages/tinder";
-import Circular from "./pages/circular";
-import ComplexComponent from "./pages/complex";
-import Cube3D from "./pages/cube-3d";
-import Curve from "./pages/curve";
-import Flow from "./pages/flow";
-import Fold from "./pages/fold";
-import LeftAlignComponent from "./pages/left-align";
-import RightAlignComponent from "./pages/right-align";
-import MarqueeComponent from "./pages/marquee";
-import MultipleComponent from "./pages/multiple";
-import NormalComponent from "./pages/normal";
-import ParallaxComponent from "./pages/parallax";
-import ParallaxLayers from "./pages/parallax-layers";
-import PauseAdvancedParallaxComponent from "./pages/pause-advanced-parallax";
-import PressSwipe from "./pages/press-swipe";
-import RotateInOutComponent from "./pages/rotate-in-out";
-import RotateScaleFadeInOutComponent from "./pages/rotate-scale-fade-in-out";
-import ScaleFadeInOutComponent from "./pages/scale-fade-in-out";
-import StackComponent from "./pages/stack";
-import StackCards from "./pages/stack-cards";
-import Tear from "./pages/tear";
-import QuickSwipe from "./pages/quick-swipe";
-import Material3 from "./pages/material-3";
-import { useWebContext } from "./store/WebProvider";
-import { useColor } from "./hooks/useColor";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from '@react-navigation/native';
+
+import { useColor } from './hooks/useColor';
+import AdvancedParallaxComponent from './pages/advanced-parallax';
+import AnimTabBarComponent from './pages/anim-tab-bar';
+import BlurParallax from './pages/blur-parallax';
+import BlurRotate from './pages/blur-rotate';
+import Circular from './pages/circular';
+import ComplexComponent from './pages/complex';
+import Cube3D from './pages/cube-3d';
+import Curve from './pages/curve';
+import Flow from './pages/flow';
+import Fold from './pages/fold';
+import LeftAlignComponent from './pages/left-align';
+import MarqueeComponent from './pages/marquee';
+import Material3 from './pages/material-3';
+import MultipleComponent from './pages/multiple';
+import NormalComponent from './pages/normal';
+import ParallaxComponent from './pages/parallax';
+import ParallaxLayers from './pages/parallax-layers';
+import PauseAdvancedParallaxComponent from './pages/pause-advanced-parallax';
+import PressSwipe from './pages/press-swipe';
+import QuickSwipe from './pages/quick-swipe';
+import RightAlignComponent from './pages/right-align';
+import RotateInOutComponent from './pages/rotate-in-out';
+import RotateScaleFadeInOutComponent from './pages/rotate-scale-fade-in-out';
+import ScaleFadeInOutComponent from './pages/scale-fade-in-out';
+import StackComponent from './pages/stack';
+import StackCards from './pages/stack-cards';
+import Tear from './pages/tear';
+import Tinder from './pages/tinder';
+import { useWebContext } from './store/WebProvider';
+
+import type { NavigationProp } from '@react-navigation/native';
+
 
 export const LayoutsPage = [
   {
-    name: "normal",
+    name: 'normal',
     page: NormalComponent,
   },
   {
-    name: "parallax",
+    name: 'parallax',
     page: ParallaxComponent,
   },
   {
-    name: "stack",
+    name: 'stack',
     page: StackComponent,
   },
   {
-    name: "left-align",
+    name: 'left-align',
     page: LeftAlignComponent,
   },
   {
-    name: "right-align",
+    name: 'right-align',
     page: RightAlignComponent,
   },
 ];
 
 export const CustomAnimations = [
   {
-    name: "quick-swipe",
+    name: 'quick-swipe',
     page: QuickSwipe,
   },
   {
-    name: "tinder",
+    name: 'tinder',
     page: Tinder,
   },
   {
-    name: "blur-rotate",
+    name: 'blur-rotate',
     page: BlurRotate,
   },
   {
-    name: "material-3",
+    name: 'material-3',
     page: Material3,
   },
   {
-    name: "curve",
+    name: 'curve',
     page: Curve,
   },
   {
-    name: "blur-parallax",
+    name: 'blur-parallax',
     page: BlurParallax,
   },
   {
-    name: "cube-3d",
+    name: 'cube-3d',
     page: Cube3D,
   },
   {
-    name: "press-swipe",
+    name: 'press-swipe',
     page: PressSwipe,
   },
   {
-    name: "tear",
+    name: 'tear',
     page: Tear,
   },
   {
-    name: "stack-cards",
+    name: 'stack-cards',
     page: StackCards,
   },
   {
-    name: "fold",
+    name: 'fold',
     page: Fold,
   },
   {
-    name: "circular",
+    name: 'circular',
     page: Circular,
   },
   {
-    name: "flow",
+    name: 'flow',
     page: Flow,
   },
   {
-    name: "parallax-layers",
+    name: 'parallax-layers',
     page: ParallaxLayers,
   },
   {
-    name: "advanced-parallax",
+    name: 'advanced-parallax',
     page: AdvancedParallaxComponent,
   },
   {
-    name: "pause-advanced-parallax",
+    name: 'pause-advanced-parallax',
     page: PauseAdvancedParallaxComponent,
   },
   {
-    name: "scale-fade-in-out",
+    name: 'scale-fade-in-out',
     page: ScaleFadeInOutComponent,
   },
   {
-    name: "rotate-in-out",
+    name: 'rotate-in-out',
     page: RotateInOutComponent,
   },
   {
-    name: "rotate-scale-fade-in-out",
+    name: 'rotate-scale-fade-in-out',
     page: RotateScaleFadeInOutComponent,
   },
   {
-    name: "anim-tab-bar",
+    name: 'anim-tab-bar',
     page: AnimTabBarComponent,
   },
   {
-    name: "marquee",
+    name: 'marquee',
     page: MarqueeComponent,
   },
   {
-    name: "multiple",
+    name: 'multiple',
     page: MultipleComponent,
   },
 ];
 
 export const ExperimentPage = [
   {
-    name: "complex",
+    name: 'complex',
     page: ComplexComponent,
   },
 ];
@@ -169,7 +172,7 @@ const ListItem = ({
   <TouchableOpacity onPress={onPress}>
     <View style={styles.listItem}>
       <Text style={[styles.text, { color: color }]}>
-        {name.split("-").join(" ")}
+        {name.split('-').join(' ')}
       </Text>
     </View>
   </TouchableOpacity>
@@ -236,9 +239,9 @@ const Index = () => {
         LayoutsPage.length + CustomAnimations.length + 2,
       ]}
     >
-      {renderSection("Layouts", LayoutsPage)}
-      {renderSection("CustomAnimations", CustomAnimations)}
-      {renderSection("Experiment", ExperimentPage)}
+      {renderSection('Layouts', LayoutsPage)}
+      {renderSection('CustomAnimations', CustomAnimations)}
+      {renderSection('Experiment', ExperimentPage)}
     </ScrollView>
   );
 };
@@ -247,8 +250,8 @@ export default Index;
 
 const styles = StyleSheet.create({
   listItem: {
-    alignItems: "flex-start",
-    borderColor: "#e8ecf0",
+    alignItems: 'flex-start',
+    borderColor: '#e8ecf0',
     borderBottomWidth: 0.5,
     padding: 16,
   },
@@ -256,13 +259,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   section: {
-    flexDirection: "row",
+    flexDirection: 'row',
     paddingHorizontal: 16,
     paddingVertical: 8,
-    alignItems: "center",
+    alignItems: 'center',
   },
   sectionText: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });

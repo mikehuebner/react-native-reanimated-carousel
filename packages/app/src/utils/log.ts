@@ -7,6 +7,6 @@ export function log(...msg: any) {
 }
 
 export function round(number: number) {
-  "worklet";
+  'worklet';
   return Math.round(number);
 }

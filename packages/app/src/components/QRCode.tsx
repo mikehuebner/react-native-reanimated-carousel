@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import * as React from "react";
-import { Text, View, Image, StyleSheet } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import * as React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
+
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export const QRCode: React.FC<{ tintColor?: string }> = ({ tintColor }) => {
   const [visible, setVisible] = React.useState(false);
@@ -12,12 +12,12 @@ export const QRCode: React.FC<{ tintColor?: string }> = ({ tintColor }) => {
       }}
     >
       <View>
-        <Text style={{ color: tintColor }}>{"QR CODE"}</Text>
+        <Text style={{ color: tintColor }}>{'QR CODE'}</Text>
         {visible && (
           <View style={styles.qrCodeContainer}>
             <Image
               style={styles.qrCodeImage}
-              source={{ uri: "../../assets/web-example-qrcode.png" }}
+              source={{ uri: '../../assets/web-example-qrcode.png' }}
             />
           </View>
         )}
@@ -28,9 +28,9 @@ export const QRCode: React.FC<{ tintColor?: string }> = ({ tintColor }) => {
 
 const styles = StyleSheet.create({
   qrCodeContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: -10,
-    transform: [{ translateY: "100%" }],
+    transform: [{ translateY: '100%' }],
     height: 200,
     width: 200,
     right: 0,
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 5,
     borderWidth: 3,
-    borderColor: "#26292E",
+    borderColor: '#26292E',
   },
 });

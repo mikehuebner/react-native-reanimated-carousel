@@ -1,12 +1,14 @@
 import type { PropsWithChildren } from 'react';
 import React, { useCallback } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
+
 import type {
   GestureStateChangeEvent,
   PanGestureHandlerEventPayload,
 } from 'react-native-gesture-handler';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
+  type SharedValue,
   cancelAnimation,
   measure,
   runOnJS,
@@ -15,14 +17,14 @@ import Animated, {
   useDerivedValue,
   useSharedValue,
   withDecay,
-  type SharedValue,
 } from 'react-native-reanimated';
 
 import { Easing } from '../constants';
 import { usePanGestureProxy } from '../hooks/usePanGestureProxy';
 import { CTX } from '../store';
-import type { WithTimingAnimation } from '../types';
 import { dealWithAnimation } from '../utils/deal-with-animation';
+
+import type { WithTimingAnimation } from '../types';
 
 interface Props {
   size: number;
@@ -338,7 +340,6 @@ const IScrollViewGesture: React.FC<PropsWithChildren<Props>> = (props) => {
       }
 
       const translationValue = panOffset.value + panTranslation;
-      console.log('translation value update', translationValue);
       translation.value = translationValue;
     },
     [

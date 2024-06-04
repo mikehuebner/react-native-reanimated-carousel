@@ -1,22 +1,23 @@
-import * as React from "react";
-import { View } from "react-native";
+import * as React from 'react';
+import { View } from 'react-native';
+
 import Animated, {
   interpolate,
   interpolateColor,
   useAnimatedStyle,
-} from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+} from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
-import { SBItem } from "../../components/SBItem";
-import SButton from "../../components/SButton";
-import { ElementsText, windowDimensions } from "../../constants";
+import { SBItem } from '../../components/SBItem';
+import SButton from '../../components/SButton';
+import { ElementsText, windowDimensions } from '../../constants';
 
 const PAGE_WIDTH = windowDimensions.width;
 
 function Index() {
   const [isAutoPlay, setIsAutoPlay] = React.useState(false);
   const animationStyle: TAnimationStyle = React.useCallback((value: number) => {
-    "worklet";
+    'worklet';
 
     const zIndex = interpolate(value, [-1, 0, 1], [-1000, 0, 1000]);
     const translateX = interpolate(value, [-1, 0, 1], [0, 0, PAGE_WIDTH]);
@@ -67,7 +68,7 @@ const CustomItem: React.FC<ItemProps> = ({ index, animationValue }) => {
     const backgroundColor = interpolateColor(
       animationValue.value,
       [-1, 0, 1],
-      ["#000000dd", "transparent", "#000000dd"],
+      ['#000000dd', 'transparent', '#000000dd'],
     );
 
     return {
@@ -82,7 +83,7 @@ const CustomItem: React.FC<ItemProps> = ({ index, animationValue }) => {
         pointerEvents="none"
         style={[
           {
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
             right: 0,

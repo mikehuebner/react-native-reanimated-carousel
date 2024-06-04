@@ -1,15 +1,17 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
-  runOnJS,
-  useAnimatedStyle,
-  useDerivedValue,
-} from 'react-native-reanimated';
+  PropsWithChildren,
+  ReactElement,
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+} from 'react';
+import { StyleSheet } from 'react-native';
+
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { runOnJS, useDerivedValue } from 'react-native-reanimated';
 
 import { ItemRenderer } from './ItemRenderer';
 import { ScrollViewGesture } from './ScrollViewGesture';
-
 import { useAutoPlay } from '../hooks/useAutoPlay';
 import { useCarouselController } from '../hooks/useCarouselController';
 import { useCommonVariables } from '../hooks/useCommonVariables';
@@ -18,10 +20,11 @@ import { useLayoutConfig } from '../hooks/useLayoutConfig';
 import { useOnProgressChange } from '../hooks/useOnProgressChange';
 import { usePropsErrorBoundary } from '../hooks/usePropsErrorBoundary';
 import { CTX } from '../store';
-import type { ICarouselInstance, TCarouselProps } from '../types';
 import { computedRealIndexWithAutoFillData } from '../utils/computed-with-auto-fill-data';
 
-const Carousel = React.forwardRef<ICarouselInstance, TCarouselProps<any>>(
+import type { ICarouselInstance, TCarouselProps } from '../types';
+
+const Carousel = forwardRef<ICarouselInstance, TCarouselProps<unknown>>(
   (_props, ref) => {
     const props = useInitProps(_props);
 
@@ -103,7 +106,7 @@ const Carousel = React.forwardRef<ICarouselInstance, TCarouselProps<any>>(
       carouselController,
     });
 
-    const _onScrollEnd = React.useCallback(() => {
+    const _onScrollEnd = useCallback(() => {
       const _sharedIndex = Math.round(getSharedIndex());
 
       const realIndex = computedRealIndexWithAutoFillData({
@@ -125,27 +128,25 @@ const Carousel = React.forwardRef<ICarouselInstance, TCarouselProps<any>>(
       onScrollEnd,
     ]);
 
-    const scrollViewGestureOnScrollStart = React.useCallback(() => {
+    const scrollViewGestureOnScrollStart = useCallback(() => {
       pauseAutoPlay();
       onScrollStart?.();
-      console.log('on scroll gesture start');
     }, [onScrollStart, pauseAutoPlay]);
 
-    const scrollViewGestureOnScrollEnd = React.useCallback(() => {
+    const scrollViewGestureOnScrollEnd = useCallback(() => {
       startAutoPlay();
       _onScrollEnd();
-      console.log('on scroll gesture end');
     }, [_onScrollEnd, startAutoPlay]);
 
-    const scrollViewGestureOnTouchBegin = React.useCallback(pauseAutoPlay, [
+    const scrollViewGestureOnTouchBegin = useCallback(pauseAutoPlay, [
       pauseAutoPlay,
     ]);
 
-    const scrollViewGestureOnTouchEnd = React.useCallback(startAutoPlay, [
+    const scrollViewGestureOnTouchEnd = useCallback(startAutoPlay, [
       startAutoPlay,
     ]);
 
-    React.useImperativeHandle(
+    useImperativeHandle(
       ref,
       () => ({
         next,
@@ -203,9 +204,9 @@ const Carousel = React.forwardRef<ICarouselInstance, TCarouselProps<any>>(
   },
 );
 
-export default Carousel as <T extends any>(
-  props: React.PropsWithChildren<TCarouselProps<T>>,
-) => React.ReactElement;
+export default Carousel as <T>(
+  props: PropsWithChildren<TCarouselProps<T>>,
+) => ReactElement;
 const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',

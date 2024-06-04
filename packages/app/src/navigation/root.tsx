@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { I18nManager, Text, View, Platform } from 'react-native';
+import { I18nManager, Platform, Text, View } from 'react-native';
+
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
@@ -7,10 +8,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as Updates from 'expo-updates';
 
 import { QRCode } from '../components/QRCode';
-import Home, { CustomAnimations, LayoutsPage, ExperimentPage } from '../Home';
-import { isWeb } from '../utils';
+import Home, { CustomAnimations, ExperimentPage, LayoutsPage } from '../Home';
 import { useColor } from '../hooks/useColor';
 import { useWebContext } from '../store/WebProvider';
+import { isWeb } from '../utils';
 
 const Restart = () => {
   if (Platform.OS === 'web') window.location.reload();

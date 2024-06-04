@@ -1,33 +1,35 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
+
 import {
+  type SharedValue,
   runOnJS,
   useAnimatedReaction,
   useSharedValue,
-  type SharedValue,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
-import { Easing } from "../constants";
+import { Easing } from '../constants';
+import {
+  computedRealIndexWithAutoFillData,
+  convertToSharedIndex,
+} from '../utils/computed-with-auto-fill-data';
+import { dealWithAnimation } from '../utils/deal-with-animation';
+import { handlerOffsetDirection } from '../utils/handleroffset-direction';
+import { round } from '../utils/log';
+
 import type {
   TCarouselActionOptions,
   TCarouselProps,
   WithTimingAnimation,
-} from "../types";
-import {
-  computedRealIndexWithAutoFillData,
-  convertToSharedIndex,
-} from "../utils/computed-with-auto-fill-data";
-import { dealWithAnimation } from "../utils/deal-with-animation";
-import { handlerOffsetDirection } from "../utils/handleroffset-direction";
-import { round } from "../utils/log";
+} from '../types';
 
 interface IOpts {
   loop: boolean;
   size: number;
   dataLength: number;
   handlerOffset: SharedValue<number>;
-  autoFillData: TCarouselProps["autoFillData"];
-  withAnimation?: TCarouselProps["withAnimation"];
-  fixedDirection?: TCarouselProps["fixedDirection"];
+  autoFillData: TCarouselProps['autoFillData'];
+  withAnimation?: TCarouselProps['withAnimation'];
+  fixedDirection?: TCarouselProps['fixedDirection'];
   duration?: number;
   defaultIndex?: number;
   onScrollStart?: () => void;
@@ -146,9 +148,9 @@ export function useCarouselController(options: IOpts): ICarouselController {
 
   const scrollWithTiming = React.useCallback(
     (toValue: number, onFinished?: () => void) => {
-      "worklet";
+      'worklet';
       const callback = (isFinished: boolean) => {
-        "worklet";
+        'worklet';
         if (isFinished) {
           runOnJS(onScrollEnd)();
           onFinished && runOnJS(onFinished)();
@@ -156,7 +158,7 @@ export function useCarouselController(options: IOpts): ICarouselController {
       };
 
       const defaultWithAnimation: WithTimingAnimation = {
-        type: "timing",
+        type: 'timing',
         config: { duration, easing: Easing.easeOutQuart },
       };
 
@@ -170,7 +172,7 @@ export function useCarouselController(options: IOpts): ICarouselController {
 
   const next = React.useCallback(
     (opts: TCarouselActionOptions = {}) => {
-      "worklet";
+      'worklet';
       const { count = 1, animated = true, onFinished } = opts;
       if (!canSliding() || (!loop && index.value >= dataInfo.length - 1))
         return;
@@ -286,7 +288,7 @@ export function useCarouselController(options: IOpts): ICarouselController {
   const scrollTo = React.useCallback(
     (opts: TCarouselActionOptions = {}) => {
       const { index: i, count, animated = false, onFinished } = opts;
-      if (typeof i === "number" && i > -1) {
+      if (typeof i === 'number' && i > -1) {
         to({ i, animated, onFinished });
         return;
       }

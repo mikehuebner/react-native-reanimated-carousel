@@ -1,10 +1,11 @@
-import * as React from "react";
-import { View } from "react-native";
-import Carousel from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { View } from 'react-native';
 
-import { SBItem } from "../../components/SBItem";
-import SButton from "../../components/SButton";
-import { ElementsText, windowDimensions } from "../../constants";
+import Carousel from 'react-native-reanimated-carousel';
+
+import { SBItem } from '../../components/SBItem';
+import SButton from '../../components/SButton';
+import { ElementsText, windowDimensions } from '../../constants';
 
 const PAGE_WIDTH = windowDimensions.width;
 
@@ -48,14 +49,14 @@ function Index() {
           setIsVertical(!isVertical);
         }}
       >
-        {isVertical ? "Set horizontal" : "Set Vertical"}
+        {isVertical ? 'Set horizontal' : 'Set Vertical'}
       </SButton>
       <SButton
         onPress={() => {
           setIsFast(!isFast);
         }}
       >
-        {isFast ? "NORMAL" : "FAST"}
+        {isFast ? 'NORMAL' : 'FAST'}
       </SButton>
       <SButton
         onPress={() => {

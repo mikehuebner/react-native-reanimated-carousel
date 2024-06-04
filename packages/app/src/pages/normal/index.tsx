@@ -1,5 +1,8 @@
-import * as React from 'react';
+import { useRef, useState } from 'react';
+import { useWindowDimensions } from 'react-native';
+
 import { ScrollView } from 'react-native-gesture-handler';
+import { useSharedValue } from 'react-native-reanimated';
 import type { ICarouselInstance } from 'react-native-reanimated-carousel';
 import Carousel from 'react-native-reanimated-carousel';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,19 +10,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { SBItem } from '../../components/SBItem';
 import SButton from '../../components/SButton';
 import { ElementsText } from '../../constants';
-import { useWindowDimensions } from 'react-native';
-import { useSharedValue } from 'react-native-reanimated';
 
 function Index() {
   const windowWidth = useWindowDimensions().width;
-  const scrollOffsetValue = useSharedValue<number>(0);
-  const [data, setData] = React.useState([...new Array(4).keys()]);
-  console.log(data);
-  const [isVertical, setIsVertical] = React.useState(false);
-  const [isFast, setIsFast] = React.useState(false);
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
-  const [isPagingEnabled, setIsPagingEnabled] = React.useState(true);
-  const ref = React.useRef<ICarouselInstance>(null);
+  const scrollOffsetValue = useSharedValue(0);
+
+  const [data, setData] = useState([...new Array(4).keys()]);
+  const [isVertical, setIsVertical] = useState(false);
+  const [isFast, setIsFast] = useState(false);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
+  const [isPagingEnabled, setIsPagingEnabled] = useState(true);
+  const ref = useRef<ICarouselInstance>(null);
 
   const baseOptions = isVertical
     ? ({
@@ -47,10 +48,10 @@ function Index() {
         autoPlayInterval={isFast ? 100 : 2000}
         data={data}
         onScrollStart={() => {
-          console.log('===1');
+          console.log('Started the swipe!');
         }}
         onScrollEnd={() => {
-          console.log('===2');
+          console.log('Ended the swipe!');
         }}
         onConfigurePanGesture={(g) => g.enabled(false)}
         pagingEnabled={isPagingEnabled}

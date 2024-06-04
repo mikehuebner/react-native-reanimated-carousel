@@ -1,18 +1,20 @@
-import * as React from "react";
-import type { ICarouselInstance } from "react-native-reanimated-carousel";
-import Carousel from "react-native-reanimated-carousel";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { getImages } from "../../utils/get-images";
+import * as React from 'react';
+import { FlatList, StyleSheet, View, useWindowDimensions } from 'react-native';
 
-import SButton from "../../components/SButton";
-import { ElementsText, windowDimensions } from "../../constants";
-import { useWindowDimensions, View, FlatList, StyleSheet } from "react-native";
 import Animated, {
   Extrapolation,
   interpolate,
-  useSharedValue,
   useAnimatedStyle,
-} from "react-native-reanimated";
+  useSharedValue,
+} from 'react-native-reanimated';
+import type { ICarouselInstance } from 'react-native-reanimated-carousel';
+import Carousel from 'react-native-reanimated-carousel';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+
+import SButton from '../../components/SButton';
+import { ElementsText, windowDimensions } from '../../constants';
+import { getImages } from '../../utils/get-images';
 
 const PAGE_WIDTH = windowDimensions.width;
 const LARGE_IMAGE_WIDTH = PAGE_WIDTH * 0.5;
@@ -44,7 +46,7 @@ function Index() {
   };
 
   return (
-    <SafeAreaView edges={["bottom"]} style={{ flex: 1 }}>
+    <SafeAreaView edges={['bottom']} style={{ flex: 1 }}>
       {/* <FlatList 
             horizontal
             style={{ width: "100%" }}

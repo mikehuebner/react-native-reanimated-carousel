@@ -1,22 +1,19 @@
-import React from 'react';
-import type { FC } from 'react';
+import { useState } from 'react';
+
 import type { SharedValue, useAnimatedStyle } from 'react-native-reanimated';
-import {
-  useAnimatedReaction,
-  runOnJS,
-  useDerivedValue,
-} from 'react-native-reanimated';
+import { runOnJS, useAnimatedReaction } from 'react-native-reanimated';
 
-import type { TAnimationStyle } from './BaseLayout';
 import { BaseLayout } from './BaseLayout';
-
-import type { VisibleRanges } from '../hooks/useVisibleRanges';
 import { useVisibleRanges } from '../hooks/useVisibleRanges';
-import type { CarouselRenderItem } from '../types';
 import { computedRealIndexWithAutoFillData } from '../utils/computed-with-auto-fill-data';
 
-interface Props {
-  data: any[];
+import type { TAnimationStyle } from './BaseLayout';
+import type { VisibleRanges } from '../hooks/useVisibleRanges';
+import type { CarouselRenderItem } from '../types';
+
+
+interface ItemRendererProps {
+  data: unknown[];
   dataLength: number;
   rawDataLength: number;
   loop: boolean;
@@ -26,11 +23,11 @@ interface Props {
   offsetX: SharedValue<number>;
   handlerOffset: SharedValue<number>;
   layoutConfig: TAnimationStyle;
-  renderItem: CarouselRenderItem<any>;
+  renderItem: CarouselRenderItem<unknown>;
   customAnimation?: (value: number) => ReturnType<typeof useAnimatedStyle>;
 }
 
-export const ItemRenderer: FC<Props> = (props) => {
+export const ItemRenderer = (props: ItemRendererProps) => {
   const {
     data,
     size,
@@ -54,14 +51,7 @@ export const ItemRenderer: FC<Props> = (props) => {
     loop,
   });
 
-  const animateStyle = useDerivedValue(() => {
-    console.log('animate style change2', handlerOffset.value);
-    return handlerOffset;
-  }, [handlerOffset]);
-
-  const [displayedItems, setDisplayedItems] = React.useState<VisibleRanges>(
-    null!,
-  );
+  const [displayedItems, setDisplayedItems] = useState<VisibleRanges>(null!);
 
   useAnimatedReaction(
     () => visibleRanges.value,
@@ -70,8 +60,6 @@ export const ItemRenderer: FC<Props> = (props) => {
   );
 
   if (!displayedItems) return null;
-
-  console.log('item renderer', props);
 
   return (
     <>
@@ -89,8 +77,6 @@ export const ItemRenderer: FC<Props> = (props) => {
           (index >= positiveRange[0] && index <= positiveRange[1]);
 
         if (!shouldRender) return null;
-
-        console.log('item render offset', offsetX.value);
 
         return (
           <BaseLayout

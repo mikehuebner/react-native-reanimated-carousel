@@ -1,10 +1,12 @@
-import * as React from "react";
-import { ScrollView, Text, View } from "react-native";
-import Carousel from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { ScrollView, Text, View } from 'react-native';
 
-import type { ICarouselInstance } from "../../../../src/types";
-import SButton from "../../components/SButton";
-import { windowDimensions } from "../../constants";
+import Carousel from 'react-native-reanimated-carousel';
+
+import SButton from '../../components/SButton';
+import { windowDimensions } from '../../constants';
+
+import type { ICarouselInstance } from '../../../../src/types';
 
 const PAGE_WIDTH = windowDimensions.width;
 
@@ -15,7 +17,7 @@ function Index() {
     <View
       style={{
         flex: 1,
-        backgroundColor: "#f1f1f1",
+        backgroundColor: '#f1f1f1',
         paddingTop: 100,
       }}
     >
@@ -32,23 +34,23 @@ function Index() {
               key={index}
               style={{
                 flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#ff7a45",
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: '#ff7a45',
                 padding: 16,
               }}
             >
-              <Text style={{ color: "white", fontSize: 30 }}>
+              <Text style={{ color: 'white', fontSize: 30 }}>
                 {`index:${index}`}
               </Text>
-              <ScrollView style={{ width: "100%" }}>
+              <ScrollView style={{ width: '100%' }}>
                 {new Array(100).fill(0).map((_, i) => {
                   return (
                     <View
                       key={i}
                       style={{
                         borderWidth: 1,
-                        borderColor: "#0000001a",
+                        borderColor: '#0000001a',
                         padding: 16,
                       }}
                     >
@@ -64,12 +66,12 @@ function Index() {
       <View
         style={{
           marginTop: 24,
-          flexDirection: "row",
-          justifyContent: "space-evenly",
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
         }}
       >
-        <SButton onPress={() => r.current?.prev()}>{"Prev"}</SButton>
-        <SButton onPress={() => r.current?.next()}>{"Next"}</SButton>
+        <SButton onPress={() => r.current?.prev()}>{'Prev'}</SButton>
+        <SButton onPress={() => r.current?.next()}>{'Next'}</SButton>
       </View>
     </View>
   );

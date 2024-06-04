@@ -1,7 +1,7 @@
 import {
   type EasingFunction,
   Easing as _Easing,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
 export enum DATA_LENGTH {
   SINGLE_ITEM = 1,

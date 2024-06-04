@@ -1,15 +1,15 @@
-import { ImageSourcePropType } from "react-native";
+import { ImageSourcePropType } from 'react-native';
 
-import img_0 from "../../assets/bg-images/0.jpg";
-import img_1 from "../../assets/bg-images/1.jpg";
-import img_2 from "../../assets/bg-images/2.jpg";
-import img_3 from "../../assets/bg-images/3.jpg";
-import img_4 from "../../assets/bg-images/4.jpg";
-import img_5 from "../../assets/bg-images/5.jpg";
-import img_6 from "../../assets/bg-images/6.jpg";
-import img_7 from "../../assets/bg-images/7.jpg";
-import img_8 from "../../assets/bg-images/8.jpg";
-import img_9 from "../../assets/bg-images/9.jpg";
+import img_0 from '../../assets/bg-images/0.jpg';
+import img_1 from '../../assets/bg-images/1.jpg';
+import img_2 from '../../assets/bg-images/2.jpg';
+import img_3 from '../../assets/bg-images/3.jpg';
+import img_4 from '../../assets/bg-images/4.jpg';
+import img_5 from '../../assets/bg-images/5.jpg';
+import img_6 from '../../assets/bg-images/6.jpg';
+import img_7 from '../../assets/bg-images/7.jpg';
+import img_8 from '../../assets/bg-images/8.jpg';
+import img_9 from '../../assets/bg-images/9.jpg';
 
 export function getImages(length: number = 10): ImageSourcePropType[] {
   const imageList = [

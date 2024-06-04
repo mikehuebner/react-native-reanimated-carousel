@@ -1,5 +1,7 @@
 const path = require('path');
+
 const createExpoWebpackConfigAsync = require('@expo/webpack-config');
+
 const { resolver } = require('./metro.config');
 
 const root = path.resolve(__dirname, '../..');
@@ -10,10 +12,10 @@ module.exports = async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
   const isDev = process.env.NODE_ENV === 'development';
 
-  if(!isDev){
-    config.output.publicPath = "/react-native-reanimated-carousel";
+  if (!isDev) {
+    config.output.publicPath = '/react-native-reanimated-carousel';
   }
-  
+
   config.module.rules.push({
     test: /\.(js|jsx|ts|tsx)$/,
     include: path.resolve(root, 'src'),

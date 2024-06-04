@@ -1,18 +1,19 @@
-import * as React from "react";
-import { View } from "react-native";
+import * as React from 'react';
+import { View } from 'react-native';
+
 import Animated, {
   Extrapolate,
   interpolate,
   useAnimatedStyle,
-} from "react-native-reanimated";
-import Carousel from "react-native-reanimated-carousel";
+} from 'react-native-reanimated';
+import Carousel from 'react-native-reanimated-carousel';
 
-import SButton from "../../components/SButton";
-import { ElementsText, windowDimensions } from "../../constants";
-import { withAnchorPoint } from "../../utils/anchor-point";
-import { fruitItems } from "../../utils/items";
+import SButton from '../../components/SButton';
+import { ElementsText, windowDimensions } from '../../constants';
+import { withAnchorPoint } from '../../utils/anchor-point';
+import { fruitItems } from '../../utils/items';
 
-const colors = ["#fda282", "#fdba4e", "#800015"];
+const colors = ['#fda282', '#fdba4e', '#800015'];
 
 const PAGE_WIDTH = windowDimensions.width;
 const PAGE_HEIGHT = windowDimensions.width * 1.2;
@@ -33,7 +34,7 @@ function Index() {
         loop
         autoPlay={isAutoPlay}
         withAnimation={{
-          type: "spring",
+          type: 'spring',
           config: {
             damping: 13,
           },
@@ -125,21 +126,21 @@ const Card: React.FC<{
     <Animated.View
       style={{
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Animated.View
         style={[
           {
             backgroundColor: colors[index],
-            alignSelf: "center",
-            justifyContent: "center",
-            alignItems: "center",
+            alignSelf: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
             borderRadius: 20,
             width: WIDTH,
             height: HEIGHT,
-            shadowColor: "#000",
+            shadowColor: '#000',
             shadowOffset: {
               width: 0,
               height: 8,
@@ -159,14 +160,14 @@ const Card: React.FC<{
           {
             width: WIDTH * 0.8,
             borderRadius: 16,
-            justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'absolute',
             zIndex: 999,
           },
           blockStyle,
         ]}
-        resizeMode={"contain"}
+        resizeMode={'contain'}
       />
     </Animated.View>
   );

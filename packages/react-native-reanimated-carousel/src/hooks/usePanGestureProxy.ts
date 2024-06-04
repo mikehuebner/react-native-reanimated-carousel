@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import type {
   GestureStateChangeEvent,
   GestureUpdateEvent,
@@ -7,8 +8,9 @@ import type {
 } from 'react-native-gesture-handler';
 import { Gesture } from 'react-native-gesture-handler';
 
-import type { GestureConfig } from './useUpdateGestureConfig';
 import { useUpdateGestureConfig } from './useUpdateGestureConfig';
+
+import type { GestureConfig } from './useUpdateGestureConfig';
 
 export const usePanGestureProxy = (customization: {
   onConfigurePanGesture?: (gesture: PanGesture) => void;

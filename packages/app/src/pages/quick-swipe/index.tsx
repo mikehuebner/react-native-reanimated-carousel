@@ -1,15 +1,12 @@
-import * as React from "react";
-import type { ICarouselInstance } from "react-native-reanimated-carousel";
-import Carousel from "react-native-reanimated-carousel";
-import { SafeAreaView } from "react-native-safe-area-context";
-
-import { SBItem } from "../../components/SBItem";
+import * as React from 'react';
 import {
   Image,
   ImageSourcePropType,
   ViewStyle,
   useWindowDimensions,
-} from "react-native";
+} from 'react-native';
+
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Easing,
   Extrapolate,
@@ -19,10 +16,16 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from "react-native-reanimated";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import * as Haptics from "expo-haptics";
-import { getImages } from "./images";
+} from 'react-native-reanimated';
+import type { ICarouselInstance } from 'react-native-reanimated-carousel';
+import Carousel from 'react-native-reanimated-carousel';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+
+import * as Haptics from 'expo-haptics';
+
+import { getImages } from './images';
+import { SBItem } from '../../components/SBItem';
 
 const data = getImages().slice(0, 68);
 
@@ -39,11 +42,11 @@ function Index() {
 
   return (
     <SafeAreaView
-      edges={["bottom"]}
+      edges={['bottom']}
       style={{
         flex: 1,
-        backgroundColor: "black",
-        justifyContent: "center",
+        backgroundColor: 'black',
+        justifyContent: 'center',
       }}
     >
       <Carousel
@@ -52,14 +55,14 @@ function Index() {
         enabled // Default is true, just for demo
         ref={ref}
         defaultScrollOffsetValue={scrollOffsetValue}
-        testID={"xxx"}
-        style={{ width: "100%" }}
+        testID={'xxx'}
+        style={{ width: '100%' }}
         autoPlay={false}
         autoPlayInterval={1000}
         data={data}
         onConfigurePanGesture={(g) => g.enabled(false)}
         pagingEnabled
-        onSnapToItem={(index) => console.log("current index:", index)}
+        onSnapToItem={(index) => console.log('current index:', index)}
         windowSize={2}
         renderItem={({ index, item }) => {
           return (
@@ -150,9 +153,9 @@ const ThumbnailPagination: React.FC<{
 
   return (
     <GestureDetector gesture={gesture}>
-      <Animated.View style={{ width: "100%", overflow: "hidden" }}>
+      <Animated.View style={{ width: '100%', overflow: 'hidden' }}>
         <Animated.View
-          style={[{ flexDirection: "row" }, style, animStyles]}
+          style={[{ flexDirection: 'row' }, style, animStyles]}
           onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
         >
           {containerWidth > 0 &&
@@ -271,13 +274,13 @@ const ThumbnailPaginationItem: React.FC<{
       width: withTiming(widthAnimVal, { duration: 100, easing: Easing.bounce }),
       height: 30,
       borderRadius: 5,
-      overflow: "hidden",
+      overflow: 'hidden',
     };
   }, [isActive, activeWidth, inactiveWidth]);
 
   return (
     <Animated.View style={[animStyles, style]}>
-      <Image source={source} style={{ width: "100%", height: "100%" }} />
+      <Image source={source} style={{ width: '100%', height: '100%' }} />
     </Animated.View>
   );
 };

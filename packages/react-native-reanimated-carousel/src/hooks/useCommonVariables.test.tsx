@@ -1,6 +1,6 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from '@testing-library/react-hooks';
 
-import { useCommonVariables } from "./useCommonVariables";
+import { useCommonVariables } from './useCommonVariables';
 
 type UseCommonVariablesInput = Parameters<typeof useCommonVariables>[0];
 
@@ -10,9 +10,9 @@ const input = {
   height: 350,
   loop: true,
   enabled: true,
-  testID: "xxx",
+  testID: 'xxx',
   style: {
-    width: "100%",
+    width: '100%',
   },
   autoPlay: false,
   autoPlayInterval: 2000,
@@ -28,14 +28,12 @@ const input = {
   overscrollEnabled: true,
 } as unknown as UseCommonVariablesInput;
 
-describe("useCommonVariables", () => {
-  it("should return the correct values", async () => {
+describe('useCommonVariables', () => {
+  it('should return the correct values', async () => {
     const hook = renderHook(() => useCommonVariables(input));
 
-    expect(hook.result.current.size).toMatchInlineSnapshot("700");
-    expect(hook.result.current.validLength).toMatchInlineSnapshot("3");
-    expect(hook.result.current.handlerOffset.value).toMatchInlineSnapshot(
-      "-0",
-    );
+    expect(hook.result.current.size).toMatchInlineSnapshot('700');
+    expect(hook.result.current.validLength).toMatchInlineSnapshot('3');
+    expect(hook.result.current.handlerOffset.value).toMatchInlineSnapshot('-0');
   });
 });

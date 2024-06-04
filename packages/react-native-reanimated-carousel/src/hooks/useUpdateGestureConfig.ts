@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import type { PanGesture } from 'react-native-gesture-handler';
 
 export interface GestureConfig {
@@ -10,8 +11,6 @@ export const useUpdateGestureConfig = (
   config: GestureConfig,
 ) => {
   const { enabled } = config;
-
-  console.log('gesture enabled?', enabled);
 
   useEffect(() => {
     if (typeof enabled !== 'undefined') gesture.enabled(enabled);

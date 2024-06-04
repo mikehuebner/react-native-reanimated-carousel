@@ -1,41 +1,39 @@
-import { Extrapolate, interpolate } from "react-native-reanimated";
-import type { IComputedDirectionTypes } from "react-native-reanimated-carousel";
+import { Extrapolate, interpolate } from 'react-native-reanimated';
+import type { IComputedDirectionTypes } from 'react-native-reanimated-carousel';
 
-import { withAnchorPoint } from "../../utils/anchor-point";
+import { withAnchorPoint } from '../../utils/anchor-point';
 
 interface TBaseConfig {
-  size: number
+  size: number;
 }
 
 export interface ILayoutConfig {
   /**
-     * control prev/next item offset.
-     * @default 100
-     */
-  parallaxScrollingOffset?: number
+   * control prev/next item offset.
+   * @default 100
+   */
+  parallaxScrollingOffset?: number;
   /**
-     * control prev/current/next item offset.
-     * @default 0.8
-     */
-  parallaxScrollingScale?: number
+   * control prev/current/next item offset.
+   * @default 0.8
+   */
+  parallaxScrollingScale?: number;
   /**
-     * control prev/next item offset.
-     * @default Math.pow(parallaxScrollingScale, 2)
-     */
-  parallaxAdjacentItemScale?: number
+   * control prev/next item offset.
+   * @default Math.pow(parallaxScrollingScale, 2)
+   */
+  parallaxAdjacentItemScale?: number;
 }
 
 export type TParallaxModeProps = IComputedDirectionTypes<{
   /**
-     * Carousel Animated transitions.
-     */
-  mode?: "parallax"
-  modeConfig?: ILayoutConfig
+   * Carousel Animated transitions.
+   */
+  mode?: 'parallax';
+  modeConfig?: ILayoutConfig;
 }>;
 
-export function parallaxLayout(
-  baseConfig: TBaseConfig,
-) {
+export function parallaxLayout(baseConfig: TBaseConfig) {
   const { size } = baseConfig;
   // const {
   //   parallaxScrollingOffset = 100,
@@ -48,7 +46,7 @@ export function parallaxLayout(
   const parallaxScrollingOffset = -40;
 
   return (value: number) => {
-    "worklet";
+    'worklet';
     const translateY = interpolate(
       value,
       [-1, 0, 1],

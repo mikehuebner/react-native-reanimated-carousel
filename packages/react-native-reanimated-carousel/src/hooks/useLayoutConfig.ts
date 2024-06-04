@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import type { TInitializeCarouselProps } from "./useInitProps";
+import { Layouts } from '../layouts';
 
-import type { TAnimationStyle } from "../components/BaseLayout";
-import { Layouts } from "../layouts";
+import type { TInitializeCarouselProps } from './useInitProps';
+import type { TAnimationStyle } from '../components/BaseLayout';
 
 type TLayoutConfigOpts<T> = TInitializeCarouselProps<T> & { size: number };
 
@@ -15,11 +15,11 @@ export function useLayoutConfig<T>(
   return React.useMemo(() => {
     const baseConfig = { size, vertical };
     switch (opts.mode) {
-      case "parallax":
+      case 'parallax':
         return Layouts.parallax(baseConfig, opts.modeConfig);
-      case "horizontal-stack":
+      case 'horizontal-stack':
         return Layouts.horizontalStack(opts.modeConfig);
-      case "vertical-stack":
+      case 'vertical-stack':
         return Layouts.verticalStack(opts.modeConfig);
       default:
         return Layouts.normal(baseConfig);

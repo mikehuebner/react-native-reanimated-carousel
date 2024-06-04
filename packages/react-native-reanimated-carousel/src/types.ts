@@ -1,15 +1,16 @@
-import type { StyleProp, ViewStyle } from "react-native";
-import type { PanGesture } from "react-native-gesture-handler";
+import type { StyleProp, ViewStyle } from 'react-native';
+
+import type { PanGesture } from 'react-native-gesture-handler';
 import type {
   SharedValue,
   WithSpringConfig,
   WithTimingConfig,
   useAnimatedStyle,
-} from "react-native-reanimated";
-import type Animated from "react-native-reanimated";
+} from 'react-native-reanimated';
+import type Animated from 'react-native-reanimated';
 
-import type { TParallaxModeProps } from "./layouts/parallax";
-import type { TStackModeProps } from "./layouts/stack";
+import type { TParallaxModeProps } from './layouts/parallax';
+import type { TStackModeProps } from './layouts/stack';
 
 export type IComputedDirectionTypes<
   T,
@@ -48,17 +49,17 @@ export type IComputedDirectionTypes<
       });
 
 export interface CustomConfig {
-  type?: "negative" | "positive";
+  type?: 'negative' | 'positive';
   viewCount?: number;
 }
 
 export interface WithSpringAnimation {
-  type: "spring";
+  type: 'spring';
   config: WithSpringConfig;
 }
 
 export interface WithTimingAnimation {
-  type: "timing";
+  type: 'timing';
   config: WithTimingConfig;
 }
 
@@ -169,7 +170,7 @@ export type TCarouselProps<T = unknown> = {
    * @experimental This API will be changed in the future.
    * If positive, the carousel will scroll to the positive direction and vice versa.
    * */
-  fixedDirection?: "positive" | "negative";
+  fixedDirection?: 'positive' | 'negative';
   /**
    * Custom carousel config.
    */
@@ -220,12 +221,12 @@ export interface ICarouselInstance {
    * Scroll to previous item, it takes one optional argument (count),
    * which allows you to specify how many items to cross
    */
-  prev: (opts?: Omit<TCarouselActionOptions, "index">) => void;
+  prev: (opts?: Omit<TCarouselActionOptions, 'index'>) => void;
   /**
    * Scroll to next item, it takes one optional argument (count),
    * which allows you to specify how many items to cross
    */
-  next: (opts?: Omit<TCarouselActionOptions, "index">) => void;
+  next: (opts?: Omit<TCarouselActionOptions, 'index'>) => void;
   /**
    * Get current item index
    */

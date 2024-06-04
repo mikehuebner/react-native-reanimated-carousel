@@ -1,7 +1,8 @@
 import React from 'react';
 
-import type { TCarouselProps } from '../types';
 import { computedFillDataWithAutoFillData } from '../utils/computed-with-auto-fill-data';
+
+import type { TCarouselProps } from '../types';
 
 type TGetRequiredProps<P extends keyof TCarouselProps> = Record<
   P,

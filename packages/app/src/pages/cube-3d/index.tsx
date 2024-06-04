@@ -1,16 +1,17 @@
-import * as React from "react";
-import { View } from "react-native";
+import * as React from 'react';
+import { View } from 'react-native';
+
 import Animated, {
   Extrapolate,
   interpolate,
   interpolateColor,
   useAnimatedStyle,
-} from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+} from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
-import { SBItem } from "../../components/SBItem";
-import { windowDimensions } from "../../constants";
-import { withAnchorPoint } from "../../utils/anchor-point";
+import { SBItem } from '../../components/SBItem';
+import { windowDimensions } from '../../constants';
+import { withAnchorPoint } from '../../utils/anchor-point';
 
 const count = 4;
 
@@ -18,7 +19,7 @@ function Index() {
   const size = windowDimensions.width / 4;
 
   return (
-    <View style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+    <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
       {Array.from({
         length: count * 3,
       }).map((_, i) => {
@@ -37,7 +38,7 @@ function CubeItem() {
   const PAGE_HEIGHT = PAGE_WIDTH;
   const animationStyle: TAnimationStyle = React.useCallback(
     (value: number) => {
-      "worklet";
+      'worklet';
       const zIndex = interpolate(value, [-1, 0, 1], [-1000, 0, -1000]);
 
       const translateX = interpolate(
@@ -91,8 +92,8 @@ function CubeItem() {
         style={{
           width: PAGE_WIDTH,
           height: PAGE_HEIGHT,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
         pagingEnabled={false}
         snapEnabled={false}
@@ -125,7 +126,7 @@ const CustomItem: React.FC<ItemProps> = ({ index, animationValue }) => {
     const backgroundColor = interpolateColor(
       animationValue.value,
       [-1, 0, 1],
-      ["#000000dd", "transparent", "#000000dd"],
+      ['#000000dd', 'transparent', '#000000dd'],
     );
 
     return {
@@ -140,7 +141,7 @@ const CustomItem: React.FC<ItemProps> = ({ index, animationValue }) => {
         pointerEvents="none"
         style={[
           {
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
             right: 0,

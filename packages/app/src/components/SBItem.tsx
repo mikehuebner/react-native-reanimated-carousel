@@ -1,10 +1,11 @@
 import React from 'react';
 import type {
-  StyleProp,
-  ViewStyle,
-  ViewProps,
   ImageSourcePropType,
+  StyleProp,
+  ViewProps,
+  ViewStyle,
 } from 'react-native';
+
 import { LongPressGestureHandler } from 'react-native-gesture-handler';
 import type { AnimateProps } from 'react-native-reanimated';
 import Animated from 'react-native-reanimated';

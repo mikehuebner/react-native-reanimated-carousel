@@ -1,5 +1,6 @@
-import * as React from "react";
-import { View, Pressable, useWindowDimensions } from "react-native";
+import * as React from 'react';
+import { Pressable, View, useWindowDimensions } from 'react-native';
+
 import Animated, {
   Extrapolate,
   interpolate,
@@ -7,17 +8,17 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from "react-native-reanimated";
-import type { ICarouselInstance } from "react-native-reanimated-carousel";
-import Carousel from "react-native-reanimated-carousel";
+} from 'react-native-reanimated';
+import type { ICarouselInstance } from 'react-native-reanimated-carousel';
+import Carousel from 'react-native-reanimated-carousel';
 
-import SButton from "../../components/SButton";
-import { ElementsText } from "../../constants";
-import { useToggleButton } from "../../hooks/useToggleButton";
+import SButton from '../../components/SButton';
+import { ElementsText } from '../../constants';
+import { useToggleButton } from '../../hooks/useToggleButton';
 
 const PAGE_WIDTH = 60;
 const PAGE_HEIGHT = 40;
-const DATA = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const DATA = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 function Index() {
   const windowWidth = useWindowDimensions().width;
@@ -38,10 +39,10 @@ function Index() {
           style={{
             width: windowWidth,
             height: PAGE_HEIGHT,
-            justifyContent: "center",
-            alignItems: "center",
+            justifyContent: 'center',
+            alignItems: 'center',
             borderBottomWidth: 1,
-            borderBottomColor: "#0071fa",
+            borderBottomColor: '#0071fa',
           }}
           width={PAGE_WIDTH}
           height={PAGE_HEIGHT}
@@ -68,12 +69,12 @@ function Index() {
       <View
         style={{
           marginTop: 24,
-          flexDirection: "row",
-          justifyContent: "space-evenly",
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
         }}
       >
-        <SButton onPress={() => r.current?.prev()}>{"Prev"}</SButton>
-        <SButton onPress={() => r.current?.next()}>{"Next"}</SButton>
+        <SButton onPress={() => r.current?.prev()}>{'Prev'}</SButton>
+        <SButton onPress={() => r.current?.next()}>{'Next'}</SButton>
       </View>
     </View>
   );
@@ -116,7 +117,7 @@ const Item: React.FC<Props> = (props) => {
     const color = interpolateColor(
       animationValue.value,
       [-1, 0, 1],
-      ["#b6bbc0", "#0071fa", "#b6bbc0"],
+      ['#b6bbc0', '#0071fa', '#b6bbc0'],
     );
 
     return {
@@ -138,14 +139,14 @@ const Item: React.FC<Props> = (props) => {
       <Animated.View
         style={[
           {
-            height: "100%",
-            alignItems: "center",
-            justifyContent: "center",
+            height: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
           },
           containerStyle,
         ]}
       >
-        <Animated.Text style={[{ fontSize: 18, color: "#26292E" }, labelStyle]}>
+        <Animated.Text style={[{ fontSize: 18, color: '#26292E' }, labelStyle]}>
           {label}
         </Animated.Text>
       </Animated.View>

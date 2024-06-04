@@ -1,15 +1,16 @@
 import { PropsWithChildren, Suspense } from 'react';
 import { View, useWindowDimensions } from 'react-native';
+
 import {
   GestureHandlerRootView,
   enableExperimentalWebImplementation,
 } from 'react-native-gesture-handler';
-
-import { RootNavigator } from './navigation/root';
-import { isWeb } from './utils';
-import { WebProvider } from './store/WebProvider';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 import ExamplePan from './ExamplePan';
+import { RootNavigator } from './navigation/root';
+import { WebProvider } from './store/WebProvider';
+import { isWeb } from './utils';
 
 const WebContainer = ({ children }: PropsWithChildren) => {
   const { width } = useWindowDimensions();

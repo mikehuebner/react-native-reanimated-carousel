@@ -1,18 +1,19 @@
-import { useCallback, useState } from "react";
-import type { ImageSourcePropType } from "react-native";
-import { View } from "react-native";
+import { useCallback, useState } from 'react';
+import type { ImageSourcePropType } from 'react-native';
+import { View } from 'react-native';
+
 import Animated, {
+  type SharedValue,
   interpolate,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-  type SharedValue,
-} from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+} from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
-import SButton from "../../components/SButton";
-import { ElementsText, windowDimensions } from "../../constants";
-import { ImageItems } from "../../utils/items";
+import SButton from '../../components/SButton';
+import { ElementsText, windowDimensions } from '../../constants';
+import { ImageItems } from '../../utils/items';
 
 const PAGE_WIDTH = windowDimensions.width;
 
@@ -20,7 +21,7 @@ function Index() {
   const [isAutoPlay, setIsAutoPlay] = useState(false);
   const pressAnim = useSharedValue<number>(0);
   const animationStyle: TAnimationStyle = useCallback((value: number) => {
-    "worklet";
+    'worklet';
 
     const zIndex = interpolate(value, [-1, 0, 1], [-1000, 0, 1000]);
     const translateX = interpolate(
@@ -83,11 +84,11 @@ const CustomItem = ({ pressAnim, source }: ItemProps) => {
   }, []);
 
   return (
-    <Animated.View style={[{ flex: 1, overflow: "hidden" }, animStyle]}>
+    <Animated.View style={[{ flex: 1, overflow: 'hidden' }, animStyle]}>
       <Animated.Image
         source={source}
         resizeMode="center"
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: '100%', height: '100%' }}
       />
     </Animated.View>
   );

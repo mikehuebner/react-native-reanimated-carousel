@@ -1,7 +1,9 @@
 export default {
-  quoteProps: "consistent",
+  printWidth: 120,
+  proseWrap: 'always',
+  quoteProps: 'consistent',
   singleQuote: true,
   tabWidth: 2,
-  trailingComma: "all",
+  trailingComma: 'all',
   useTabs: false,
 };
