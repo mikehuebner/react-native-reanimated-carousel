@@ -1,3 +1,3 @@
 # React Native Reanimated Carousel
 
-Am I losing my mind
+No, just annoyed with git
