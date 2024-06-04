@@ -1,7 +1,8 @@
-import * as React from 'react';
+import { ReactElement, cloneElement, useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 
 import Animated, { Easing } from 'react-native-reanimated';
+
 import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 
 import { windowDimensions } from '../../constants';
@@ -10,16 +11,16 @@ const PAGE_WIDTH = windowDimensions.width / 2;
 
 function ReactionContainer(props: {
   text: string;
-  children: (text: React.ReactElement, layout?: { width: number }) => React.ReactElement;
+  children: (text: ReactElement, layout?: { width: number }) => ReactElement;
 }) {
-  const [width, setWidth] = React.useState<number>();
-  const [layout, setLayout] = React.useState<{ width: number }>();
+  const [width, setWidth] = useState<number>();
+  const [layout, setLayout] = useState<{ width: number }>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (typeof width === 'number') setLayout({ width });
   }, [width]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLayout(undefined);
   }, [props.text]);
 
@@ -42,7 +43,7 @@ function ReactionContainer(props: {
     </Animated.View>
   );
 
-  return React.cloneElement(props.children(text, layout), {
+  return cloneElement(props.children(text, layout), {
     key: props.text,
   });
 }

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useRef } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 
 import Carousel from '@mikehuebner/react-native-reanimated-carousel';
@@ -11,7 +11,7 @@ import type { ICarouselInstance } from '../../../../src/types';
 const PAGE_WIDTH = windowDimensions.width;
 
 function Index() {
-  const r = React.useRef<ICarouselInstance | null>(null);
+  const r = useRef<ICarouselInstance | null>(null);
 
   return (
     <View

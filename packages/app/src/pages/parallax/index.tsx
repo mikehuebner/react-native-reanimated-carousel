@@ -1,7 +1,8 @@
-import * as React from 'react';
+import { useRef, useState } from 'react';
 import { View } from 'react-native';
 
 import { useSharedValue } from 'react-native-reanimated';
+
 import Carousel, { ICarouselInstance, Pagination } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { SBItem } from '../../components/SBItem';
@@ -12,10 +13,10 @@ const PAGE_WIDTH = windowDimensions.width;
 const colors = ['#26292E', '#899F9C', '#B3C680', '#5C6265', '#F5D399', '#F1F1F1'];
 
 function Index() {
-  const [isVertical, setIsVertical] = React.useState(false);
-  const [autoPlay, setAutoPlay] = React.useState(false);
-  const [pagingEnabled, setPagingEnabled] = React.useState<boolean>(true);
-  const [snapEnabled, setSnapEnabled] = React.useState<boolean>(true);
+  const [isVertical, setIsVertical] = useState(false);
+  const [autoPlay, setAutoPlay] = useState(false);
+  const [pagingEnabled, setPagingEnabled] = useState<boolean>(true);
+  const [snapEnabled, setSnapEnabled] = useState<boolean>(true);
   const progress = useSharedValue<number>(0);
   const baseOptions = isVertical
     ? ({
@@ -29,7 +30,7 @@ function Index() {
         height: PAGE_WIDTH * 0.6,
       } as const);
 
-  const ref = React.useRef<ICarouselInstance>(null);
+  const ref = useRef<ICarouselInstance>(null);
 
   const onPressPagination = (index: number) => {
     ref.current?.scrollTo({

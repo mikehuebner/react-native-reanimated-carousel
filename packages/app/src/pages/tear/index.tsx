@@ -1,8 +1,9 @@
-import * as React from 'react';
+import { useCallback, useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
 import { View } from 'react-native';
 
 import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+
 import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import SButton from '../../components/SButton';
@@ -12,8 +13,8 @@ import { ImageItems } from '../../utils/items';
 const PAGE_WIDTH = windowDimensions.width;
 
 function Index() {
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
-  const animationStyle: TAnimationStyle = React.useCallback((value: number) => {
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
+  const animationStyle: TAnimationStyle = useCallback((value: number) => {
     'worklet';
 
     const zIndex = interpolate(value, [-1, 0, 1], [300, 0, -300]);
@@ -55,7 +56,7 @@ interface ItemProps {
   animationValue: Animated.SharedValue<number>;
   imageSource: ImageSourcePropType;
 }
-const Item: React.FC<ItemProps> = ({ width, imageSource, animationValue }) => {
+const Item = ({ width, imageSource, animationValue }: ItemProps) => {
   const leftStyle = useAnimatedStyle(() => {
     const left = interpolate(animationValue.value, [-1, 0, 1], [-(width / 2), 0, 0], Extrapolation.CLAMP);
     return {

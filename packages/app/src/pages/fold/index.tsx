@@ -1,12 +1,12 @@
-import * as React from 'react';
+import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import type Animated from 'react-native-reanimated';
 import { Extrapolation, interpolate } from 'react-native-reanimated';
-import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { faker } from '@faker-js/faker';
+import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { SBImageItem } from '../../components/SBImageItem';
 import SButton from '../../components/SButton';
@@ -15,8 +15,8 @@ import { ElementsText, windowDimensions } from '../../constants';
 const PAGE_WIDTH = windowDimensions.width;
 
 function Index() {
-  const [isFast, setIsFast] = React.useState(false);
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
+  const [isFast, setIsFast] = useState(false);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
   const itemSize = PAGE_WIDTH / 2;
   const centerOffset = PAGE_WIDTH / 2 - itemSize / 2;
 
@@ -25,7 +25,7 @@ function Index() {
   const sideItemCount = 3;
   const sideItemWidth = (PAGE_WIDTH - itemSize) / (2 * sideItemCount);
 
-  const animationStyle: TAnimationStyle = React.useCallback(
+  const animationStyle: TAnimationStyle = useCallback(
     (value: number) => {
       'worklet';
 
@@ -99,10 +99,7 @@ function Index() {
   );
 }
 
-const Item: React.FC<{
-  index: number;
-  animationValue: Animated.SharedValue<number>;
-}> = ({ index }) => {
+const Item = ({ index }: { index: number; animationValue: Animated.SharedValue<number> }) => {
   return (
     <TouchableWithoutFeedback
       onPress={() => {

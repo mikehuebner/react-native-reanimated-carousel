@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { View } from 'react-native';
 
 import Carousel from '@mikehuebner/react-native-reanimated-carousel';
@@ -12,9 +12,9 @@ const PAGE_WIDTH = windowDimensions.width;
 const COUNT = 6;
 
 function Index() {
-  const [isVertical, setIsVertical] = React.useState(false);
-  const [isFast, setIsFast] = React.useState(false);
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
+  const [isVertical, setIsVertical] = useState(false);
+  const [isFast, setIsFast] = useState(false);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
 
   const baseOptions = isVertical
     ? ({

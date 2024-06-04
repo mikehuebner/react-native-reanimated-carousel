@@ -1,5 +1,4 @@
-// @ts-expect-error -- This is required for Vite to work, not sure why
-import React, { useCallback, useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import type { PropsWithChildren } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
@@ -359,7 +358,6 @@ const IScrollViewGesture = (props: PropsWithChildren<Props>) => {
       fixedDirection,
       maxScrollDistancePerSwipeIsSet,
       maxScrollDistancePerSwipe,
-      maxScrollDistancePerSwipeIsSet,
       minScrollDistancePerSwipe,
       endWithSpring,
       withSpring,

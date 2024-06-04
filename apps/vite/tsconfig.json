@@ -3,7 +3,7 @@
   "compilerOptions": {
     "useDefineForClassFields": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "allowJs": true
   },
   "include": ["src"],

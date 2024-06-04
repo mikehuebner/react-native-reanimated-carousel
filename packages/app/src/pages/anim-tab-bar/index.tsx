@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Pressable, View, useWindowDimensions } from 'react-native';
 
 import Animated, {
@@ -9,12 +9,14 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import type { ICarouselInstance } from '@mikehuebner/react-native-reanimated-carousel';
+
 import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 
 import SButton from '../../components/SButton';
 import { ElementsText } from '../../constants';
 import { useToggleButton } from '../../hooks/useToggleButton';
+
+import type { ICarouselInstance } from '@mikehuebner/react-native-reanimated-carousel';
 
 const PAGE_WIDTH = 60;
 const PAGE_HEIGHT = 40;
@@ -22,12 +24,12 @@ const DATA = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 function Index() {
   const windowWidth = useWindowDimensions().width;
-  const r = React.useRef<ICarouselInstance>(null);
+  const r = useRef<ICarouselInstance>(null);
   const AutoPLay = useToggleButton({
     defaultValue: false,
     buttonTitle: ElementsText.AUTOPLAY,
   });
-  const [loop, setLoop] = React.useState(false);
+  const [loop, setLoop] = useState(false);
 
   return (
     <View style={{ flex: 1 }}>
@@ -88,7 +90,7 @@ interface Props {
   onPress?: () => void;
 }
 
-const Item: React.FC<Props> = (props) => {
+const Item = (props: Props) => {
   const { animationValue, label, onPress } = props;
 
   const translateY = useSharedValue(0);
@@ -112,11 +114,11 @@ const Item: React.FC<Props> = (props) => {
     };
   }, [animationValue, translateY]);
 
-  const onPressIn = React.useCallback(() => {
+  const onPressIn = useCallback(() => {
     translateY.value = withTiming(-8, { duration: 250 });
   }, [translateY]);
 
-  const onPressOut = React.useCallback(() => {
+  const onPressOut = useCallback(() => {
     translateY.value = withTiming(0, { duration: 250 });
   }, [translateY]);
 

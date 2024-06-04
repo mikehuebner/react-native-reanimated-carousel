@@ -1,21 +1,22 @@
-import * as React from 'react';
+import { useRef, useState } from 'react';
 import { View } from 'react-native';
 
-import type { ICarouselInstance } from '@mikehuebner/react-native-reanimated-carousel';
 import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 
 import { SBItem } from '../../components/SBItem';
 import SButton from '../../components/SButton';
 import { ElementsText, windowDimensions } from '../../constants';
 
+import type { ICarouselInstance } from '@mikehuebner/react-native-reanimated-carousel';
+
 const PAGE_WIDTH = windowDimensions.width;
 
 function Index() {
-  const [data, setData] = React.useState([...new Array(6).keys()]);
-  const [isFast, setIsFast] = React.useState(false);
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
-  const [isPagingEnabled, setIsPagingEnabled] = React.useState(true);
-  const ref = React.useRef<ICarouselInstance>(null);
+  const [data, setData] = useState([...new Array(6).keys()]);
+  const [isFast, setIsFast] = useState(false);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
+  const [isPagingEnabled, setIsPagingEnabled] = useState(true);
+  const ref = useRef<ICarouselInstance>(null);
 
   const baseOptions = {
     vertical: false,

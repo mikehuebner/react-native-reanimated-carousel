@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 
 import { type SharedValue, runOnJS, useAnimatedReaction, useSharedValue } from 'react-native-reanimated';
 
@@ -45,7 +45,7 @@ export function useCarouselController(options: IOpts): ICarouselController {
     fixedDirection,
   } = options;
 
-  const dataInfo = React.useMemo(
+  const dataInfo = useMemo(
     () => ({
       length: dataLength,
       disable: !dataLength,
@@ -59,7 +59,7 @@ export function useCarouselController(options: IOpts): ICarouselController {
   const sharedIndex = useRef<number>(defaultIndex);
   const sharedPreIndex = useRef<number>(defaultIndex);
 
-  const currentFixedPage = React.useCallback(() => {
+  const currentFixedPage = useCallback(() => {
     if (loop) return -Math.round(handlerOffset.value / size);
 
     const fixed = (handlerOffset.value / size) % dataInfo.length;
@@ -96,7 +96,7 @@ export function useCarouselController(options: IOpts): ICarouselController {
     [sharedPreIndex, sharedIndex, size, dataInfo, index, loop, autoFillData, handlerOffset],
   );
 
-  const getCurrentIndex = React.useCallback(() => {
+  const getCurrentIndex = useCallback(() => {
     const realIndex = computedRealIndexWithAutoFillData({
       index: index.value,
       dataLength: dataInfo.originalLength,
@@ -107,19 +107,19 @@ export function useCarouselController(options: IOpts): ICarouselController {
     return realIndex;
   }, [index, autoFillData, dataInfo, loop]);
 
-  const canSliding = React.useCallback(() => {
+  const canSliding = useCallback(() => {
     return !dataInfo.disable;
   }, [dataInfo]);
 
-  const onScrollEnd = React.useCallback(() => {
+  const onScrollEnd = useCallback(() => {
     options.onScrollEnd?.();
   }, [options]);
 
-  const onScrollStart = React.useCallback(() => {
+  const onScrollStart = useCallback(() => {
     options.onScrollStart?.();
   }, [options]);
 
-  const scrollWithTiming = React.useCallback(
+  const scrollWithTiming = useCallback(
     (toValue: number, onFinished?: () => void) => {
       'worklet';
       const callback = (isFinished: boolean) => {
@@ -140,7 +140,7 @@ export function useCarouselController(options: IOpts): ICarouselController {
     [duration, withAnimation, onScrollEnd],
   );
 
-  const next = React.useCallback(
+  const next = useCallback(
     (opts: TCarouselActionOptions = {}) => {
       'worklet';
       const { count = 1, animated = true, onFinished } = opts;
@@ -161,7 +161,7 @@ export function useCarouselController(options: IOpts): ICarouselController {
     [canSliding, loop, index, dataInfo, onScrollStart, handlerOffset, size, scrollWithTiming, currentFixedPage],
   );
 
-  const prev = React.useCallback(
+  const prev = useCallback(
     (opts: TCarouselActionOptions = {}) => {
       const { count = 1, animated = true, onFinished } = opts;
       if (!canSliding() || (!loop && index.value <= 0)) return;
@@ -181,7 +181,7 @@ export function useCarouselController(options: IOpts): ICarouselController {
     [canSliding, loop, index, onScrollStart, handlerOffset, size, scrollWithTiming, currentFixedPage],
   );
 
-  const to = React.useCallback(
+  const to = useCallback(
     (opts: { i: number; animated: boolean; onFinished?: () => void }) => {
       const { i, animated = false, onFinished } = opts;
       if (i === index.value) return;
@@ -218,7 +218,7 @@ export function useCarouselController(options: IOpts): ICarouselController {
     [size, loop, index, fixedDirection, handlerOffset, dataInfo.length, canSliding, onScrollStart, scrollWithTiming],
   );
 
-  const scrollTo = React.useCallback(
+  const scrollTo = useCallback(
     (opts: TCarouselActionOptions = {}) => {
       const { index: i, count, animated = false, onFinished } = opts;
       if (typeof i === 'number' && i > -1) {

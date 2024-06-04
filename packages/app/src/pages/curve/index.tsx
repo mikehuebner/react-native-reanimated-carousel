@@ -1,7 +1,14 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { View } from 'react-native';
 
-import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import Animated, {
+  Extrapolation,
+  SharedValue,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
+
 import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 
 import { SBItem } from '../../components/SBItem';
@@ -13,7 +20,7 @@ const PAGE_WIDTH = windowDimensions.width / 5;
 const colors = ['#26292E', '#899F9C', '#B3C680', '#5C6265', '#F5D399', '#F1F1F1'];
 
 function Index() {
-  const [autoPlay, setAutoPlay] = React.useState(false);
+  const [autoPlay, setAutoPlay] = useState(false);
   const progressValue = useSharedValue<number>(0);
   const baseOptions = {
     vertical: false,
@@ -110,13 +117,13 @@ function Index() {
   );
 }
 
-const PaginationItem: React.FC<{
+const PaginationItem = (props: {
   index: number;
   backgroundColor: string;
   length: number;
-  animValue: Animated.SharedValue<number>;
+  animValue: SharedValue<number>;
   isRotate?: boolean;
-}> = (props) => {
+}) => {
   const { animValue, index, length, backgroundColor, isRotate } = props;
   const width = 10;
 

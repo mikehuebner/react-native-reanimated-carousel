@@ -1,7 +1,8 @@
-import * as React from 'react';
+import { useCallback, useState } from 'react';
 import { View } from 'react-native';
 
 import Animated, { interpolate, interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
+
 import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { SBItem } from '../../components/SBItem';
@@ -11,8 +12,8 @@ import { ElementsText, windowDimensions } from '../../constants';
 const PAGE_WIDTH = windowDimensions.width;
 
 function Index() {
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
-  const animationStyle: TAnimationStyle = React.useCallback((value: number) => {
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
+  const animationStyle: TAnimationStyle = useCallback((value: number) => {
     'worklet';
 
     const zIndex = interpolate(value, [-1, 0, 1], [-1000, 0, 1000]);
@@ -53,7 +54,7 @@ interface ItemProps {
   index: number;
   animationValue: Animated.SharedValue<number>;
 }
-const CustomItem: React.FC<ItemProps> = ({ index, animationValue }) => {
+const CustomItem = ({ index, animationValue }: ItemProps) => {
   const maskStyle = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       animationValue.value,

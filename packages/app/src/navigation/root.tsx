@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { I18nManager, Platform, Text, View } from 'react-native';
 
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
@@ -23,7 +23,7 @@ const Stack = createStackNavigator();
 export const RootNavigator = () => {
   const headerShown = !useWebContext()?.page;
   const { isDark, colors } = useColor();
-  const [isRTL, setIsRTL] = React.useState(I18nManager.isRTL);
+  const [isRTL, setIsRTL] = useState(I18nManager.isRTL);
 
   const theme = useMemo(() => {
     const { background, text } = colors;

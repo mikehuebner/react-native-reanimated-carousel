@@ -1,3 +1,4 @@
+import type { ReactElement, Ref } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import type { PanGesture } from 'react-native-gesture-handler';
@@ -57,7 +58,7 @@ export interface WithTimingAnimation {
 export type WithAnimation = WithSpringAnimation | WithTimingAnimation;
 
 export type TCarouselProps<T = unknown> = {
-  ref?: React.Ref<ICarouselInstance>;
+  ref?: Ref<ICarouselInstance>;
   /**
    * The default animated value of the carousel.
    */
@@ -233,7 +234,7 @@ export interface CarouselRenderItemInfo<ItemT> {
   animationValue: Animated.SharedValue<number>;
 }
 
-export type CarouselRenderItem<ItemT> = (info: CarouselRenderItemInfo<ItemT>) => React.ReactElement;
+export type CarouselRenderItem<ItemT> = (info: CarouselRenderItemInfo<ItemT>) => ReactElement;
 
 export interface TCarouselActionOptions {
   index?: number;

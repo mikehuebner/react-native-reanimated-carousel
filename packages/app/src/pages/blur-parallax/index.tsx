@@ -1,10 +1,10 @@
-import * as React from 'react';
+import { useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
 import { Image, StyleSheet, View } from 'react-native';
 
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
-import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 
+import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 import { BlurView as _BlurView } from 'expo-blur';
 
 import { parallaxLayout } from './parallax';
@@ -17,7 +17,7 @@ const BlurView = Animated.createAnimatedComponent(_BlurView);
 const PAGE_WIDTH = windowDimensions.width / 2;
 
 function Index() {
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
 
   return (
     <View style={{ flex: 1 }}>
@@ -61,9 +61,9 @@ function Index() {
 
 interface ItemProps {
   source: ImageSourcePropType;
-  animationValue: Animated.SharedValue<number>;
+  animationValue: SharedValue<number>;
 }
-const CustomItem: React.FC<ItemProps> = ({ source, animationValue }) => {
+const CustomItem = ({ source, animationValue }: ItemProps) => {
   const maskStyle = useAnimatedStyle(() => {
     const opacity = interpolate(animationValue.value, [-1, 0, 1], [1, 0, 1]);
 

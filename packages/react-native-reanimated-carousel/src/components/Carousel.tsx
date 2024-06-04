@@ -1,5 +1,4 @@
-// @ts-expect-error -- This is required for Vite to work, not sure why
-import React, { PropsWithChildren, ReactElement, forwardRef, useCallback, useImperativeHandle } from 'react';
+import { PropsWithChildren, ReactElement, forwardRef, useCallback, useImperativeHandle } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';

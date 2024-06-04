@@ -1,11 +1,11 @@
-import * as React from 'react';
+import { useCallback, useState } from 'react';
 import { Text, View } from 'react-native';
 
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { interpolate } from 'react-native-reanimated';
-import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { faker } from '@faker-js/faker';
+import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { SBImageItem } from '../../components/SBImageItem';
 import SButton from '../../components/SButton';
@@ -14,12 +14,12 @@ import { ElementsText, windowDimensions } from '../../constants';
 const PAGE_WIDTH = windowDimensions.width;
 
 function Index() {
-  const [isFast, setIsFast] = React.useState(false);
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
+  const [isFast, setIsFast] = useState(false);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
   const itemSize = 80;
   const centerOffset = PAGE_WIDTH / 2 - itemSize / 2;
 
-  const animationStyle: TAnimationStyle = React.useCallback(
+  const animationStyle: TAnimationStyle = useCallback(
     (value: number) => {
       'worklet';
 

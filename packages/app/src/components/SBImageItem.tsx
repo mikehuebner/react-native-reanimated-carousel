@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef } from 'react';
 import type { ImageSourcePropType, ImageURISource, StyleProp, ViewStyle } from 'react-native';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
@@ -11,9 +11,9 @@ interface Props {
   img?: ImageSourcePropType;
 }
 
-export const SBImageItem: React.FC<Props> = ({ style, index: _index, showIndex = true, img }) => {
+export const SBImageItem = ({ style, index: _index, showIndex = true, img }: Props) => {
   const index = _index ?? 0;
-  const source = React.useRef<ImageURISource>({
+  const source = useRef<ImageURISource>({
     uri: `https://picsum.photos/id/${index}/400/300`,
   }).current;
 
