@@ -68,13 +68,6 @@ const reactNativeWeb = () =>
         },
       },
       optimizeDeps: {
-        include: [
-          '@react-navigation/native',
-          '@react-navigation/stack',
-          'react-native-gesture-handler',
-          'react-native-reanimated',
-        ],
-        jsx: 'transform',
         esbuildOptions: {
           plugins: [esbuildPlugin()],
           resolveExtensions: extensions,
@@ -102,6 +95,14 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+  },
+  optimizeDeps: {
+    include: [
+      '@react-navigation/native',
+      '@react-navigation/stack',
+      'react-native-gesture-handler',
+      'react-native-reanimated',
+    ],
   },
   plugins: [react(), reactNativeWeb(), tsconfigPaths()],
 });

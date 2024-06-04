@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactElement, forwardRef, useCallback, useImperativeHandle } from 'react';
+import React, { PropsWithChildren, ReactElement, forwardRef, useCallback, useImperativeHandle } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';

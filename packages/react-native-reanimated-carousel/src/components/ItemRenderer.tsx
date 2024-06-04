@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import type { SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { runOnJS, useAnimatedReaction } from 'react-native-reanimated';

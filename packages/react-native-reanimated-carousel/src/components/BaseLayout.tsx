@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 
 import Animated, { SharedValue, useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
 

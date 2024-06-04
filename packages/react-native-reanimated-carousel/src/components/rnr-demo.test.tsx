@@ -1,5 +1,3 @@
-import type { FC } from 'react';
-
 import Animated, { useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
 
 import { cleanup, render } from '@testing-library/react-native';
@@ -16,7 +14,7 @@ describe('useSharedValue', () => {
       value: number;
     }
 
-    const TestComponent: FC<Props> = (props) => {
+    const TestComponent = (props: Props) => {
       const opacity = useDerivedValue(() => props.value, [props.value]);
       const animatedStyle = useAnimatedStyle(
         () => ({
