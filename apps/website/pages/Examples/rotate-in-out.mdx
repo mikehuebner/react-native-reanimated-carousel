@@ -33,21 +33,22 @@ slug: /examples/rotate-in-out
 
 \*/}
 
-Here is a `rotate-in-out` animation example. You can see the source code of this page [here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/rotate-in-out/index.tsx).
+Here is a `rotate-in-out` animation example. You can see the source code of this page
+[here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/rotate-in-out/index.tsx).
 
-import Page from "../../components/Page";
+import Page from '../../components/Page';
 
 <Page page="rotate-in-out" />
 
 ```tsx copy
-import * as React from "react";
-import { View } from "react-native";
-import { interpolate } from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { View } from 'react-native';
+import { interpolate } from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
-import { SBItem } from "../../components/SBItem";
-import { ElementsText, window } from "../../constants";
-import { useToggleButton } from "../../hooks/useToggleButton";
+import { SBItem } from '../../components/SBItem';
+import { ElementsText, window } from '../../constants';
+import { useToggleButton } from '../../hooks/useToggleButton';
 
 const scale = 0.7;
 const PAGE_WIDTH = window.width * scale;
@@ -60,15 +61,11 @@ function Index() {
   });
 
   const animationStyle: TAnimationStyle = React.useCallback((value: number) => {
-    "worklet";
+    'worklet';
 
     const zIndex = interpolate(value, [-1, 0, 1], [10, 20, 30]);
     const rotateZ = `${interpolate(value, [-1, 0, 1], [-45, 0, 45])}deg`;
-    const translateX = interpolate(
-      value,
-      [-1, 0, 1],
-      [-window.width, 0, window.width],
-    );
+    const translateX = interpolate(value, [-1, 0, 1], [-window.width, 0, window.width]);
 
     return {
       transform: [{ rotateZ }, { translateX }],
@@ -83,8 +80,8 @@ function Index() {
         style={{
           width: window.width,
           height: 240,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
         width={PAGE_WIDTH}
         height={PAGE_HEIGHT}

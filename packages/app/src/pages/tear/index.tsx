@@ -3,7 +3,7 @@ import type { ImageSourcePropType } from 'react-native';
 import { View } from 'react-native';
 
 import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
-import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
+import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import SButton from '../../components/SButton';
 import { ElementsText, windowDimensions } from '../../constants';
