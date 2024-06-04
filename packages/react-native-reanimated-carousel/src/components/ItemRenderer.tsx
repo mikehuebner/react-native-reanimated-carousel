@@ -1,5 +1,4 @@
-// @ts-expect-error -- This is required for Vite to work, not sure why
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import type { SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { runOnJS, useAnimatedReaction } from 'react-native-reanimated';

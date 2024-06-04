@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { View } from 'react-native';
 
@@ -12,7 +13,7 @@ export interface BasicProps<T extends Record<string, never> = Record<string, nev
   progress: SharedValue<number>;
   horizontal?: boolean;
   data: Array<T>;
-  renderItem?: (item: T, index: number) => React.ReactNode;
+  renderItem?: (item: T, index: number) => ReactNode;
   containerStyle?: StyleProp<ViewStyle>;
   dotStyle?: DotStyle;
   activeDotStyle?: DotStyle;

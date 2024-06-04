@@ -1,7 +1,8 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { View } from 'react-native';
 
-import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { Extrapolation, SharedValue, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+
 import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 
 import SButton from '../../components/SButton';
@@ -15,7 +16,7 @@ const PAGE_WIDTH = windowDimensions.width;
 const PAGE_HEIGHT = windowDimensions.width * 1.2;
 
 function Index() {
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
 
   const baseOptions = {
     vertical: false,
@@ -50,10 +51,7 @@ function Index() {
   );
 }
 
-const Card: React.FC<{
-  index: number;
-  animationValue: Animated.SharedValue<number>;
-}> = ({ index, animationValue }) => {
+const Card = ({ index, animationValue }: { index: number; animationValue: SharedValue<number> }) => {
   const WIDTH = PAGE_WIDTH / 1.5;
   const HEIGHT = PAGE_HEIGHT / 1.5;
 

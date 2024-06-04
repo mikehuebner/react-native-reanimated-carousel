@@ -1,10 +1,10 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-export const QRCode: React.FC<{ tintColor?: string }> = ({ tintColor }) => {
-  const [visible, setVisible] = React.useState(false);
+export const QRCode = ({ tintColor }: { tintColor?: string }) => {
+  const [visible, setVisible] = useState(false);
   return (
     <TouchableWithoutFeedback
       onPress={() => {

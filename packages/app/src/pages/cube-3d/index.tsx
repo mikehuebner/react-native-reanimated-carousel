@@ -1,7 +1,14 @@
-import * as React from 'react';
+import { useCallback } from 'react';
 import { View } from 'react-native';
 
-import Animated, { Extrapolation, interpolate, interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, {
+  Extrapolation,
+  type SharedValue,
+  interpolate,
+  interpolateColor,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
+
 import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { SBItem } from '../../components/SBItem';
@@ -31,7 +38,7 @@ function Index() {
 function CubeItem() {
   const PAGE_WIDTH = windowDimensions.width / 4;
   const PAGE_HEIGHT = PAGE_WIDTH;
-  const animationStyle: TAnimationStyle = React.useCallback(
+  const animationStyle: TAnimationStyle = useCallback(
     (value: number) => {
       'worklet';
       const zIndex = interpolate(value, [-1, 0, 1], [-1000, 0, -1000]);
@@ -89,9 +96,9 @@ function CubeItem() {
 
 interface ItemProps {
   index: number;
-  animationValue: Animated.SharedValue<number>;
+  animationValue: SharedValue<number>;
 }
-const CustomItem: React.FC<ItemProps> = ({ index, animationValue }) => {
+const CustomItem = ({ index, animationValue }: ItemProps) => {
   const maskStyle = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       animationValue.value,

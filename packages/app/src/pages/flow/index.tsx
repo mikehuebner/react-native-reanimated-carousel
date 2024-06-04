@@ -1,10 +1,10 @@
-import * as React from 'react';
+import { useCallback } from 'react';
 import { Image, Text, View } from 'react-native';
 
 import { interpolate } from 'react-native-reanimated';
-import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { faker } from '@faker-js/faker';
+import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 import { BlurView } from 'expo-blur';
 
 import { windowDimensions } from '../../constants';
@@ -21,7 +21,7 @@ function Index() {
   const PAGE_HEIGHT = windowDimensions.height - headerHeight;
   const PAGE_WIDTH = windowDimensions.width;
 
-  const animationStyle: TAnimationStyle = React.useCallback(
+  const animationStyle: TAnimationStyle = useCallback(
     (value: number) => {
       'worklet';
 

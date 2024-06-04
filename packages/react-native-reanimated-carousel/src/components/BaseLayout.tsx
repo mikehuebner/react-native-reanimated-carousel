@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { ReactElement, useContext } from 'react';
 
 import Animated, { SharedValue, useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
 
@@ -16,7 +16,7 @@ export const BaseLayout = (props: {
   handlerOffset: SharedValue<number>;
   visibleRanges: IVisibleRanges;
   animationStyle: TAnimationStyle;
-  children: (ctx: { animationValue: SharedValue<number> }) => React.ReactElement;
+  children: (ctx: { animationValue: SharedValue<number> }) => ReactElement;
 }) => {
   const { handlerOffset, index, children, visibleRanges, animationStyle } = props;
 

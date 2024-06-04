@@ -1,8 +1,8 @@
-import React from 'react';
+import { useState } from 'react';
 import type { ImageSourcePropType, StyleProp, ViewProps, ViewStyle } from 'react-native';
 
 import { LongPressGestureHandler } from 'react-native-gesture-handler';
-import type { AnimateProps } from 'react-native-reanimated';
+import type { AnimatedProps } from 'react-native-reanimated';
 import Animated from 'react-native-reanimated';
 
 import Constants from 'expo-constants';
@@ -10,7 +10,7 @@ import Constants from 'expo-constants';
 import { SBImageItem } from './SBImageItem';
 import { SBTextItem } from './SBTextItem';
 
-interface Props extends AnimateProps<ViewProps> {
+interface Props extends AnimatedProps<ViewProps> {
   style?: StyleProp<ViewStyle>;
   index?: number;
   pretty?: boolean;
@@ -18,10 +18,10 @@ interface Props extends AnimateProps<ViewProps> {
   img?: ImageSourcePropType;
 }
 
-export const SBItem: React.FC<Props> = (props) => {
+export const SBItem = (props: Props) => {
   const { style, showIndex = true, index, pretty, img, testID, ...animatedViewProps } = props;
   const enablePretty = Constants?.expoConfig?.extra?.enablePretty || false;
-  const [isPretty, setIsPretty] = React.useState(pretty || enablePretty);
+  const [isPretty, setIsPretty] = useState(pretty || enablePretty);
   return (
     <LongPressGestureHandler
       onActivated={() => {

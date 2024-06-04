@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useState } from 'react';
 import { View } from 'react-native';
 
 import Animated, {
@@ -9,6 +9,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
+
 import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { Arrow, ArrowDirection } from './Arrow';
@@ -19,9 +20,9 @@ function Index() {
   const PAGE_WIDTH = windowDimensions.width;
   const PAGE_HEIGHT = windowDimensions.height - headerHeight;
   const directionAnim = useSharedValue<ArrowDirection>(ArrowDirection.IS_VERTICAL);
-  const [isVertical, setIsVertical] = React.useState(true);
+  const [isVertical, setIsVertical] = useState(true);
 
-  const animationStyle: TAnimationStyle = React.useCallback(
+  const animationStyle: TAnimationStyle = useCallback(
     (value: number) => {
       'worklet';
       const translateY = interpolate(value, [-1, 0, 1], [-PAGE_HEIGHT, 0, 0]);
@@ -79,11 +80,14 @@ function Index() {
   );
 }
 
-const Item: React.FC<{
+const Item = ({
+  animationValue,
+  directionAnim,
+}: {
   index: number;
   animationValue: Animated.SharedValue<number>;
   directionAnim: Animated.SharedValue<ArrowDirection>;
-}> = ({ animationValue, directionAnim }) => {
+}) => {
   const maskStyle = useAnimatedStyle(() => {
     const zIndex = interpolate(animationValue.value, [-1, 0, 1], [300, 0, -300]);
 

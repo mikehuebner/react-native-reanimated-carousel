@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 interface ResizableIframeProps {
   page: string;
@@ -7,7 +7,7 @@ interface ResizableIframeProps {
 const min = 350;
 const max = 1000;
 
-const ResizableIframe: React.FC<ResizableIframeProps> = ({ page }) => {
+const ResizableIframe = ({ page }: ResizableIframeProps) => {
   const [expanded, setExpanded] = useState(false);
 
   return (

@@ -1,7 +1,8 @@
-import * as React from 'react';
+import { useCallback } from 'react';
 import { View } from 'react-native';
 
 import { interpolate } from 'react-native-reanimated';
+
 import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { SBItem } from '../../components/SBItem';
@@ -10,7 +11,7 @@ import { windowDimensions } from '../../constants';
 const PAGE_WIDTH = windowDimensions.width;
 
 function Index() {
-  const animationStyle: TAnimationStyle = React.useCallback((value: number) => {
+  const animationStyle: TAnimationStyle = useCallback((value: number) => {
     'worklet';
 
     const zIndex = interpolate(value, [-1, 0, 1], [10, 20, 30]);

@@ -1,7 +1,8 @@
-import React, { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 
 interface WebProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 interface WebContextProps {
@@ -13,7 +14,7 @@ const defaultColor = 'light';
 
 export const WebContext = createContext<WebContextProps>(null!);
 
-export const WebProvider: React.FC<WebProviderProps> = ({ children }) => {
+export const WebProvider = ({ children }: WebProviderProps) => {
   const [color, setColor] = useState(defaultColor);
   const [page, setPage] = useState('');
 
@@ -30,5 +31,5 @@ export const WebProvider: React.FC<WebProviderProps> = ({ children }) => {
 };
 
 export const useWebContext = (): WebContextProps | undefined => {
-  return React.useContext(WebContext);
+  return useContext(WebContext);
 };

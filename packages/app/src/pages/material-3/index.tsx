@@ -1,14 +1,16 @@
-import * as React from 'react';
+import { useRef, useState } from 'react';
 import { ImageSourcePropType, StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
-import type { ICarouselInstance } from '@mikehuebner/react-native-reanimated-carousel';
-import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 
 import SButton from '../../components/SButton';
 import { ElementsText, windowDimensions } from '../../constants';
 import { getImages } from '../../utils/get-images';
+
+import type { ICarouselInstance } from '@mikehuebner/react-native-reanimated-carousel';
 
 const PAGE_WIDTH = windowDimensions.width;
 const LARGE_IMAGE_WIDTH = PAGE_WIDTH * 0.5;
@@ -19,8 +21,8 @@ const data = getImages();
 
 function Index() {
   const windowWidth = useWindowDimensions().width;
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
-  const ref = React.useRef<ICarouselInstance>(null);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
+  const ref = useRef<ICarouselInstance>(null);
 
   const baseOptions = {
     vertical: false,

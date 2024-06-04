@@ -1,7 +1,7 @@
-import React from 'react';
 import { Dimensions, SafeAreaView, Text, View, useColorScheme } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 
 const { width: PAGE_WIDTH } = Dimensions.get('window');
