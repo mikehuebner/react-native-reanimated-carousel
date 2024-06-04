@@ -64,8 +64,8 @@ const Carousel = forwardRef<ICarouselInstance, TCarouselProps<unknown>>((_props,
     return isNaN(x) ? 0 : x;
   }, [loop, size, dataLength, handlerOffset]);
 
-  // @ts-expect-error == types do not exist
   usePropsErrorBoundary({ ...props, dataLength });
+
   const progressValue = useOnProgressChange({
     autoFillData,
     loop,
@@ -139,7 +139,6 @@ const Carousel = forwardRef<ICarouselInstance, TCarouselProps<unknown>>((_props,
     [getCurrentIndex, next, prev, progressValue, scrollTo],
   );
 
-  // @ts-expect-error == types do not exist
   const layoutConfig = useLayoutConfig({ ...props, size });
 
   return (
