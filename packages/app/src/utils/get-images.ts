@@ -12,28 +12,14 @@ import img_8 from '../../assets/bg-images/8.jpg';
 import img_9 from '../../assets/bg-images/9.jpg';
 
 export function getImages(length: number = 10): ImageSourcePropType[] {
-  const imageList = [
-    img_0,
-    img_1,
-    img_2,
-    img_3,
-    img_4,
-    img_5,
-    img_6,
-    img_7,
-    img_8,
-    img_9,
-  ];
+  const imageList = [img_0, img_1, img_2, img_3, img_4, img_5, img_6, img_7, img_8, img_9];
   if (length < 1) {
     return [];
   }
 
   if (length > imageList.length) {
     return [
-      ...Array.from(
-        { length: length / imageList.length },
-        () => imageList,
-      ).flat(),
+      ...Array.from({ length: length / imageList.length }, () => imageList).flat(),
       ...imageList.slice(0, length % imageList.length),
     ];
   }

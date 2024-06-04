@@ -11,7 +11,6 @@ import type { TAnimationStyle } from './BaseLayout';
 import type { VisibleRanges } from '../hooks/useVisibleRanges';
 import type { CarouselRenderItem } from '../types';
 
-
 interface ItemRendererProps {
   data: unknown[];
   dataLength: number;

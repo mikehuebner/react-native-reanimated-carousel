@@ -2,10 +2,7 @@ import * as React from 'react';
 import type { ImageSourcePropType } from 'react-native';
 import { Image, StyleSheet, View } from 'react-native';
 
-import Animated, {
-  interpolate,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
+import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
 
 import { BlurView as _BlurView } from 'expo-blur';
@@ -41,13 +38,7 @@ function Index() {
         snapEnabled={false}
         data={[...fruitItems, ...fruitItems]}
         renderItem={({ item, index, animationValue }) => {
-          return (
-            <CustomItem
-              key={index}
-              source={item}
-              animationValue={animationValue}
-            />
-          );
+          return <CustomItem key={index} source={item} animationValue={animationValue} />;
         }}
         customAnimation={parallaxLayout({
           size: ITEM_WIDTH,
@@ -71,11 +62,7 @@ interface ItemProps {
 }
 const CustomItem: React.FC<ItemProps> = ({ source, animationValue }) => {
   const maskStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(
-      animationValue.value,
-      [-0.5, 0, 1, 1.5],
-      [1, 0, 0, 1],
-    );
+    const opacity = interpolate(animationValue.value, [-0.5, 0, 1, 1.5], [1, 0, 0, 1]);
 
     return {
       opacity,
@@ -95,16 +82,8 @@ const CustomItem: React.FC<ItemProps> = ({ source, animationValue }) => {
       <View style={{ width: '100%', height: '100%', position: 'absolute' }}>
         <SBItem pretty style={{ flex: 1 }} />
       </View>
-      <Image
-        source={source}
-        resizeMode={'contain'}
-        style={{ width: '80%', height: '80%' }}
-      />
-      <BlurView
-        intensity={50}
-        pointerEvents="none"
-        style={[StyleSheet.absoluteFill, maskStyle]}
-      />
+      <Image source={source} resizeMode={'contain'} style={{ width: '80%', height: '80%' }} />
+      <BlurView intensity={50} pointerEvents="none" style={[StyleSheet.absoluteFill, maskStyle]} />
     </View>
   );
 };

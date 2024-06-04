@@ -17,7 +17,6 @@ const compat = new FlatCompat({
 });
 
 export default tseslint.config(
-  eslint.configs.recommended,
   ...tseslint.configs.recommended,
   ...compat.extends('plugin:react-hooks/recommended'),
   {
@@ -44,14 +43,21 @@ export default tseslint.config(
     rules: {
       // To ensure we don't miss a dependency when using reanimated hooks
       'react-hooks/exhaustive-deps': [
-        'error',
+        'warn',
         {
           additionalHooks: '(useAnimatedStyle|useDerivedValue|useAnimatedProps)',
         },
       ],
+      '@typescript-eslint/no-var-requires': 'off',
       '@typescript-eslint/no-use-before-define': 'off',
-      'quotes': 'off',
-      'operator-linebreak': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
       'import/first': 'error',
       'import/newline-after-import': 'error',
       'import/no-duplicates': 'error',

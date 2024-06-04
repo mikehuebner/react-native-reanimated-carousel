@@ -6,10 +6,7 @@ export interface GestureConfig {
   enabled?: boolean;
 }
 
-export const useUpdateGestureConfig = (
-  gesture: PanGesture,
-  config: GestureConfig,
-) => {
+export const useUpdateGestureConfig = (gesture: PanGesture, config: GestureConfig) => {
   const { enabled } = config;
 
   useEffect(() => {

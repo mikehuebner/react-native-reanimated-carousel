@@ -7,14 +7,12 @@ function isAutoFillData(params: { autoFillData: boolean; loop: boolean }) {
   return !!params.loop && !!params.autoFillData;
 }
 
-type BaseParams<T extends object = {}> = {
+type BaseParams<T extends object = Record<string, never>> = {
   autoFillData: boolean;
   loop: boolean;
 } & T;
 
-export function convertToSharedIndex(
-  params: BaseParams<{ index: number; rawDataLength: number }>,
-) {
+export function convertToSharedIndex(params: BaseParams<{ index: number; rawDataLength: number }>) {
   'worklet';
   const { loop, rawDataLength, index, autoFillData } = params;
 

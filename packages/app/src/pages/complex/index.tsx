@@ -40,9 +40,7 @@ function Index() {
                 padding: 16,
               }}
             >
-              <Text style={{ color: 'white', fontSize: 30 }}>
-                {`index:${index}`}
-              </Text>
+              <Text style={{ color: 'white', fontSize: 30 }}>{`index:${index}`}</Text>
               <ScrollView style={{ width: '100%' }}>
                 {new Array(100).fill(0).map((_, i) => {
                   return (

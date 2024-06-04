@@ -24,11 +24,7 @@ function Index() {
     'worklet';
 
     const zIndex = interpolate(value, [-1, 0, 1], [-1000, 0, 1000]);
-    const translateX = interpolate(
-      value,
-      [-1, 0, 1],
-      [-PAGE_WIDTH, 0, PAGE_WIDTH],
-    );
+    const translateX = interpolate(value, [-1, 0, 1], [-PAGE_WIDTH, 0, PAGE_WIDTH]);
 
     return {
       transform: [{ translateX }],
@@ -81,15 +77,11 @@ const CustomItem = ({ pressAnim, source }: ItemProps) => {
       transform: [{ scale }],
       borderRadius,
     };
-  }, []);
+  }, [pressAnim]);
 
   return (
     <Animated.View style={[{ flex: 1, overflow: 'hidden' }, animStyle]}>
-      <Animated.Image
-        source={source}
-        resizeMode="center"
-        style={{ width: '100%', height: '100%' }}
-      />
+      <Animated.Image source={source} resizeMode="center" style={{ width: '100%', height: '100%' }} />
     </Animated.View>
   );
 };

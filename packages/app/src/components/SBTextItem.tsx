@@ -9,9 +9,7 @@ interface Props {
 export const SBTextItem = ({ style, index }: Props) => {
   return (
     <View style={[styles.container, style]}>
-      {typeof index === 'number' && (
-        <Text style={{ fontSize: 30, color: 'black' }}>{index}</Text>
-      )}
+      {typeof index === 'number' && <Text style={{ fontSize: 30, color: 'black' }}>{index}</Text>}
     </View>
   );
 };

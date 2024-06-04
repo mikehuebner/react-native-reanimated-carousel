@@ -8,7 +8,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import type { Plugin as ESBuildPlugin } from 'esbuild';
 // @ts-expect-error == types do not exist
 
-
 const extensions = [
   '.web.mjs',
   '.mjs',

@@ -33,36 +33,25 @@ slug: /examples/parallax
 
 \*/}
 
-Here is a `parallax` animation example. You can see the source code of this page [here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/parallax/index.tsx).
+Here is a `parallax` animation example. You can see the source code of this page
+[here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/parallax/index.tsx).
 
-import Page from "../../components/Page";
+import Page from '../../components/Page';
 
 <Page page="parallax" />
 
 ```tsx copy
-import * as React from "react";
-import { View } from "react-native";
-import Animated, {
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
-import Carousel from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { View } from 'react-native';
+import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import Carousel from 'react-native-reanimated-carousel';
 
-import { SBItem } from "../../components/SBItem";
-import SButton from "../../components/SButton";
-import { ElementsText, window } from "../../constants";
+import { SBItem } from '../../components/SBItem';
+import SButton from '../../components/SButton';
+import { ElementsText, window } from '../../constants';
 
 const PAGE_WIDTH = window.width;
-const colors = [
-  "#26292E",
-  "#899F9C",
-  "#B3C680",
-  "#5C6265",
-  "#F5D399",
-  "#F1F1F1",
-];
+const colors = ['#26292E', '#899F9C', '#B3C680', '#5C6265', '#F5D399', '#F1F1F1'];
 
 function Index() {
   const [isVertical, setIsVertical] = React.useState(false);
@@ -85,7 +74,7 @@ function Index() {
   return (
     <View
       style={{
-        alignItems: "center",
+        alignItems: 'center',
       }}
     >
       <Carousel
@@ -98,9 +87,7 @@ function Index() {
         snapEnabled={snapEnabled}
         autoPlay={autoPlay}
         autoPlayInterval={1500}
-        onProgressChange={(_, absoluteProgress) =>
-          (progressValue.value = absoluteProgress)
-        }
+        onProgressChange={(_, absoluteProgress) => (progressValue.value = absoluteProgress)}
         mode="parallax"
         modeConfig={{
           parallaxScrollingScale: 0.9,
@@ -114,19 +101,19 @@ function Index() {
           style={
             isVertical
               ? {
-                  flexDirection: "column",
-                  justifyContent: "space-between",
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
                   width: 10,
-                  alignSelf: "center",
-                  position: "absolute",
+                  alignSelf: 'center',
+                  position: 'absolute',
                   right: 5,
                   top: 40,
                 }
               : {
-                  flexDirection: "row",
-                  justifyContent: "space-between",
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
                   width: 100,
-                  alignSelf: "center",
+                  alignSelf: 'center',
                 }
           }
         >
@@ -144,15 +131,13 @@ function Index() {
           })}
         </View>
       )}
-      <SButton
-        onPress={() => setAutoPlay(!autoPlay)}
-      >{`${ElementsText.AUTOPLAY}:${autoPlay}`}</SButton>
+      <SButton onPress={() => setAutoPlay(!autoPlay)}>{`${ElementsText.AUTOPLAY}:${autoPlay}`}</SButton>
       <SButton
         onPress={() => {
           setIsVertical(!isVertical);
         }}
       >
-        {isVertical ? "Set horizontal" : "Set Vertical"}
+        {isVertical ? 'Set horizontal' : 'Set Vertical'}
       </SButton>
       <SButton
         onPress={() => {
@@ -194,12 +179,7 @@ const PaginationItem: React.FC<{
     return {
       transform: [
         {
-          translateX: interpolate(
-            animValue?.value,
-            inputRange,
-            outputRange,
-            Extrapolate.CLAMP,
-          ),
+          translateX: interpolate(animValue?.value, inputRange, outputRange, Extrapolation.CLAMP),
         },
       ],
     };
@@ -207,14 +187,14 @@ const PaginationItem: React.FC<{
   return (
     <View
       style={{
-        backgroundColor: "white",
+        backgroundColor: 'white',
         width,
         height: width,
         borderRadius: 50,
-        overflow: "hidden",
+        overflow: 'hidden',
         transform: [
           {
-            rotateZ: isRotate ? "90deg" : "0deg",
+            rotateZ: isRotate ? '90deg' : '0deg',
           },
         ],
       }}

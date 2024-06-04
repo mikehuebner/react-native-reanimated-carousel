@@ -4,4 +4,4 @@ import fruit_2 from '../../assets/fruit-2.png';
 
 export const fruitItems = [fruit_0, fruit_2, fruit_1];
 
-export const ImageItems = [fruit_0, fruit_2, fruit_1];
+export const ImageItems = [require('../../assets/1.jpg'), require('../../assets/2.jpg'), require('../../assets/3.jpg')];

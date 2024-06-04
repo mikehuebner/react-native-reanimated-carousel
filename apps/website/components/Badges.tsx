@@ -43,14 +43,7 @@ export const Badges = () => {
           url: 'https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord',
         },
       ].map((badge, index) => {
-        return (
-          <img
-            src={badge.url}
-            alt={badge.label}
-            key={index}
-            style={{ marginRight: 5, marginBottom: 8 }}
-          />
-        );
+        return <img src={badge.url} alt={badge.label} key={index} style={{ marginRight: 5, marginBottom: 8 }} />;
       })}
     </div>
   );

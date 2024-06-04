@@ -1,15 +1,8 @@
 import React from 'react';
-import {
-  Dimensions,
-  SafeAreaView,
-  Text,
-  View,
-  useColorScheme,
-} from 'react-native';
+import { Dimensions, SafeAreaView, Text, View, useColorScheme } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Carousel from 'react-native-reanimated-carousel';
-
 
 const { width: PAGE_WIDTH } = Dimensions.get('window');
 const App = () => {
@@ -20,22 +13,14 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView
-      style={[
-        backgroundStyle,
-        { alignItems: 'center', justifyContent: 'center', flex: 1 },
-      ]}
-    >
+    <SafeAreaView style={[backgroundStyle, { alignItems: 'center', justifyContent: 'center', flex: 1 }]}>
       <Carousel
         loop
         width={PAGE_WIDTH}
         height={PAGE_WIDTH / 2}
         data={[...new Array(6).keys()]}
         renderItem={({ index }) => (
-          <View
-            key={index}
-            style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}
-          >
+          <View key={index} style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
             <Text>Hello</Text>
           </View>
         )}

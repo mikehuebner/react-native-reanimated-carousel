@@ -14,25 +14,12 @@ import type { GestureConfig } from './useUpdateGestureConfig';
 
 export const usePanGestureProxy = (customization: {
   onConfigurePanGesture?: (gesture: PanGesture) => void;
-  onGestureStart: (
-    event: GestureStateChangeEvent<PanGestureHandlerEventPayload>,
-  ) => void;
-  onGestureUpdate: (
-    event: GestureUpdateEvent<PanGestureHandlerEventPayload>,
-  ) => void;
-  onGestureEnd: (
-    event: GestureStateChangeEvent<PanGestureHandlerEventPayload>,
-    success: boolean,
-  ) => void;
+  onGestureStart: (event: GestureStateChangeEvent<PanGestureHandlerEventPayload>) => void;
+  onGestureUpdate: (event: GestureUpdateEvent<PanGestureHandlerEventPayload>) => void;
+  onGestureEnd: (event: GestureStateChangeEvent<PanGestureHandlerEventPayload>, success: boolean) => void;
   options?: GestureConfig;
 }) => {
-  const {
-    onConfigurePanGesture,
-    onGestureStart,
-    onGestureUpdate,
-    onGestureEnd,
-    options = {},
-  } = customization;
+  const { onConfigurePanGesture, onGestureStart, onGestureUpdate, onGestureEnd, options = {} } = customization;
 
   const gesture = useMemo(() => {
     const gesture = Gesture.Pan();
@@ -102,20 +89,17 @@ export const usePanGestureProxy = (customization: {
       .onStart((e) => {
         onGestureStart(e);
 
-        if (userDefinedConflictGestures.onStart)
-          userDefinedConflictGestures.onStart(e);
+        if (userDefinedConflictGestures.onStart) userDefinedConflictGestures.onStart(e);
       })
       .onUpdate((e) => {
         onGestureUpdate(e);
 
-        if (userDefinedConflictGestures.onUpdate)
-          userDefinedConflictGestures.onUpdate(e);
+        if (userDefinedConflictGestures.onUpdate) userDefinedConflictGestures.onUpdate(e);
       })
       .onEnd((e, success) => {
         onGestureEnd(e, success);
 
-        if (userDefinedConflictGestures.onEnd)
-          userDefinedConflictGestures.onEnd(e, success);
+        if (userDefinedConflictGestures.onEnd) userDefinedConflictGestures.onEnd(e, success);
       });
 
     return gesture;

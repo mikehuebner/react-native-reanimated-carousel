@@ -64,26 +64,16 @@ export const RootNavigator = () => {
                   Restart();
                 }}
               >
-                <Text style={{ color: tintColor, marginRight: 12 }}>
-                  {isRTL ? 'LTR' : 'RTL'}
-                </Text>
+                <Text style={{ color: tintColor, marginRight: 12 }}>{isRTL ? 'LTR' : 'RTL'}</Text>
               </TouchableWithoutFeedback>
             </View>
           ),
         }}
       >
         <Stack.Screen name="Home" component={Home} />
-        {[...LayoutsPage, ...CustomAnimations, ...ExperimentPage].map(
-          (item) => {
-            return (
-              <Stack.Screen
-                key={item.name}
-                name={item.name}
-                component={item.page}
-              />
-            );
-          },
-        )}
+        {[...LayoutsPage, ...CustomAnimations, ...ExperimentPage].map((item) => {
+          return <Stack.Screen key={item.name} name={item.name} component={item.page} />;
+        })}
       </Stack.Navigator>
     </NavigationContainer>
   );

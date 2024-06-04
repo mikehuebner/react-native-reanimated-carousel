@@ -1,10 +1,5 @@
 import React from 'react';
-import type {
-  ImageSourcePropType,
-  ImageURISource,
-  StyleProp,
-  ViewStyle,
-} from 'react-native';
+import type { ImageSourcePropType, ImageURISource, StyleProp, ViewStyle } from 'react-native';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { Image } from 'expo-image';
@@ -16,12 +11,7 @@ interface Props {
   img?: ImageSourcePropType;
 }
 
-export const SBImageItem: React.FC<Props> = ({
-  style,
-  index: _index,
-  showIndex = true,
-  img,
-}) => {
+export const SBImageItem: React.FC<Props> = ({ style, index: _index, showIndex = true, img }) => {
   const index = _index ?? 0;
   const source = React.useRef<ImageURISource>({
     uri: `https://picsum.photos/id/${index}/400/300`,
@@ -30,12 +20,7 @@ export const SBImageItem: React.FC<Props> = ({
   return (
     <View style={[styles.container, style]}>
       <ActivityIndicator size="small" />
-      <Image
-        cachePolicy={'memory-disk'}
-        key={index}
-        style={styles.image}
-        source={img ?? source}
-      />
+      <Image cachePolicy={'memory-disk'} key={index} style={styles.image} source={img ?? source} />
       {showIndex && (
         <Text
           style={{

@@ -15,10 +15,7 @@ export const QRCode: React.FC<{ tintColor?: string }> = ({ tintColor }) => {
         <Text style={{ color: tintColor }}>{'QR CODE'}</Text>
         {visible && (
           <View style={styles.qrCodeContainer}>
-            <Image
-              style={styles.qrCodeImage}
-              source={{ uri: '../../assets/web-example-qrcode.png' }}
-            />
+            <Image style={styles.qrCodeImage} source={{ uri: '../../assets/web-example-qrcode.png' }} />
           </View>
         )}
       </View>

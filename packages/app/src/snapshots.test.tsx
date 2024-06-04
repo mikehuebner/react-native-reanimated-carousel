@@ -1,11 +1,9 @@
-import {
-  advanceAnimationByTime,
-  withReanimatedTimer,
-} from 'react-native-reanimated/src/reanimated2/jestUtils';
+import { advanceAnimationByTime, withReanimatedTimer } from 'react-native-reanimated/src/reanimated2/jestUtils';
 
 import { act, render, screen, waitFor } from '@testing-library/react-native';
 
 // @ts-expect-error import/no-webpack-loader-syntax
+// eslint-disable-next-line import/no-unresolved
 import * as Carousels from './pages/!(snap-carousel-*)/index.js';
 
 jest.mock('@faker-js/faker', () => ({
@@ -14,12 +12,8 @@ jest.mock('@faker-js/faker', () => ({
       findName: jest.fn(() => '__'),
     },
     image: {
-      nature: jest.fn(
-        () => 'http://loremflickr.com/405/100/nature?random=0.5328608422981651',
-      ),
-      animals: jest.fn(
-        () => 'http://loremflickr.com/405/100/nature?random=0.5328608422981651',
-      ),
+      nature: jest.fn(() => 'http://loremflickr.com/405/100/nature?random=0.5328608422981651'),
+      animals: jest.fn(() => 'http://loremflickr.com/405/100/nature?random=0.5328608422981651'),
     },
     animal: {
       dog: jest.fn(() => '__'),

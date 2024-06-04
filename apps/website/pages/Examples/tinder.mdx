@@ -33,25 +33,21 @@ slug: /examples/tinder
 
 \*/}
 
-Here is a `tinder` animation example. You can see the source code of this page [here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/tinder/index.tsx).
+Here is a `tinder` animation example. You can see the source code of this page
+[here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/tinder/index.tsx).
 
-import Page from "../../components/Page";
+import Page from '../../components/Page';
 
 <Page page="tinder" />
 
 ```tsx copy
-import * as React from "react";
-import { Image, ImageSourcePropType, View } from "react-native";
-import Animated, {
-  Extrapolate,
-  FadeInDown,
-  interpolate,
-  useSharedValue,
-} from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { Image, ImageSourcePropType, View } from 'react-native';
+import Animated, { Extrapolation, FadeInDown, interpolate, useSharedValue } from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
-import { window } from "../../constants";
-import { getImages } from "../../utils/get-images";
+import { window } from '../../constants';
+import { getImages } from '../../utils/get-images';
 
 const data = getImages();
 
@@ -64,40 +60,26 @@ function Index() {
 
   const animationStyle: TAnimationStyle = React.useCallback(
     (value: number) => {
-      "worklet";
+      'worklet';
       const translateY = interpolate(value, [0, 1], [0, -18]);
 
-      const translateX =
-        interpolate(value, [-1, 0], [PAGE_WIDTH, 0], Extrapolate.CLAMP) *
-        directionAnimVal.value;
+      const translateX = interpolate(value, [-1, 0], [PAGE_WIDTH, 0], Extrapolation.CLAMP) * directionAnimVal.value;
 
-      const rotateZ =
-        interpolate(value, [-1, 0], [15, 0], Extrapolate.CLAMP) *
-        directionAnimVal.value;
+      const rotateZ = interpolate(value, [-1, 0], [15, 0], Extrapolation.CLAMP) * directionAnimVal.value;
 
       const zIndex = interpolate(
         value,
         [0, 1, 2, 3, 4],
         [0, 1, 2, 3, 4].map((v) => (data.length - v) * 10),
-        Extrapolate.CLAMP,
+        Extrapolation.CLAMP,
       );
 
       const scale = interpolate(value, [0, 1], [1, 0.95]);
 
-      const opacity = interpolate(
-        value,
-        [-1, -0.8, 0, 1],
-        [0, 0.9, 1, 0.85],
-        Extrapolate.EXTEND,
-      );
+      const opacity = interpolate(value, [-1, -0.8, 0, 1], [0, 0.9, 1, 0.85], Extrapolation.EXTEND);
 
       return {
-        transform: [
-          { translateY },
-          { translateX },
-          { rotateZ: `${rotateZ}deg` },
-          { scale },
-        ],
+        transform: [{ translateY }, { translateX }, { rotateZ: `${rotateZ}deg` }, { scale }],
         zIndex,
         opacity,
       };
@@ -112,9 +94,9 @@ function Index() {
         style={{
           width: PAGE_WIDTH,
           height: PAGE_HEIGHT,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "white",
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'white',
         }}
         defaultIndex={0}
         vertical={false}
@@ -142,20 +124,20 @@ const Item: React.FC<{ img: ImageSourcePropType }> = ({ img }) => {
   return (
     <Animated.View
       entering={FadeInDown.duration(300)}
-      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
     >
       <View
         style={{
           width,
           height,
           borderWidth: 1,
-          borderColor: "black",
+          borderColor: 'black',
           borderRadius: 20,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "white",
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'white',
 
-          shadowColor: "#000000d1",
+          shadowColor: '#000000d1',
           shadowOffset: {
             width: 0,
             height: 10,

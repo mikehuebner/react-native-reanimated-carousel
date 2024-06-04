@@ -1,8 +1,4 @@
-import {
-  type SharedValue,
-  runOnJS,
-  useAnimatedReaction,
-} from 'react-native-reanimated';
+import { type SharedValue, runOnJS, useAnimatedReaction } from 'react-native-reanimated';
 
 import { computedOffsetXValueWithAutoFillData } from '../utils/computed-with-auto-fill-data';
 
@@ -17,8 +13,7 @@ export function useOnProgressChange(
     rawDataLength: number;
   } & Pick<TCarouselProps, 'onProgressChange'>,
 ) {
-  const { autoFillData, loop, offsetX, size, rawDataLength, onProgressChange } =
-    opts;
+  const { autoFillData, loop, offsetX, size, rawDataLength, onProgressChange } = opts;
 
   useAnimatedReaction(
     () => offsetX.value,
@@ -40,8 +35,7 @@ export function useOnProgressChange(
       if (value > 0) absoluteProgress = rawDataLength - absoluteProgress;
 
       if (onProgressChange) {
-        if (typeof onProgressChange === 'function')
-          runOnJS(onProgressChange)(value, absoluteProgress);
+        if (typeof onProgressChange === 'function') runOnJS(onProgressChange)(value, absoluteProgress);
         else onProgressChange.value = absoluteProgress;
       }
     },

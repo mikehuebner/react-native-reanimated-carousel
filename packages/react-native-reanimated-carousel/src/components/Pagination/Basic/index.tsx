@@ -9,7 +9,7 @@ import { PaginationItem } from './PaginationItem';
 
 import type { DotStyle } from './PaginationItem';
 
-export interface BasicProps<T extends {} = {}> {
+export interface BasicProps<T extends Record<string, never> = Record<string, never>> {
   progress: SharedValue<number>;
   horizontal?: boolean;
   data: Array<T>;
@@ -21,7 +21,7 @@ export interface BasicProps<T extends {} = {}> {
   onPress?: (index: number) => void;
 }
 
-export const Basic = <T extends {}>(props: BasicProps<T>) => {
+export const Basic = <T extends Record<string, never>>(props: BasicProps<T>) => {
   const {
     activeDotStyle,
     dotStyle,
@@ -34,11 +34,7 @@ export const Basic = <T extends {}>(props: BasicProps<T>) => {
     onPress,
   } = props;
 
-  if (
-    typeof size === 'string' ||
-    typeof dotStyle?.width === 'string' ||
-    typeof dotStyle?.height === 'string'
-  )
+  if (typeof size === 'string' || typeof dotStyle?.width === 'string' || typeof dotStyle?.height === 'string')
     throw new Error('size/width/height must be a number');
 
   return (
@@ -60,10 +56,7 @@ export const Basic = <T extends {}>(props: BasicProps<T>) => {
     >
       {data.map((item, index) => {
         return (
-          <TouchableWithoutFeedback
-            key={index}
-            onPress={() => onPress?.(index)}
-          >
+          <TouchableWithoutFeedback key={index} onPress={() => onPress?.(index)}>
             <PaginationItem
               index={index}
               size={size}

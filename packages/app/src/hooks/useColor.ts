@@ -7,7 +7,6 @@ export const useColor = () => {
   const text = isDark ? '#ffffff' : '#121212';
 
   if (isWeb) {
-    // @ts-ignore
     document && (document.body.style.backgroundColor = background);
   }
 

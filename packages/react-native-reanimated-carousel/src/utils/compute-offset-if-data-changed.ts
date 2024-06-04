@@ -13,13 +13,7 @@ export function computeOffsetIfDataChanged(params: {
   currentLength: number;
 }) {
   'worklet';
-  const {
-    direction,
-    handlerOffset: _handlerOffset,
-    size,
-    previousLength,
-    currentLength,
-  } = params;
+  const { direction, handlerOffset: _handlerOffset, size, previousLength, currentLength } = params;
 
   let handlerOffset = _handlerOffset;
   let positionIndex;
@@ -29,15 +23,10 @@ export function computeOffsetIfDataChanged(params: {
 
   if (isPositive) {
     positionIndex = Math.abs(handlerOffset) / size;
-    round = parseInt(
-      String(omitZero(previousLength, positionIndex / previousLength)),
-    );
+    round = parseInt(String(omitZero(previousLength, positionIndex / previousLength)));
   } else {
     positionIndex = (Math.abs(handlerOffset) - size) / size;
-    round =
-      parseInt(
-        String(omitZero(previousLength, positionIndex / previousLength)),
-      ) + 1;
+    round = parseInt(String(omitZero(previousLength, positionIndex / previousLength))) + 1;
   }
 
   const prevOffset = omitZero(previousLength, positionIndex % previousLength);

@@ -71,11 +71,7 @@ function Index() {
       </SButton>
       <SButton
         onPress={() => {
-          setData(
-            data.length === 6
-              ? [...new Array(8).keys()]
-              : [...new Array(6).keys()],
-          );
+          setData(data.length === 6 ? [...new Array(8).keys()] : [...new Array(6).keys()]);
         }}
       >
         Change data length to:{data.length === 6 ? 8 : 6}

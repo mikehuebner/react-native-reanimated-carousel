@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Pressable, View, useWindowDimensions } from 'react-native';
 
 import Animated, {
-  Extrapolate,
+  Extrapolation,
   interpolate,
   interpolateColor,
   useAnimatedStyle,
@@ -94,12 +94,7 @@ const Item: React.FC<Props> = (props) => {
   const translateY = useSharedValue(0);
 
   const containerStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(
-      animationValue.value,
-      [-1, 0, 1],
-      [0.5, 1, 0.5],
-      Extrapolate.CLAMP,
-    );
+    const opacity = interpolate(animationValue.value, [-1, 0, 1], [0.5, 1, 0.5], Extrapolation.CLAMP);
 
     return {
       opacity,
@@ -107,18 +102,9 @@ const Item: React.FC<Props> = (props) => {
   }, [animationValue]);
 
   const labelStyle = useAnimatedStyle(() => {
-    const scale = interpolate(
-      animationValue.value,
-      [-1, 0, 1],
-      [1, 1.25, 1],
-      Extrapolate.CLAMP,
-    );
+    const scale = interpolate(animationValue.value, [-1, 0, 1], [1, 1.25, 1], Extrapolation.CLAMP);
 
-    const color = interpolateColor(
-      animationValue.value,
-      [-1, 0, 1],
-      ['#b6bbc0', '#0071fa', '#b6bbc0'],
-    );
+    const color = interpolateColor(animationValue.value, [-1, 0, 1], ['#b6bbc0', '#0071fa', '#b6bbc0']);
 
     return {
       transform: [{ scale }, { translateY: translateY.value }],
@@ -146,9 +132,7 @@ const Item: React.FC<Props> = (props) => {
           containerStyle,
         ]}
       >
-        <Animated.Text style={[{ fontSize: 18, color: '#26292E' }, labelStyle]}>
-          {label}
-        </Animated.Text>
+        <Animated.Text style={[{ fontSize: 18, color: '#26292E' }, labelStyle]}>{label}</Animated.Text>
       </Animated.View>
     </Pressable>
   );

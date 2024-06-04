@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode, useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -37,7 +37,6 @@ import Tinder from './pages/tinder';
 import { useWebContext } from './store/WebProvider';
 
 import type { NavigationProp } from '@react-navigation/native';
-
 
 export const LayoutsPage = [
   {
@@ -160,20 +159,10 @@ export const ExperimentPage = [
   },
 ];
 
-const ListItem = ({
-  name,
-  onPress,
-  color,
-}: {
-  name: string;
-  onPress: () => void;
-  color: string;
-}) => (
+const ListItem = ({ name, onPress, color }: { name: string; onPress: () => void; color: string }) => (
   <TouchableOpacity onPress={onPress}>
     <View style={styles.listItem}>
-      <Text style={[styles.text, { color: color }]}>
-        {name.split('-').join(' ')}
-      </Text>
+      <Text style={[styles.text, { color: color }]}>{name.split('-').join(' ')}</Text>
     </View>
   </TouchableOpacity>
 );
@@ -203,15 +192,16 @@ const SectionHeader = ({
 
 interface PageItem {
   name: string;
-  page: React.FC;
+  page: ReactNode;
 }
 
 const Index = () => {
   const webCtx = useWebContext();
   const { colors } = useColor();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const navigation = useNavigation<NavigationProp<any>>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (webCtx?.page) {
       navigation.navigate(webCtx.page);
     }
@@ -220,12 +210,7 @@ const Index = () => {
   const renderSection = (title: string, data: PageItem[]) => [
     <SectionHeader key={title} title={title} color={colors} />,
     ...data.map((item, index) => (
-      <ListItem
-        key={index}
-        name={item.name}
-        onPress={() => navigation.navigate(item.name)}
-        color={colors.text}
-      />
+      <ListItem key={index} name={item.name} onPress={() => navigation.navigate(item.name)} color={colors.text} />
     )),
   ];
 
@@ -233,11 +218,7 @@ const Index = () => {
     <ScrollView
       style={{ flexGrow: 1 }}
       contentContainerStyle={{ paddingBottom: 64 }}
-      stickyHeaderIndices={[
-        0,
-        LayoutsPage.length + 1,
-        LayoutsPage.length + CustomAnimations.length + 2,
-      ]}
+      stickyHeaderIndices={[0, LayoutsPage.length + 1, LayoutsPage.length + CustomAnimations.length + 2]}
     >
       {renderSection('Layouts', LayoutsPage)}
       {renderSection('CustomAnimations', CustomAnimations)}

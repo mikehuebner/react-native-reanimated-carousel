@@ -11,12 +11,7 @@ describe('should work as expected', () => {
     previousLength: number;
     currentLength: number;
   }) => {
-    const {
-      currentIndex,
-      direction: _direction,
-      previousLength,
-      currentLength,
-    } = params;
+    const { currentIndex, direction: _direction, previousLength, currentLength } = params;
     const direction = _direction === 'negative' ? negative : positive;
     return {
       direction,

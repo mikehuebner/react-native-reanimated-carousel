@@ -1,12 +1,7 @@
-import * as React from 'react';
+import { useCallback } from 'react';
 import { Image, ImageSourcePropType, View } from 'react-native';
 
-import Animated, {
-  Extrapolate,
-  FadeInDown,
-  interpolate,
-  useSharedValue,
-} from 'react-native-reanimated';
+import Animated, { Extrapolation, FadeInDown, interpolate, useSharedValue } from 'react-native-reanimated';
 import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
 import { windowDimensions } from '../../constants';
@@ -21,47 +16,33 @@ function Index() {
 
   const directionAnimVal = useSharedValue(0);
 
-  const animationStyle: TAnimationStyle = React.useCallback(
+  const animationStyle: TAnimationStyle = useCallback(
     (value: number) => {
       'worklet';
       const translateY = interpolate(value, [0, 1], [0, -18]);
 
-      const translateX =
-        interpolate(value, [-1, 0], [PAGE_WIDTH, 0], Extrapolate.CLAMP) *
-        directionAnimVal.value;
+      const translateX = interpolate(value, [-1, 0], [PAGE_WIDTH, 0], Extrapolation.CLAMP) * directionAnimVal.value;
 
-      const rotateZ =
-        interpolate(value, [-1, 0], [15, 0], Extrapolate.CLAMP) *
-        directionAnimVal.value;
+      const rotateZ = interpolate(value, [-1, 0], [15, 0], Extrapolation.CLAMP) * directionAnimVal.value;
 
       const zIndex = interpolate(
         value,
         [0, 1, 2, 3, 4],
         [0, 1, 2, 3, 4].map((v) => (data.length - v) * 10),
-        Extrapolate.CLAMP,
+        Extrapolation.CLAMP,
       );
 
       const scale = interpolate(value, [0, 1], [1, 0.95]);
 
-      const opacity = interpolate(
-        value,
-        [-1, -0.8, 0, 1],
-        [0, 0.9, 1, 0.85],
-        Extrapolate.EXTEND,
-      );
+      const opacity = interpolate(value, [-1, -0.8, 0, 1], [0, 0.9, 1, 0.85], Extrapolation.EXTEND);
 
       return {
-        transform: [
-          { translateY },
-          { translateX },
-          { rotateZ: `${rotateZ}deg` },
-          { scale },
-        ],
+        transform: [{ translateY }, { translateX }, { rotateZ: `${rotateZ}deg` }, { scale }],
         zIndex,
         opacity,
       };
     },
-    [PAGE_HEIGHT, PAGE_WIDTH],
+    [PAGE_WIDTH, directionAnimVal],
   );
 
   return (
@@ -94,7 +75,7 @@ function Index() {
   );
 }
 
-const Item: React.FC<{ img: ImageSourcePropType }> = ({ img }) => {
+const Item = ({ img }: { img: ImageSourcePropType }) => {
   const width = windowDimensions.width * 0.7;
   const height = windowDimensions.height * 0.5;
 

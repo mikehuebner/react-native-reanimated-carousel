@@ -10,10 +10,7 @@ const PAGE_WIDTH = windowDimensions.width / 2;
 
 function ReactionContainer(props: {
   text: string;
-  children: (
-    text: React.ReactElement,
-    layout?: { width: number },
-  ) => React.ReactElement;
+  children: (text: React.ReactElement, layout?: { width: number }) => React.ReactElement;
 }) {
   const [width, setWidth] = React.useState<number>();
   const [layout, setLayout] = React.useState<{ width: number }>();

@@ -4,20 +4,11 @@ import { computedFillDataWithAutoFillData } from '../utils/computed-with-auto-fi
 
 import type { TCarouselProps } from '../types';
 
-type TGetRequiredProps<P extends keyof TCarouselProps> = Record<
-  P,
-  Required<TCarouselProps>[P]
->;
+type TGetRequiredProps<P extends keyof TCarouselProps> = Record<P, Required<TCarouselProps>[P]>;
 
 export type TInitializeCarouselProps<T> = TCarouselProps<T> &
   TGetRequiredProps<
-    | 'defaultIndex'
-    | 'loop'
-    | 'width'
-    | 'height'
-    | 'scrollAnimationDuration'
-    | 'autoPlayInterval'
-    | 'autoFillData'
+    'defaultIndex' | 'loop' | 'width' | 'height' | 'scrollAnimationDuration' | 'autoPlayInterval' | 'autoFillData'
   > & {
     // Raw data that has not been processed
     rawData: T[];
@@ -25,9 +16,7 @@ export type TInitializeCarouselProps<T> = TCarouselProps<T> &
     rawDataLength: number;
   };
 
-export function useInitProps<T>(
-  props: TCarouselProps<T>,
-): TInitializeCarouselProps<T> {
+export function useInitProps<T>(props: TCarouselProps<T>): TInitializeCarouselProps<T> {
   const {
     defaultIndex = 0,
     data: rawData = [],
@@ -64,8 +53,7 @@ export function useInitProps<T>(
   if (props.mode === 'vertical-stack' || props.mode === 'horizontal-stack') {
     if (!props.modeConfig) props.modeConfig = {};
 
-    props.modeConfig.showLength =
-      props.modeConfig?.showLength ?? dataLength - 1;
+    props.modeConfig.showLength = props.modeConfig?.showLength ?? dataLength - 1;
   }
 
   // @ts-expect-error == types do not exist

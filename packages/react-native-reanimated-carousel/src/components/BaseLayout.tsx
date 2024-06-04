@@ -1,10 +1,6 @@
 import React from 'react';
 
-import Animated, {
-  SharedValue,
-  useAnimatedStyle,
-  useDerivedValue,
-} from 'react-native-reanimated';
+import Animated, { SharedValue, useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
 
 import { useOffsetX } from '../hooks/useOffsetX';
 import { CTX } from '../store';
@@ -13,35 +9,20 @@ import type { IOpts } from '../hooks/useOffsetX';
 import type { IVisibleRanges } from '../hooks/useVisibleRanges';
 import type { ILayoutConfig } from '../layouts/stack';
 
-
-export type TAnimationStyle = (
-  value: number,
-) => ReturnType<typeof useAnimatedStyle>;
+export type TAnimationStyle = (value: number) => ReturnType<typeof useAnimatedStyle>;
 
 export const BaseLayout = (props: {
   index: number;
   handlerOffset: SharedValue<number>;
   visibleRanges: IVisibleRanges;
   animationStyle: TAnimationStyle;
-  children: (ctx: {
-    animationValue: SharedValue<number>;
-  }) => React.ReactElement;
+  children: (ctx: { animationValue: SharedValue<number> }) => React.ReactElement;
 }) => {
-  const { handlerOffset, index, children, visibleRanges, animationStyle } =
-    props;
+  const { handlerOffset, index, children, visibleRanges, animationStyle } = props;
 
   const context = React.useContext(CTX);
   const {
-    props: {
-      loop,
-      dataLength,
-      width,
-      height,
-      vertical,
-      customConfig,
-      mode,
-      modeConfig,
-    },
+    props: { loop, dataLength, width, height, vertical, customConfig, mode, modeConfig },
   } = context;
   const size = vertical ? height : width;
 
@@ -72,7 +53,7 @@ export const BaseLayout = (props: {
   const animationValue = useDerivedValue(() => x.value / size, [x, size]);
   const animatedStyle = useAnimatedStyle(() => {
     return animationStyle(x.value / size);
-  }, [animationStyle, x]);
+  }, [animationStyle, size, x]);
 
   return (
     <Animated.View

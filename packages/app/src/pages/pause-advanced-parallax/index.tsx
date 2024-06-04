@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 
-import Animated, {
-  interpolate,
-  interpolateColor,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
+import Animated, { interpolate, interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
 import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
 import { SBItem } from '../../components/SBItem';
@@ -37,13 +33,7 @@ function Index() {
         width={PAGE_WIDTH}
         data={[...new Array(6).keys()]}
         renderItem={({ index, animationValue }) => {
-          return (
-            <CustomItem
-              key={index}
-              index={index}
-              animationValue={animationValue}
-            />
-          );
+          return <CustomItem key={index} index={index} animationValue={animationValue} />;
         }}
         customAnimation={animationStyle}
         scrollAnimationDuration={1200}

@@ -8,12 +8,7 @@ export function useAutoPlay(opts: {
   autoPlayReverse?: boolean;
   carouselController: ICarouselController;
 }) {
-  const {
-    autoPlay = false,
-    autoPlayReverse = false,
-    autoPlayInterval,
-    carouselController,
-  } = opts;
+  const { autoPlay = false, autoPlayReverse = false, autoPlayInterval, carouselController } = opts;
 
   const { prev, next } = carouselController;
   const timer = React.useRef<ReturnType<typeof setTimeout>>();

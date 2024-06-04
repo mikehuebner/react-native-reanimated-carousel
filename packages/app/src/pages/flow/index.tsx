@@ -25,16 +25,8 @@ function Index() {
     (value: number) => {
       'worklet';
 
-      const translateY = interpolate(
-        value,
-        [-1, 0, 1],
-        [-ITEM_HEIGHT, 0, ITEM_HEIGHT],
-      );
-      const right = interpolate(
-        value,
-        [-1, -0.2, 1],
-        [RIGHT_OFFSET / 2, RIGHT_OFFSET, RIGHT_OFFSET / 3],
-      );
+      const translateY = interpolate(value, [-1, 0, 1], [-ITEM_HEIGHT, 0, ITEM_HEIGHT]);
+      const right = interpolate(value, [-1, -0.2, 1], [RIGHT_OFFSET / 2, RIGHT_OFFSET, RIGHT_OFFSET / 3]);
       return {
         transform: [{ translateY }],
         right,
@@ -47,10 +39,7 @@ function Index() {
     <View style={{ flex: 1 }}>
       <Image
         source={{
-          uri: `${faker.image.nature(
-            PAGE_WIDTH,
-            PAGE_HEIGHT,
-          )}?random=${Math.random()}`,
+          uri: `${faker.image.nature(PAGE_WIDTH, PAGE_HEIGHT)}?random=${Math.random()}`,
         }}
         style={{
           width: PAGE_WIDTH,
@@ -105,10 +94,7 @@ function Index() {
                       marginRight: 5,
                     }}
                     source={{
-                      uri: `${faker.image.animals(
-                        20,
-                        20,
-                      )}?random=${Math.random()}`,
+                      uri: `${faker.image.animals(20, 20)}?random=${Math.random()}`,
                     }}
                   />
                   <Text

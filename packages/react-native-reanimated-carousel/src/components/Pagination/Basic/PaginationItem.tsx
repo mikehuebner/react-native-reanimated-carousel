@@ -3,11 +3,7 @@ import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { View } from 'react-native';
 
-import Animated, {
-  Extrapolation,
-  interpolate,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
+import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 
 export type DotStyle = Omit<ViewStyle, 'width' | 'height'> & {
   width?: number;
@@ -25,16 +21,7 @@ export const PaginationItem: React.FC<
     activeDotStyle?: DotStyle;
   }>
 > = (props) => {
-  const {
-    animValue,
-    dotStyle,
-    activeDotStyle,
-    index,
-    count,
-    size,
-    horizontal,
-    children,
-  } = props;
+  const { animValue, dotStyle, activeDotStyle, index, count, size, horizontal, children } = props;
 
   const defaultDotSize = 10;
 
@@ -68,16 +55,11 @@ export const PaginationItem: React.FC<
     return {
       transform: [
         {
-          translateX: interpolate(
-            animValue?.value,
-            inputRange,
-            outputRange,
-            Extrapolation.CLAMP,
-          ),
+          translateX: interpolate(animValue?.value, inputRange, outputRange, Extrapolation.CLAMP),
         },
       ],
     };
-  }, [animValue, index, count, horizontal]);
+  }, [horizontal, height, width, index, animValue, count]);
 
   return (
     <View

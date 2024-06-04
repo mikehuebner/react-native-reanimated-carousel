@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import type Animated from 'react-native-reanimated';
-import { Extrapolate, interpolate } from 'react-native-reanimated';
+import { Extrapolation, interpolate } from 'react-native-reanimated';
 import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
 import { faker } from '@faker-js/faker';
@@ -29,9 +29,7 @@ function Index() {
     (value: number) => {
       'worklet';
 
-      const itemOffsetInput = new Array(sideItemCount * 2 + 1)
-        .fill(null)
-        .map((_, index) => index - sideItemCount);
+      const itemOffsetInput = new Array(sideItemCount * 2 + 1).fill(null).map((_, index) => index - sideItemCount);
 
       const itemOffset = interpolate(
         value,
@@ -47,17 +45,9 @@ function Index() {
         }) as number[],
       );
 
-      const translate =
-        interpolate(value, [-1, 0, 1], [-itemSize, 0, itemSize]) +
-        centerOffset -
-        itemOffset;
+      const translate = interpolate(value, [-1, 0, 1], [-itemSize, 0, itemSize]) + centerOffset - itemOffset;
 
-      const width = interpolate(
-        value,
-        [-1, 0, 1],
-        [sideItemWidth, itemSize, sideItemWidth],
-        Extrapolate.CLAMP,
-      );
+      const width = interpolate(value, [-1, 0, 1], [sideItemWidth, itemSize, sideItemWidth], Extrapolation.CLAMP);
 
       return {
         transform: [
@@ -88,9 +78,7 @@ function Index() {
         autoPlay={isAutoPlay}
         autoPlayInterval={isFast ? 100 : 1200}
         data={[...new Array(dataLength).keys()]}
-        renderItem={({ index, animationValue }) => (
-          <Item animationValue={animationValue} index={index} key={index} />
-        )}
+        renderItem={({ index, animationValue }) => <Item animationValue={animationValue} index={index} key={index} />}
         customAnimation={animationStyle}
       />
       <SButton
@@ -132,12 +120,7 @@ const Item: React.FC<{
           alignItems: 'center',
         }}
       >
-        <SBImageItem
-          showIndex={false}
-          key={index}
-          style={styles.image}
-          index={index}
-        />
+        <SBImageItem showIndex={false} key={index} style={styles.image} index={index} />
         <Text
           style={{
             color: 'white',

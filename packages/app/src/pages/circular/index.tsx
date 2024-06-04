@@ -23,28 +23,13 @@ function Index() {
     (value: number) => {
       'worklet';
 
-      const itemGap = interpolate(
-        value,
-        [-3, -2, -1, 0, 1, 2, 3],
-        [-30, -15, 0, 0, 0, 15, 30],
-      );
+      const itemGap = interpolate(value, [-3, -2, -1, 0, 1, 2, 3], [-30, -15, 0, 0, 0, 15, 30]);
 
-      const translateX =
-        interpolate(value, [-1, 0, 1], [-itemSize, 0, itemSize]) +
-        centerOffset -
-        itemGap;
+      const translateX = interpolate(value, [-1, 0, 1], [-itemSize, 0, itemSize]) + centerOffset - itemGap;
 
-      const translateY = interpolate(
-        value,
-        [-1, -0.5, 0, 0.5, 1],
-        [60, 45, 40, 45, 60],
-      );
+      const translateY = interpolate(value, [-1, -0.5, 0, 0.5, 1], [60, 45, 40, 45, 60]);
 
-      const scale = interpolate(
-        value,
-        [-1, -0.5, 0, 0.5, 1],
-        [0.8, 0.85, 1.1, 0.85, 0.8],
-      );
+      const scale = interpolate(value, [-1, -0.5, 0, 0.5, 1], [0.8, 0.85, 1.1, 0.85, 0.8]);
 
       return {
         transform: [

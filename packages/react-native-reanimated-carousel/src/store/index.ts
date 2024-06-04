@@ -3,7 +3,7 @@ import React from 'react';
 import type { TInitializeCarouselProps } from '../hooks/useInitProps';
 
 export interface IContext {
-  props: TInitializeCarouselProps<any>;
+  props: TInitializeCarouselProps<unknown>;
   common: {
     size: number;
     validLength: number;

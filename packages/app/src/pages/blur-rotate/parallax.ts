@@ -1,4 +1,4 @@
-import { Extrapolate, interpolate } from 'react-native-reanimated';
+import { Extrapolation, interpolate } from 'react-native-reanimated';
 import type { IComputedDirectionTypes } from 'react-native-reanimated-carousel';
 
 import { withAnchorPoint } from '../../utils/anchor-point';
@@ -53,29 +53,15 @@ export function parallaxLayout(baseConfig: TBaseConfig) {
       [-size + parallaxScrollingOffset, 0, size - parallaxScrollingOffset],
     );
 
-    const translateX = interpolate(
-      value,
-      [-1, 0, 1, 2],
-      [-size * 0.2, 0, 0, -size * 0.2],
-    );
+    const translateX = interpolate(value, [-1, 0, 1, 2], [-size * 0.2, 0, 0, -size * 0.2]);
 
-    const zIndex = interpolate(
-      value,
-      [-1, 0, 1, 2],
-      [0, size, size, 0],
-      Extrapolate.CLAMP,
-    );
+    const zIndex = interpolate(value, [-1, 0, 1, 2], [0, size, size, 0], Extrapolation.CLAMP);
 
     const scale = interpolate(
       value,
       [-1, 0, 1, 2],
-      [
-        parallaxAdjacentItemScale,
-        parallaxScrollingScale,
-        parallaxScrollingScale,
-        parallaxAdjacentItemScale,
-      ],
-      Extrapolate.CLAMP,
+      [parallaxAdjacentItemScale, parallaxScrollingScale, parallaxScrollingScale, parallaxAdjacentItemScale],
+      Extrapolation.CLAMP,
     );
 
     const transform = {
@@ -84,31 +70,17 @@ export function parallaxLayout(baseConfig: TBaseConfig) {
         { translateX },
         { perspective: 200 },
         {
-          rotateY: `${interpolate(
-            value,
-            [-1, 0, 1, 2],
-            [20, 0, 0, 20],
-            Extrapolate.CLAMP,
-          )}deg`,
+          rotateY: `${interpolate(value, [-1, 0, 1, 2], [20, 0, 0, 20], Extrapolation.CLAMP)}deg`,
         },
         {
-          rotateZ: `${interpolate(
-            value,
-            [-1, 0, 1, 2],
-            [-20, 0, 0, -20],
-            Extrapolate.CLAMP,
-          )}deg`,
+          rotateZ: `${interpolate(value, [-1, 0, 1, 2], [-20, 0, 0, -20], Extrapolation.CLAMP)}deg`,
         },
         { scale },
       ],
     };
 
     return {
-      ...withAnchorPoint(
-        transform,
-        { x: 0.5, y: 0.5 },
-        { width: size, height: size },
-      ),
+      ...withAnchorPoint(transform, { x: 0.5, y: 0.5 }, { width: size, height: size }),
       zIndex,
     };
   };

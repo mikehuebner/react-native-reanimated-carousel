@@ -38,9 +38,7 @@ const ResizableIframe: React.FC<ResizableIframeProps> = ({ page }) => {
           padding: '8px',
         }}
       >
-        <button onClick={() => setExpanded(!expanded)}>
-          Show {expanded ? 'less' : 'more'}
-        </button>
+        <button onClick={() => setExpanded(!expanded)}>Show {expanded ? 'less' : 'more'}</button>
       </div>
     </div>
   );

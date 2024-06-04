@@ -2,11 +2,7 @@ import * as React from 'react';
 import type { ImageSourcePropType } from 'react-native';
 import { View } from 'react-native';
 
-import Animated, {
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
+import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
 
 import SButton from '../../components/SButton';
@@ -38,14 +34,7 @@ function Index() {
         width={PAGE_WIDTH}
         data={[...ImageItems, ...ImageItems]}
         renderItem={({ index, item, animationValue }) => {
-          return (
-            <Item
-              key={index}
-              width={PAGE_WIDTH}
-              animationValue={animationValue}
-              imageSource={item}
-            />
-          );
+          return <Item key={index} width={PAGE_WIDTH} animationValue={animationValue} imageSource={item} />;
         }}
         customAnimation={animationStyle}
         scrollAnimationDuration={1200}
@@ -68,24 +57,14 @@ interface ItemProps {
 }
 const Item: React.FC<ItemProps> = ({ width, imageSource, animationValue }) => {
   const leftStyle = useAnimatedStyle(() => {
-    const left = interpolate(
-      animationValue.value,
-      [-1, 0, 1],
-      [-(width / 2), 0, 0],
-      Extrapolate.CLAMP,
-    );
+    const left = interpolate(animationValue.value, [-1, 0, 1], [-(width / 2), 0, 0], Extrapolation.CLAMP);
     return {
       left,
     };
   }, [animationValue, width]);
 
   const rightStyle = useAnimatedStyle(() => {
-    const right = interpolate(
-      animationValue.value,
-      [-1, 0, 1],
-      [-(width / 2), 0, 0],
-      Extrapolate.CLAMP,
-    );
+    const right = interpolate(animationValue.value, [-1, 0, 1], [-(width / 2), 0, 0], Extrapolation.CLAMP);
 
     return {
       right,

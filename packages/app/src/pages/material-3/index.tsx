@@ -1,16 +1,10 @@
 import * as React from 'react';
-import { FlatList, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { ImageSourcePropType, StyleSheet, View, useWindowDimensions } from 'react-native';
 
-import Animated, {
-  Extrapolation,
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-} from 'react-native-reanimated';
+import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 import type { ICarouselInstance } from 'react-native-reanimated-carousel';
 import Carousel from 'react-native-reanimated-carousel';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 
 import SButton from '../../components/SButton';
 import { ElementsText, windowDimensions } from '../../constants';
@@ -20,7 +14,6 @@ const PAGE_WIDTH = windowDimensions.width;
 const LARGE_IMAGE_WIDTH = PAGE_WIDTH * 0.5;
 const MEDIUM_IMAGE_WIDTH = LARGE_IMAGE_WIDTH * 0.5;
 const SMALL_IMAGE_WIDTH = MEDIUM_IMAGE_WIDTH * 0.5;
-const COUNT = 3;
 
 const data = getImages();
 
@@ -70,9 +63,7 @@ function Index() {
         autoPlay={isAutoPlay}
         data={data}
         onProgressChange={onScroll}
-        renderItem={({ index, item }: any) => (
-          <Item id={index} img={item} scrollX={scrollX} />
-        )}
+        renderItem={({ index, item }) => <Item id={index} img={item} scrollX={scrollX} />}
       />
       <View style={{ flex: 1 }}>
         <SButton
@@ -101,15 +92,7 @@ function Index() {
   );
 }
 
-const Item = ({
-  id,
-  img,
-  scrollX,
-}: {
-  id: number;
-  img: ImageSourcePropType;
-  scrollX: any;
-}) => {
+const Item = ({ id, img, scrollX }: { id: number; img: ImageSourcePropType; scrollX: unknown }) => {
   const inputRange = [
     (id - 2) * SMALL_IMAGE_WIDTH,
     (id - 1) * SMALL_IMAGE_WIDTH,
@@ -117,20 +100,10 @@ const Item = ({
     (id + 1) * SMALL_IMAGE_WIDTH,
   ];
 
-  const outputRange = [
-    SMALL_IMAGE_WIDTH,
-    MEDIUM_IMAGE_WIDTH,
-    LARGE_IMAGE_WIDTH,
-    SMALL_IMAGE_WIDTH,
-  ];
+  const outputRange = [SMALL_IMAGE_WIDTH, MEDIUM_IMAGE_WIDTH, LARGE_IMAGE_WIDTH, SMALL_IMAGE_WIDTH];
 
   const animatedStyle = useAnimatedStyle(() => ({
-    width: interpolate(
-      scrollX.value,
-      inputRange,
-      outputRange,
-      Extrapolation.CLAMP,
-    ),
+    width: interpolate(scrollX.value, inputRange, outputRange, Extrapolation.CLAMP),
   }));
 
   return (

@@ -33,30 +33,25 @@ slug: /examples/quick-swipe
 
 \*/}
 
-Here is a `quick-swipe` animation example. You can see the source code of this page [here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/quick-swipe/index.tsx).
+Here is a `quick-swipe` animation example. You can see the source code of this page
+[here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/quick-swipe/index.tsx).
 
-import Page from "../../components/Page";
+import Page from '../../components/Page';
 
 <Page page="quick-swipe" />
 
 ```tsx copy
-import * as React from "react";
-import type { ICarouselInstance } from "react-native-reanimated-carousel";
-import Carousel from "react-native-reanimated-carousel";
-import { SafeAreaView } from "react-native-safe-area-context";
+import * as React from 'react';
+import type { ICarouselInstance } from 'react-native-reanimated-carousel';
+import Carousel from 'react-native-reanimated-carousel';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { SBItem } from "../../components/SBItem";
-import { window } from "../../constants";
-import {
-  Button,
-  Image,
-  ImageSourcePropType,
-  ViewStyle,
-  useWindowDimensions,
-} from "react-native";
+import { SBItem } from '../../components/SBItem';
+import { window } from '../../constants';
+import { Button, Image, ImageSourcePropType, ViewStyle, useWindowDimensions } from 'react-native';
 import Animated, {
   Easing,
-  Extrapolate,
+  Extrapolation,
   FadeIn,
   interpolate,
   runOnJS,
@@ -66,10 +61,10 @@ import Animated, {
   withDecay,
   withSpring,
   withTiming,
-} from "react-native-reanimated";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import * as Haptics from "expo-haptics";
-import { getImages } from "./images";
+} from 'react-native-reanimated';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import * as Haptics from 'expo-haptics';
+import { getImages } from './images';
 
 const PAGE_WIDTH = window.width;
 const data = getImages().slice(0, 68);
@@ -87,11 +82,11 @@ function Index() {
 
   return (
     <SafeAreaView
-      edges={["bottom"]}
+      edges={['bottom']}
       style={{
         flex: 1,
-        backgroundColor: "black",
-        justifyContent: "center",
+        backgroundColor: 'black',
+        justifyContent: 'center',
       }}
     >
       <Carousel
@@ -100,14 +95,14 @@ function Index() {
         enabled // Default is true, just for demo
         ref={ref}
         defaultScrollOffsetValue={scrollOffsetValue}
-        testID={"xxx"}
-        style={{ width: "100%" }}
+        testID={'xxx'}
+        style={{ width: '100%' }}
         autoPlay={false}
         autoPlayInterval={1000}
         data={data}
         onConfigurePanGesture={(g) => g.enabled(false)}
         pagingEnabled
-        onSnapToItem={(index) => console.log("current index:", index)}
+        onSnapToItem={(index) => console.log('current index:', index)}
         windowSize={2}
         renderItem={({ index, item }) => {
           return (
@@ -136,10 +131,7 @@ const ThumbnailPagination: React.FC<{
   const inactiveWidth = 30;
   const activeWidth = inactiveWidth * 2;
   const itemGap = 5;
-  const totalWidth =
-    inactiveWidth * (data.length - 1) +
-    activeWidth +
-    itemGap * (data.length - 1);
+  const totalWidth = inactiveWidth * (data.length - 1) + activeWidth + itemGap * (data.length - 1);
   const swipeProgress = useSharedValue<number>(0);
   const activeIndex = useSharedValue<number>(0);
 
@@ -183,7 +175,7 @@ const ThumbnailPagination: React.FC<{
             swipeProgress.value,
             [0, containerWidth],
             [0, totalWidth - containerWidth],
-            Extrapolate.CLAMP,
+            Extrapolation.CLAMP,
           ),
         },
       ],
@@ -198,9 +190,9 @@ const ThumbnailPagination: React.FC<{
 
   return (
     <GestureDetector gesture={gesture}>
-      <Animated.View style={{ width: "100%", overflow: "hidden" }}>
+      <Animated.View style={{ width: '100%', overflow: 'hidden' }}>
         <Animated.View
-          style={[{ flexDirection: "row" }, style, animStyles]}
+          style={[{ flexDirection: 'row' }, style, animStyles]}
           onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
         >
           {containerWidth > 0 &&
@@ -265,11 +257,8 @@ const ThumbnailPaginationItem: React.FC<{
       const extraWidth = onTheRight ? activeWidth - inactiveWidth : 0;
 
       const inputRange = [
-        index * (inactiveWidth + itemGap) +
-          (index === activeIndex.value ? 0 : extraWidth) -
-          0.1,
-        index * (inactiveWidth + itemGap) +
-          (index === activeIndex.value ? 0 : extraWidth),
+        index * (inactiveWidth + itemGap) + (index === activeIndex.value ? 0 : extraWidth) - 0.1,
+        index * (inactiveWidth + itemGap) + (index === activeIndex.value ? 0 : extraWidth),
         (index + 1) * (inactiveWidth + itemGap) + extraWidth,
         (index + 1) * (inactiveWidth + itemGap) + extraWidth + 0.1,
       ];
@@ -278,21 +267,13 @@ const ThumbnailPaginationItem: React.FC<{
         (swipeProgress.value / containerWidth) * totalWidth,
         inputRange,
         [0, 1, 1, 0],
-        Extrapolate.CLAMP,
+        Extrapolation.CLAMP,
       );
     },
     (_isActiveAnimVal) => {
       isActive.value = _isActiveAnimVal;
     },
-    [
-      containerWidth,
-      totalItems,
-      index,
-      activeIndex,
-      activeWidth,
-      inactiveWidth,
-      itemGap,
-    ],
+    [containerWidth, totalItems, index, activeIndex, activeWidth, inactiveWidth, itemGap],
   );
 
   useAnimatedReaction(
@@ -312,20 +293,20 @@ const ThumbnailPaginationItem: React.FC<{
       isActive.value,
       [0, 1, 1, 0],
       [inactiveWidth, activeWidth, activeWidth, inactiveWidth],
-      Extrapolate.CLAMP,
+      Extrapolation.CLAMP,
     );
 
     return {
       width: withTiming(widthAnimVal, { duration: 100, easing: Easing.bounce }),
       height: 30,
       borderRadius: 5,
-      overflow: "hidden",
+      overflow: 'hidden',
     };
   }, [isActive, activeWidth, inactiveWidth]);
 
   return (
     <Animated.View style={[animStyles, style]}>
-      <Image source={source} style={{ width: "100%", height: "100%" }} />
+      <Image source={source} style={{ width: '100%', height: '100%' }} />
     </Animated.View>
   );
 };

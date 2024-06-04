@@ -1,22 +1,13 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import type { PanGesture } from 'react-native-gesture-handler';
-import type {
-  SharedValue,
-  WithSpringConfig,
-  WithTimingConfig,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
+import type { SharedValue, WithSpringConfig, WithTimingConfig, useAnimatedStyle } from 'react-native-reanimated';
 import type Animated from 'react-native-reanimated';
 
 import type { TParallaxModeProps } from './layouts/parallax';
 import type { TStackModeProps } from './layouts/stack';
 
-export type IComputedDirectionTypes<
-  T,
-  VP = Record<string, never>,
-  HP = Record<string, never>,
-> =
+export type IComputedDirectionTypes<T, VP = Record<string, never>, HP = Record<string, never>> =
   | (T &
       VP & {
         /**
@@ -203,9 +194,7 @@ export type TCarouselProps<T = unknown> = {
    *
    * If you want to update a shared value automatically, you can use the shared value as a parameter directly.
    */
-  onProgressChange?:
-    | ((offsetProgress: number, absoluteProgress: number) => void)
-    | SharedValue<number>;
+  onProgressChange?: ((offsetProgress: number, absoluteProgress: number) => void) | SharedValue<number>;
 
   // ============================== deprecated props ==============================
   /**
@@ -244,9 +233,7 @@ export interface CarouselRenderItemInfo<ItemT> {
   animationValue: Animated.SharedValue<number>;
 }
 
-export type CarouselRenderItem<ItemT> = (
-  info: CarouselRenderItemInfo<ItemT>,
-) => React.ReactElement;
+export type CarouselRenderItem<ItemT> = (info: CarouselRenderItemInfo<ItemT>) => React.ReactElement;
 
 export interface TCarouselActionOptions {
   index?: number;

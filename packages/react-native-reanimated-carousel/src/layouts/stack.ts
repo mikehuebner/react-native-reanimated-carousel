@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import type { TransformsStyle, ViewStyle } from 'react-native';
 import { Dimensions } from 'react-native';
 
-import { Extrapolate, interpolate } from 'react-native-reanimated';
+import { Extrapolation, interpolate } from 'react-native-reanimated';
 
 import type { CustomConfig, IComputedDirectionTypes } from '../types';
 
@@ -74,43 +74,13 @@ export function horizontalStackLayout(modeConfig: ILayoutConfig = {}) {
     let rotateZ: string;
 
     if (snapDirection === 'left') {
-      translateX = interpolate(
-        value,
-        inputRange,
-        [-moveSize, 0, validLength * stackInterval],
-        Extrapolate.CLAMP,
-      );
-      scale = interpolate(
-        value,
-        inputRange,
-        [1, 1, 1 - validLength * scaleInterval],
-        Extrapolate.CLAMP,
-      );
-      rotateZ = `${interpolate(
-        value,
-        inputRange,
-        [-rotateZDeg, 0, 0],
-        Extrapolate.CLAMP,
-      )}deg`;
+      translateX = interpolate(value, inputRange, [-moveSize, 0, validLength * stackInterval], Extrapolation.CLAMP);
+      scale = interpolate(value, inputRange, [1, 1, 1 - validLength * scaleInterval], Extrapolation.CLAMP);
+      rotateZ = `${interpolate(value, inputRange, [-rotateZDeg, 0, 0], Extrapolation.CLAMP)}deg`;
     } else if (snapDirection === 'right') {
-      translateX = interpolate(
-        value,
-        inputRange,
-        [-validLength * stackInterval, 0, moveSize],
-        Extrapolate.CLAMP,
-      );
-      scale = interpolate(
-        value,
-        inputRange,
-        [1 - validLength * scaleInterval, 1, 1],
-        Extrapolate.CLAMP,
-      );
-      rotateZ = `${interpolate(
-        value,
-        inputRange,
-        [0, 0, rotateZDeg],
-        Extrapolate.CLAMP,
-      )}deg`;
+      translateX = interpolate(value, inputRange, [-validLength * stackInterval, 0, moveSize], Extrapolation.CLAMP);
+      scale = interpolate(value, inputRange, [1 - validLength * scaleInterval, 1, 1], Extrapolation.CLAMP);
+      rotateZ = `${interpolate(value, inputRange, [0, 0, rotateZDeg], Extrapolation.CLAMP)}deg`;
     }
 
     transform.push(
@@ -129,16 +99,10 @@ export function horizontalStackLayout(modeConfig: ILayoutConfig = {}) {
   };
 }
 
-export function useHorizontalStackLayout(
-  customAnimationConfig: ILayoutConfig = {},
-  customConfig: CustomConfig = {},
-) {
+export function useHorizontalStackLayout(customAnimationConfig: ILayoutConfig = {}, customConfig: CustomConfig = {}) {
   const config = useMemo(
     () => ({
-      type:
-        customAnimationConfig.snapDirection === 'right'
-          ? 'negative'
-          : 'positive',
+      type: customAnimationConfig.snapDirection === 'right' ? 'negative' : 'positive',
       viewCount: customAnimationConfig.showLength,
       ...customConfig,
     }),
@@ -189,55 +153,15 @@ export function verticalStackLayout(modeConfig: ILayoutConfig = {}) {
     let translateY: number;
 
     if (snapDirection === 'left') {
-      translateX = interpolate(
-        value,
-        inputRange,
-        [-moveSize, 0, 0],
-        Extrapolate.CLAMP,
-      );
-      scale = interpolate(
-        value,
-        inputRange,
-        [1, 1, 1 - validLength * scaleInterval],
-        Extrapolate.CLAMP,
-      );
-      rotateZ = `${interpolate(
-        value,
-        inputRange,
-        [-rotateZDeg, 0, 0],
-        Extrapolate.CLAMP,
-      )}deg`;
-      translateY = interpolate(
-        value,
-        inputRange,
-        [0, 0, validLength * stackInterval],
-        Extrapolate.CLAMP,
-      );
+      translateX = interpolate(value, inputRange, [-moveSize, 0, 0], Extrapolation.CLAMP);
+      scale = interpolate(value, inputRange, [1, 1, 1 - validLength * scaleInterval], Extrapolation.CLAMP);
+      rotateZ = `${interpolate(value, inputRange, [-rotateZDeg, 0, 0], Extrapolation.CLAMP)}deg`;
+      translateY = interpolate(value, inputRange, [0, 0, validLength * stackInterval], Extrapolation.CLAMP);
     } else if (snapDirection === 'right') {
-      translateX = interpolate(
-        value,
-        inputRange,
-        [0, 0, moveSize],
-        Extrapolate.CLAMP,
-      );
-      scale = interpolate(
-        value,
-        inputRange,
-        [1 - validLength * scaleInterval, 1, 1],
-        Extrapolate.CLAMP,
-      );
-      rotateZ = `${interpolate(
-        value,
-        inputRange,
-        [0, 0, rotateZDeg],
-        Extrapolate.CLAMP,
-      )}deg`;
-      translateY = interpolate(
-        value,
-        inputRange,
-        [validLength * stackInterval, 0, 0],
-        Extrapolate.CLAMP,
-      );
+      translateX = interpolate(value, inputRange, [0, 0, moveSize], Extrapolation.CLAMP);
+      scale = interpolate(value, inputRange, [1 - validLength * scaleInterval, 1, 1], Extrapolation.CLAMP);
+      rotateZ = `${interpolate(value, inputRange, [0, 0, rotateZDeg], Extrapolation.CLAMP)}deg`;
+      translateY = interpolate(value, inputRange, [validLength * stackInterval, 0, 0], Extrapolation.CLAMP);
     }
 
     transform.push(
@@ -259,11 +183,7 @@ export function verticalStackLayout(modeConfig: ILayoutConfig = {}) {
   };
 }
 
-function getCommonVariables(opts: {
-  value: number;
-  showLength: number;
-  snapDirection: 'left' | 'right';
-}) {
+function getCommonVariables(opts: { value: number; showLength: number; snapDirection: 'left' | 'right' }) {
   'worklet';
 
   const { showLength, value: _value, snapDirection } = opts;
@@ -272,8 +192,7 @@ function getCommonVariables(opts: {
   }
   const page = Math.floor(Math.abs(_value));
   const diff = Math.abs(_value) % 1;
-  const value =
-    _value < 0 ? -(page + easeInOutCubic(diff)) : page + easeInOutCubic(diff);
+  const value = _value < 0 ? -(page + easeInOutCubic(diff)) : page + easeInOutCubic(diff);
   const validLength = showLength! - 1;
 
   let inputRange: [number, number, number];

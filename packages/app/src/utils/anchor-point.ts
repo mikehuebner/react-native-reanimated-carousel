@@ -18,11 +18,7 @@ const isValidSize = (size: Size): boolean => {
 
 const defaultAnchorPoint = { x: 0.5, y: 0.5 };
 
-export const withAnchorPoint = (
-  transform: TransformsStyle,
-  anchorPoint: Point,
-  size: Size,
-) => {
+export const withAnchorPoint = (transform: TransformsStyle, anchorPoint: Point, size: Size) => {
   'worklet';
 
   if (!isValidSize(size)) return transform;
@@ -44,8 +40,7 @@ export const withAnchorPoint = (
     });
   }
 
-  if (!Array.isArray(injectedTransform))
-    return { transform: injectedTransform };
+  if (!Array.isArray(injectedTransform)) return { transform: injectedTransform };
 
   if (anchorPoint.y !== defaultAnchorPoint.y && size.height) {
     const shiftTranslateY = [];

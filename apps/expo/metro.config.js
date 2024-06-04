@@ -5,14 +5,10 @@ const escape = require('escape-string-regexp');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
 
 const root = path.resolve(__dirname, '../..');
-const rootPak = JSON.parse(
-  fs.readFileSync(path.join(root, 'package.json'), 'utf8'),
-);
+const rootPak = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 
 const app = path.join(__dirname, '../../packages/app');
-const appPak = JSON.parse(
-  fs.readFileSync(path.join(app, 'package.json'), 'utf8'),
-);
+const appPak = JSON.parse(fs.readFileSync(path.join(app, 'package.json'), 'utf8'));
 
 const modules = [
   '@babel/runtime',

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useRef, useState } from 'react';
 import { View } from 'react-native';
 
 import { FadeInRight } from 'react-native-reanimated';
@@ -9,17 +9,15 @@ import SButton from '../../components/SButton';
 import { ElementsText } from '../../constants';
 
 function Index() {
-  const [mode, setMode] = React.useState<any>('horizontal-stack');
-  const [snapDirection, setSnapDirection] = React.useState<'left' | 'right'>(
-    'left',
-  );
-  const [pagingEnabled, setPagingEnabled] = React.useState<boolean>(true);
-  const [snapEnabled, setSnapEnabled] = React.useState<boolean>(true);
-  const [loop, setLoop] = React.useState<boolean>(true);
-  const [autoPlay, setAutoPlay] = React.useState<boolean>(false);
-  const [autoPlayReverse, setAutoPlayReverse] = React.useState<boolean>(false);
+  const [mode, setMode] = useState('horizontal-stack');
+  const [snapDirection, setSnapDirection] = useState<'left' | 'right'>('left');
+  const [pagingEnabled, setPagingEnabled] = useState(true);
+  const [snapEnabled, setSnapEnabled] = useState(true);
+  const [loop, setLoop] = useState(true);
+  const [autoPlay, setAutoPlay] = useState(false);
+  const [autoPlayReverse, setAutoPlayReverse] = useState(false);
 
-  const data = React.useRef<number[]>([...new Array(6).keys()]).current;
+  const data = useRef([...new Array(6).keys()]).current;
   const viewCount = 5;
 
   return (
@@ -46,13 +44,7 @@ function Index() {
         }}
         customConfig={() => ({ type: 'positive', viewCount })}
         renderItem={({ index }) => (
-          <SBItem
-            index={index}
-            key={index}
-            entering={FadeInRight.delay((viewCount - index) * 100).duration(
-              200,
-            )}
-          />
+          <SBItem index={index} key={index} entering={FadeInRight.delay((viewCount - index) * 100).duration(200)} />
         )}
       />
       <View

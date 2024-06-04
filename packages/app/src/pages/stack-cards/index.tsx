@@ -18,9 +18,7 @@ function Index() {
   const headerHeight = 100;
   const PAGE_WIDTH = windowDimensions.width;
   const PAGE_HEIGHT = windowDimensions.height - headerHeight;
-  const directionAnim = useSharedValue<ArrowDirection>(
-    ArrowDirection.IS_VERTICAL,
-  );
+  const directionAnim = useSharedValue<ArrowDirection>(ArrowDirection.IS_VERTICAL);
   const [isVertical, setIsVertical] = React.useState(true);
 
   const animationStyle: TAnimationStyle = React.useCallback(
@@ -73,12 +71,7 @@ function Index() {
         height={PAGE_HEIGHT}
         data={[...new Array(6).keys()]}
         renderItem={({ index, animationValue }) => (
-          <Item
-            key={index}
-            index={index}
-            animationValue={animationValue}
-            directionAnim={directionAnim}
-          />
+          <Item key={index} index={index} animationValue={animationValue} directionAnim={directionAnim} />
         )}
         customAnimation={animationStyle}
       />
@@ -92,11 +85,7 @@ const Item: React.FC<{
   directionAnim: Animated.SharedValue<ArrowDirection>;
 }> = ({ animationValue, directionAnim }) => {
   const maskStyle = useAnimatedStyle(() => {
-    const zIndex = interpolate(
-      animationValue.value,
-      [-1, 0, 1],
-      [300, 0, -300],
-    );
+    const zIndex = interpolate(animationValue.value, [-1, 0, 1], [300, 0, -300]);
 
     const backgroundColor = interpolateColor(
       animationValue.value,
@@ -120,12 +109,7 @@ const Item: React.FC<{
         alignItems: 'center',
       }}
     >
-      <Animated.View
-        style={[
-          maskStyle,
-          { position: 'absolute', width: '100%', height: '100%' },
-        ]}
-      />
+      <Animated.View style={[maskStyle, { position: 'absolute', width: '100%', height: '100%' }]} />
       <Arrow directionAnim={directionAnim} />
     </View>
   );

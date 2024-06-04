@@ -2,24 +2,14 @@ import * as React from 'react';
 import { View } from 'react-native';
 
 import { useSharedValue } from 'react-native-reanimated';
-import Carousel, {
-  ICarouselInstance,
-  Pagination,
-} from 'react-native-reanimated-carousel';
+import Carousel, { ICarouselInstance, Pagination } from 'react-native-reanimated-carousel';
 
 import { SBItem } from '../../components/SBItem';
 import SButton from '../../components/SButton';
 import { ElementsText, windowDimensions } from '../../constants';
 
 const PAGE_WIDTH = windowDimensions.width;
-const colors = [
-  '#26292E',
-  '#899F9C',
-  '#B3C680',
-  '#5C6265',
-  '#F5D399',
-  '#F1F1F1',
-];
+const colors = ['#26292E', '#899F9C', '#B3C680', '#5C6265', '#F5D399', '#F1F1F1'];
 
 function Index() {
   const [isVertical, setIsVertical] = React.useState(false);
@@ -180,9 +170,7 @@ function Index() {
         onPress={onPressPagination}
       />
 
-      <SButton
-        onPress={() => setAutoPlay(!autoPlay)}
-      >{`${ElementsText.AUTOPLAY}:${autoPlay}`}</SButton>
+      <SButton onPress={() => setAutoPlay(!autoPlay)}>{`${ElementsText.AUTOPLAY}:${autoPlay}`}</SButton>
       <SButton
         onPress={() => {
           setIsVertical(!isVertical);
