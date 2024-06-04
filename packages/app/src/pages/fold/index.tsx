@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import type Animated from 'react-native-reanimated';
 import { Extrapolation, interpolate } from 'react-native-reanimated';
-import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
+import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { faker } from '@faker-js/faker';
 

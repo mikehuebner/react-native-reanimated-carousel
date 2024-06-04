@@ -12,8 +12,8 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import type { ICarouselInstance } from 'react-native-reanimated-carousel';
-import Carousel from 'react-native-reanimated-carousel';
+import type { ICarouselInstance } from '@mikehuebner/react-native-reanimated-carousel';
+import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import * as Haptics from 'expo-haptics';

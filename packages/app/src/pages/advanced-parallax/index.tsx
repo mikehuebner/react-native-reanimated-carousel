@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { View, useWindowDimensions } from 'react-native';
 
 import Animated, { SharedValue, interpolate, interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
-import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
+import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { SBItem } from '../../components/SBItem';
 import SButton from '../../components/SButton';

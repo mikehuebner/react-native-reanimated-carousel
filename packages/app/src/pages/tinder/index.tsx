@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { Image, ImageSourcePropType, View } from 'react-native';
 
 import Animated, { Extrapolation, FadeInDown, interpolate, useSharedValue } from 'react-native-reanimated';
-import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
+import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { windowDimensions } from '../../constants';
 import { getImages } from '../../utils/get-images';

@@ -3,7 +3,7 @@ import type { ImageSourcePropType } from 'react-native';
 import { Image, StyleSheet, View } from 'react-native';
 
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
-import Carousel from 'react-native-reanimated-carousel';
+import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 
 import { BlurView as _BlurView } from 'expo-blur';
 

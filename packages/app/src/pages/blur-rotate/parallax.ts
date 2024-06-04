@@ -1,5 +1,5 @@
 import { Extrapolation, interpolate } from 'react-native-reanimated';
-import type { IComputedDirectionTypes } from 'react-native-reanimated-carousel';
+import type { IComputedDirectionTypes } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { withAnchorPoint } from '../../utils/anchor-point';
 

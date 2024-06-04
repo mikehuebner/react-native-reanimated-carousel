@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 
 import Animated, { Easing } from 'react-native-reanimated';
-import Carousel from 'react-native-reanimated-carousel';
+import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 
 import { windowDimensions } from '../../constants';
 

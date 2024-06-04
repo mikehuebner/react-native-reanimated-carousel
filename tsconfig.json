@@ -3,12 +3,8 @@
     "baseUrl": ".",
     "rootDir": ".",
     "paths": {
-      "react-native-reanimated-carousel": [
-        "./packages/react-native-reanimated-carousel/src/index.ts"
-      ],
-      "react-native-reanimated-carousel-example-app": [
-        "./packages/app/src/index.ts"
-      ]
+      "@mikehuebner/react-native-reanimated-carousel": ["./packages/react-native-reanimated-carousel/src/index.ts"],
+      "react-native-reanimated-carousel-example-app": ["./packages/app/src/index.ts"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

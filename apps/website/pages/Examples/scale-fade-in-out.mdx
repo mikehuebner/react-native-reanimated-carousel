@@ -33,26 +33,27 @@ slug: /examples/scale-fade-in-out
 
 \*/}
 
-Here is a `scale-fade-in-out` animation example. You can see the source code of this page [here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/scale-fade-in-out/index.tsx).
+Here is a `scale-fade-in-out` animation example. You can see the source code of this page
+[here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/scale-fade-in-out/index.tsx).
 
-import Page from "../../components/Page";
+import Page from '../../components/Page';
 
 <Page page="scale-fade-in-out" />
 
 ```tsx copy
-import * as React from "react";
-import { View } from "react-native";
-import { interpolate } from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { View } from 'react-native';
+import { interpolate } from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
-import { SBItem } from "../../components/SBItem";
-import { window } from "../../constants";
+import { SBItem } from '../../components/SBItem';
+import { window } from '../../constants';
 
 const PAGE_WIDTH = window.width;
 
 function Index() {
   const animationStyle: TAnimationStyle = React.useCallback((value: number) => {
-    "worklet";
+    'worklet';
 
     const zIndex = interpolate(value, [-1, 0, 1], [10, 20, 30]);
     const scale = interpolate(value, [-1, 0, 1], [1.25, 1, 0.25]);
@@ -72,8 +73,8 @@ function Index() {
         style={{
           width: PAGE_WIDTH,
           height: 240,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
         width={PAGE_WIDTH * 0.7}
         height={240 * 0.7}

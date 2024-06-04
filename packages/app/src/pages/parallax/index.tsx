@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 
 import { useSharedValue } from 'react-native-reanimated';
-import Carousel, { ICarouselInstance, Pagination } from 'react-native-reanimated-carousel';
+import Carousel, { ICarouselInstance, Pagination } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { SBItem } from '../../components/SBItem';
 import SButton from '../../components/SButton';

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "react-native-reanimated-carousel": ["../../src/index"],
+      "@mikehuebner/react-native-reanimated-carousel": ["../../src/index"],
       "react-native-reanimated-carousel-example-app": ["../app/src/index"]
     },
     "allowUnreachableCode": false,

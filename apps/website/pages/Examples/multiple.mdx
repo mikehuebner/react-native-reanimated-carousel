@@ -33,20 +33,21 @@ slug: /examples/multiple
 
 \*/}
 
-Here is a `multiple` animation example. You can see the source code of this page [here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/multiple/index.tsx).
+Here is a `multiple` animation example. You can see the source code of this page
+[here](https://github.com/dohooo/react-native-reanimated-carousel/blob/main/apps/app/src/pages/multiple/index.tsx).
 
-import Page from "../../components/Page";
+import Page from '../../components/Page';
 
 <Page page="multiple" />
 
 ```tsx copy
-import * as React from "react";
-import { View } from "react-native";
-import Carousel from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { View } from 'react-native';
+import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 
-import { SBItem } from "../../components/SBItem";
-import SButton from "../../components/SButton";
-import { ElementsText, window } from "../../constants";
+import { SBItem } from '../../components/SBItem';
+import SButton from '../../components/SButton';
+import { ElementsText, window } from '../../constants';
 
 const PAGE_WIDTH = window.width;
 
@@ -90,14 +91,14 @@ function Index() {
           setIsVertical(!isVertical);
         }}
       >
-        {isVertical ? "Set horizontal" : "Set Vertical"}
+        {isVertical ? 'Set horizontal' : 'Set Vertical'}
       </SButton>
       <SButton
         onPress={() => {
           setIsFast(!isFast);
         }}
       >
-        {isFast ? "NORMAL" : "FAST"}
+        {isFast ? 'NORMAL' : 'FAST'}
       </SButton>
       <SButton
         onPress={() => {

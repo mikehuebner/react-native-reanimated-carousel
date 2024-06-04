@@ -1,5 +1,5 @@
 {
-  "name": "react-native-reanimated-carousel",
+  "name": "@mikehuebner/react-native-reanimated-carousel",
   "type": "module",
   "version": "4.0.0-alpha.12",
   "description": "Simple carousel component. Fully implemented using Reanimated. Infinitely scrolling, very smooth.",
@@ -87,7 +87,7 @@
     "targets": [
       "commonjs",
       "module",
-       [
+      [
         "typescript",
         {
           "tsc": "../../node_modules/.bin/tsc"

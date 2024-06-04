@@ -2,8 +2,8 @@ import * as React from 'react';
 import { ImageSourcePropType, StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
-import type { ICarouselInstance } from 'react-native-reanimated-carousel';
-import Carousel from 'react-native-reanimated-carousel';
+import type { ICarouselInstance } from '@mikehuebner/react-native-reanimated-carousel';
+import Carousel from '@mikehuebner/react-native-reanimated-carousel';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import SButton from '../../components/SButton';

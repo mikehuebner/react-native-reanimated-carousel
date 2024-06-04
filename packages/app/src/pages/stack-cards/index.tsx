@@ -9,7 +9,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
+import Carousel, { TAnimationStyle } from '@mikehuebner/react-native-reanimated-carousel';
 
 import { Arrow, ArrowDirection } from './Arrow';
 import { windowDimensions } from '../../constants';
