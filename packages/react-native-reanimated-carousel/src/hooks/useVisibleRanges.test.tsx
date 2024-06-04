@@ -1,13 +1,13 @@
-import { useSharedValue } from "react-native-reanimated";
+import { useSharedValue } from 'react-native-reanimated';
 
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from '@testing-library/react-hooks';
 
-import { useVisibleRanges } from "./useVisibleRanges";
+import { useVisibleRanges } from './useVisibleRanges';
 
 const viewSize = 393;
 
-describe("useVisibleRanges", () => {
-  it("should only display the front of the list when loop is false", async () => {
+describe('useVisibleRanges', () => {
+  it('should only display the front of the list when loop is false', async () => {
     const hook = renderHook(() => {
       const translation = useSharedValue(-0);
       const range = useVisibleRanges({
@@ -37,7 +37,7 @@ describe("useVisibleRanges", () => {
         `);
   });
 
-  it("should display the rear of the list and the front of the list when loop is true", async () => {
+  it('should display the rear of the list and the front of the list when loop is true', async () => {
     const hook = renderHook(() => {
       const translation = useSharedValue(-0);
       const range = useVisibleRanges({
@@ -67,7 +67,7 @@ describe("useVisibleRanges", () => {
         `);
   });
 
-  it("should shows the increased range of the list when the loop is false and swiped the carousel.", async () => {
+  it('should shows the increased range of the list when the loop is false and swiped the carousel.', async () => {
     const slide0hook = renderHook(() => {
       const translation = useSharedValue(-0 * viewSize);
       const range = useVisibleRanges({

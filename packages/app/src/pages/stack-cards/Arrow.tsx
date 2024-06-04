@@ -1,8 +1,8 @@
-import * as React from "react";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import Animated, {
+  Extrapolation,
+  SharedValue,
   cancelAnimation,
-  Extrapolate,
   interpolate,
   useAnimatedReaction,
   useAnimatedStyle,
@@ -11,16 +11,14 @@ import Animated, {
   withSequence,
   withSpring,
   withTiming,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
 export enum ArrowDirection {
   IS_VERTICAL = 0,
   IS_HORIZONTAL = 1,
 }
 
-export const Arrow: React.FC<{
-  directionAnim: Animated.SharedValue<ArrowDirection>;
-}> = ({ directionAnim }) => {
+export const Arrow = ({ directionAnim }: { directionAnim: SharedValue<ArrowDirection> }) => {
   const translateAnim = useSharedValue(0);
   const scaleAnim = useSharedValue(0);
 
@@ -35,38 +33,28 @@ export const Arrow: React.FC<{
         },
       ],
     };
-  }, []);
+  }, [scaleAnim, translateAnim]);
 
   const arrowContainerUpStyle = useAnimatedStyle(() => {
     return {
       transform: [
         { translateY: -100 },
         {
-          rotateZ: `${interpolate(
-            directionAnim.value,
-            [0, 1],
-            [0, 90],
-            Extrapolate.EXTEND,
-          )}deg`,
+          rotateZ: `${interpolate(directionAnim.value, [0, 1], [0, 90], Extrapolation.EXTEND)}deg`,
         },
       ],
     };
-  }, [translateAnim]);
+  }, [directionAnim]);
 
   const arrowContainerDownStyle = useAnimatedStyle(() => {
     return {
       transform: [
         {
-          rotateZ: `${interpolate(
-            directionAnim.value,
-            [0, 1],
-            [180, 270],
-            Extrapolate.EXTEND,
-          )}deg`,
+          rotateZ: `${interpolate(directionAnim.value, [0, 1], [180, 270], Extrapolation.EXTEND)}deg`,
         },
       ],
     };
-  }, [translateAnim]);
+  }, [directionAnim]);
 
   useAnimatedReaction(
     () => scaleAnim.value,
@@ -74,10 +62,7 @@ export const Arrow: React.FC<{
       if (scale > 0) {
         cancelAnimation(translateAnim);
       } else {
-        translateAnim.value = withSequence(
-          withTiming(0, { duration: 300 }),
-          withRepeat(withSpring(0.7), -1, true),
-        );
+        translateAnim.value = withSequence(withTiming(0, { duration: 300 }), withRepeat(withSpring(0.7), -1, true));
       }
     },
     [],
@@ -95,22 +80,18 @@ export const Arrow: React.FC<{
         directionAnim.value = withTiming((directionAnim.value + 1) % 2);
       }}
     >
-      <Animated.View
-        style={[arrowContainerUpStyle, { width: "100%", height: 150 }]}
-      >
+      <Animated.View style={[arrowContainerUpStyle, { width: '100%', height: 150 }]}>
         <Animated.Image
-          source={{ uri: "../../../assets/arrow-up.png" }}
+          source={{ uri: '../../../assets/arrow-up.png' }}
           resizeMode="center"
-          style={[arrowStyle, { height: "100%" }]}
+          style={[arrowStyle, { height: '100%' }]}
         />
       </Animated.View>
-      <Animated.View
-        style={[arrowContainerDownStyle, { width: "100%", height: 150 }]}
-      >
+      <Animated.View style={[arrowContainerDownStyle, { width: '100%', height: 150 }]}>
         <Animated.Image
-          source={{ uri: "../../../assets/arrow-up.png" }}
+          source={{ uri: '../../../assets/arrow-up.png' }}
           resizeMode="center"
-          style={[arrowStyle, { height: "100%" }]}
+          style={[arrowStyle, { height: '100%' }]}
         />
       </Animated.View>
     </TouchableWithoutFeedback>

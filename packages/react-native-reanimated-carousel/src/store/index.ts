@@ -1,13 +1,13 @@
-import React from "react";
+import { createContext } from 'react';
 
-import type { TInitializeCarouselProps } from "../hooks/useInitProps";
+import type { TInitializeCarouselProps } from '../hooks/useInitProps';
 
 export interface IContext {
-  props: TInitializeCarouselProps<any>
+  props: TInitializeCarouselProps<unknown>;
   common: {
-    size: number
-    validLength: number
-  }
+    size: number;
+    validLength: number;
+  };
 }
 
-export const CTX = React.createContext<IContext>({} as IContext);
+export const CTX = createContext<IContext>({} as IContext);

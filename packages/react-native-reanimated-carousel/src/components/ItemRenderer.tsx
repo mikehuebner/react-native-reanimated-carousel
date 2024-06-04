@@ -1,38 +1,32 @@
-import React from "react";
-import type { FC } from "react";
-import type {
-  SharedValue,
-  useAnimatedStyle,
-} from "react-native-reanimated";
-import {
-  useAnimatedReaction,
-  runOnJS,
-} from "react-native-reanimated";
+import React, { useState } from 'react';
 
-import type { TAnimationStyle } from "./BaseLayout";
-import { BaseLayout } from "./BaseLayout";
+import type { SharedValue, useAnimatedStyle } from 'react-native-reanimated';
+import { runOnJS, useAnimatedReaction } from 'react-native-reanimated';
 
-import type { VisibleRanges } from "../hooks/useVisibleRanges";
-import { useVisibleRanges } from "../hooks/useVisibleRanges";
-import type { CarouselRenderItem } from "../types";
-import { computedRealIndexWithAutoFillData } from "../utils/computed-with-auto-fill-data";
+import { BaseLayout } from './BaseLayout';
+import { useVisibleRanges } from '../hooks/useVisibleRanges';
+import { computedRealIndexWithAutoFillData } from '../utils/computed-with-auto-fill-data';
 
-interface Props {
-  data: any[]
-  dataLength: number
-  rawDataLength: number
-  loop: boolean
-  size: number
-  windowSize?: number
-  autoFillData: boolean
-  offsetX: SharedValue<number>
-  handlerOffset: SharedValue<number>
-  layoutConfig: TAnimationStyle
-  renderItem: CarouselRenderItem<any>
-  customAnimation?: (value: number) => ReturnType<typeof useAnimatedStyle>
+import type { TAnimationStyle } from './BaseLayout';
+import type { VisibleRanges } from '../hooks/useVisibleRanges';
+import type { CarouselRenderItem } from '../types';
+
+interface ItemRendererProps {
+  data: unknown[];
+  dataLength: number;
+  rawDataLength: number;
+  loop: boolean;
+  size: number;
+  windowSize?: number;
+  autoFillData: boolean;
+  offsetX: SharedValue<number>;
+  handlerOffset: SharedValue<number>;
+  layoutConfig: TAnimationStyle;
+  renderItem: CarouselRenderItem<unknown>;
+  customAnimation?: (value: number) => ReturnType<typeof useAnimatedStyle>;
 }
 
-export const ItemRenderer: FC<Props> = (props) => {
+export const ItemRenderer = (props: ItemRendererProps) => {
   const {
     data,
     size,
@@ -56,13 +50,11 @@ export const ItemRenderer: FC<Props> = (props) => {
     loop,
   });
 
-  const [displayedItems, setDisplayedItems] = React.useState<VisibleRanges>(
-    null!,
-  );
+  const [displayedItems, setDisplayedItems] = useState<VisibleRanges>(null!);
 
   useAnimatedReaction(
     () => visibleRanges.value,
-    ranges => runOnJS(setDisplayedItems)(ranges),
+    (ranges) => runOnJS(setDisplayedItems)(ranges),
     [visibleRanges],
   );
 
@@ -77,12 +69,11 @@ export const ItemRenderer: FC<Props> = (props) => {
           loop,
           autoFillData,
         });
-
         const { negativeRange, positiveRange } = displayedItems;
 
-        const shouldRender
-          = (index >= negativeRange[0] && index <= negativeRange[1])
-          || (index >= positiveRange[0] && index <= positiveRange[1]);
+        const shouldRender =
+          (index >= negativeRange[0] && index <= negativeRange[1]) ||
+          (index >= positiveRange[0] && index <= positiveRange[1]);
 
         if (!shouldRender) return null;
 

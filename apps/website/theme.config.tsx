@@ -1,21 +1,23 @@
-import React from "react";
+import React from 'react';
 
-import type { DocsThemeConfig } from "nextra-theme-docs";
+import type { DocsThemeConfig } from 'nextra-theme-docs';
 
 const config: DocsThemeConfig = {
-  logo: <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-    <img src="/site-icon.png" alt="RNRC Logo" width={24} height={24} style={{ marginRight: "8px" }} />
-    <span style={{ fontWeight: 700, fontSize: "22px" }}>RNRC</span>
-  </div>,
+  logo: (
+    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+      <img src="/site-icon.png" alt="RNRC Logo" width={24} height={24} style={{ marginRight: '8px' }} />
+      <span style={{ fontWeight: 700, fontSize: '22px' }}>RNRC</span>
+    </div>
+  ),
   project: {
-    link: "https://github.com/dohooo/react-native-reanimated-carousel",
+    link: 'https://github.com/dohooo/react-native-reanimated-carousel',
   },
   chat: {
-    link: "https://discord.gg/qB9h3kGNas",
+    link: 'https://discord.gg/qB9h3kGNas',
   },
-  docsRepositoryBase: "https://github.com/shuding/nextra-docs-template",
+  docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
   footer: {
-    text: "Copyright © 2024 Caspian. Built with Nextra.",
+    text: 'Copyright © 2024 Caspian. Built with Nextra.',
   },
   sidebar: {
     defaultMenuCollapseLevel: 1,
@@ -23,7 +25,7 @@ const config: DocsThemeConfig = {
   darkMode: true,
   useNextSeoProps() {
     return {
-      titleTemplate: "%s – RNRC",
+      titleTemplate: '%s – RNRC',
     };
   },
   head: (
@@ -32,13 +34,16 @@ const config: DocsThemeConfig = {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta property="og:title" content="react-native-reanimated-carousel" />
       <meta property="og:description" content="A performant carousel for React Native powered by Reanimated." />
-      <meta name="twitter:card" content="summary_large_image"/>
-      <meta name="twitter:site" content="@caspian_1016"/>
-      <meta name="twitter:creator" content="@caspian_1016"/>
-      <meta name="twitter:title" content="react-native-reanimated-carousel"/>
-      <meta name="twitter:description" content="A performant carousel for React Native powered by Reanimated."/>
-      <meta name="twitter:image" content="https://reanimated-carousel.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhome-banner.3b31d4aa.png&w=3840&q=75"/>
-      <link rel="icon" href="https://reanimated-carousel.dev/site-icon.png"/>
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@caspian_1016" />
+      <meta name="twitter:creator" content="@caspian_1016" />
+      <meta name="twitter:title" content="react-native-reanimated-carousel" />
+      <meta name="twitter:description" content="A performant carousel for React Native powered by Reanimated." />
+      <meta
+        name="twitter:image"
+        content="https://reanimated-carousel.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhome-banner.3b31d4aa.png&w=3840&q=75"
+      />
+      <link rel="icon" href="https://reanimated-carousel.dev/site-icon.png" />
     </>
   ),
 };

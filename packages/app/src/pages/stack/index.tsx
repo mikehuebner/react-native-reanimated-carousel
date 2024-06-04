@@ -1,35 +1,33 @@
-import * as React from "react";
-import { View } from "react-native";
-import { FadeInRight } from "react-native-reanimated";
-import Carousel from "react-native-reanimated-carousel";
+import { useRef, useState } from 'react';
+import { View } from 'react-native';
 
-import { SBItem } from "../../components/SBItem";
-import SButton from "../../components/SButton";
-import { ElementsText } from "../../constants";
+import { FadeInRight } from 'react-native-reanimated';
+import Carousel from 'react-native-reanimated-carousel';
+
+import { SBItem } from '../../components/SBItem';
+import SButton from '../../components/SButton';
+import { ElementsText } from '../../constants';
 
 function Index() {
-  const [mode, setMode] = React.useState<any>("horizontal-stack");
-  const [snapDirection, setSnapDirection] = React.useState<"left" | "right">(
-    "left",
-  );
-  const [pagingEnabled, setPagingEnabled] = React.useState<boolean>(true);
-  const [snapEnabled, setSnapEnabled] = React.useState<boolean>(true);
-  const [loop, setLoop] = React.useState<boolean>(true);
-  const [autoPlay, setAutoPlay] = React.useState<boolean>(false);
-  const [autoPlayReverse, setAutoPlayReverse]
-        = React.useState<boolean>(false);
+  const [mode, setMode] = useState('horizontal-stack');
+  const [snapDirection, setSnapDirection] = useState<'left' | 'right'>('left');
+  const [pagingEnabled, setPagingEnabled] = useState(true);
+  const [snapEnabled, setSnapEnabled] = useState(true);
+  const [loop, setLoop] = useState(true);
+  const [autoPlay, setAutoPlay] = useState(false);
+  const [autoPlayReverse, setAutoPlayReverse] = useState(false);
 
-  const data = React.useRef<number[]>([...new Array(6).keys()]).current;
+  const data = useRef([...new Array(6).keys()]).current;
   const viewCount = 5;
 
   return (
     <View style={{ flex: 1 }}>
       <Carousel
         style={{
-          width: "100%",
+          width: '100%',
           height: 240,
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
         width={280}
         height={210}
@@ -42,39 +40,33 @@ function Index() {
         data={data}
         modeConfig={{
           snapDirection,
-          stackInterval: mode === "vertical-stack" ? 8 : 18,
+          stackInterval: mode === 'vertical-stack' ? 8 : 18,
         }}
-        customConfig={() => ({ type: "positive", viewCount })}
+        customConfig={() => ({ type: 'positive', viewCount })}
         renderItem={({ index }) => (
-          <SBItem
-            index={index}
-            key={index}
-            entering={FadeInRight.delay(
-              (viewCount - index) * 100,
-            ).duration(200)}
-          />
+          <SBItem index={index} key={index} entering={FadeInRight.delay((viewCount - index) * 100).duration(200)} />
         )}
       />
       <View
         style={{
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-evenly',
         }}
       >
         <SButton
           onPress={() => {
-            setMode("horizontal-stack");
+            setMode('horizontal-stack');
           }}
         >
-          {"horizontal-stack"}
+          {'horizontal-stack'}
         </SButton>
         <SButton
           onPress={() => {
-            setMode("vertical-stack");
+            setMode('vertical-stack');
           }}
         >
-          {"vertical-stack"}
+          {'vertical-stack'}
         </SButton>
         <SButton
           onPress={() => {
@@ -99,9 +91,7 @@ function Index() {
         </SButton>
         <SButton
           onPress={() => {
-            setSnapDirection(
-              snapDirection === "left" ? "right" : "left",
-            );
+            setSnapDirection(snapDirection === 'left' ? 'right' : 'left');
           }}
         >
           {snapDirection}

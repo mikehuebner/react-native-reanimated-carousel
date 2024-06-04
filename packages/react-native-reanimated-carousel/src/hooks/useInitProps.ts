@@ -1,22 +1,14 @@
-import React from 'react';
+import { useMemo } from 'react';
 
-import type { TCarouselProps } from '../types';
 import { computedFillDataWithAutoFillData } from '../utils/computed-with-auto-fill-data';
 
-type TGetRequiredProps<P extends keyof TCarouselProps> = Record<
-  P,
-  Required<TCarouselProps>[P]
->;
+import type { TCarouselProps } from '../types';
+
+type TGetRequiredProps<P extends keyof TCarouselProps> = Record<P, Required<TCarouselProps>[P]>;
 
 export type TInitializeCarouselProps<T> = TCarouselProps<T> &
   TGetRequiredProps<
-    | 'defaultIndex'
-    | 'loop'
-    | 'width'
-    | 'height'
-    | 'scrollAnimationDuration'
-    | 'autoPlayInterval'
-    | 'autoFillData'
+    'defaultIndex' | 'loop' | 'width' | 'height' | 'scrollAnimationDuration' | 'autoPlayInterval' | 'autoFillData'
   > & {
     // Raw data that has not been processed
     rawData: T[];
@@ -24,9 +16,7 @@ export type TInitializeCarouselProps<T> = TCarouselProps<T> &
     rawDataLength: number;
   };
 
-export function useInitProps<T>(
-  props: TCarouselProps<T>,
-): TInitializeCarouselProps<T> {
+export function useInitProps<T>(props: TCarouselProps<T>): TInitializeCarouselProps<T> {
   const {
     defaultIndex = 0,
     data: rawData = [],
@@ -48,7 +38,7 @@ export function useInitProps<T>(
   const height = Math.round(_height || 0);
   const autoPlayInterval = Math.max(_autoPlayInterval, 0);
 
-  const data = React.useMemo<T[]>(() => {
+  const data = useMemo<T[]>(() => {
     return computedFillDataWithAutoFillData<T>({
       loop,
       autoFillData,
@@ -63,8 +53,7 @@ export function useInitProps<T>(
   if (props.mode === 'vertical-stack' || props.mode === 'horizontal-stack') {
     if (!props.modeConfig) props.modeConfig = {};
 
-    props.modeConfig.showLength =
-      props.modeConfig?.showLength ?? dataLength - 1;
+    props.modeConfig.showLength = props.modeConfig?.showLength ?? dataLength - 1;
   }
 
   // @ts-expect-error == types do not exist

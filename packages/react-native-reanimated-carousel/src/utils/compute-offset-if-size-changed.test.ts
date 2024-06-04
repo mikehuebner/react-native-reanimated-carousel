@@ -1,7 +1,7 @@
-import { computeOffsetIfSizeChanged } from "./compute-offset-if-size-changed";
+import { computeOffsetIfSizeChanged } from './compute-offset-if-size-changed';
 
-describe("computeOffsetIfSizeChanged", () => {
-  it("[CASE 1] should return the correct values when size does not change", () => {
+describe('computeOffsetIfSizeChanged', () => {
+  it('[CASE 1] should return the correct values when size does not change', () => {
     const prevIndex = 1;
     const prevSize = 500;
     const size = 500;
@@ -16,7 +16,7 @@ describe("computeOffsetIfSizeChanged", () => {
     expect(finallyIndex).toEqual(prevIndex);
   });
 
-  it("[CASE 2] should return the correct values when size changes from 500 to 400", () => {
+  it('[CASE 2] should return the correct values when size changes from 500 to 400', () => {
     const prevIndex = 1;
     const prevSize = 500;
     const size = 400;
@@ -31,7 +31,7 @@ describe("computeOffsetIfSizeChanged", () => {
     expect(finallyIndex).toEqual(prevIndex);
   });
 
-  it("[CASE 3] should return the correct values when size changes from 500 to 499", () => {
+  it('[CASE 3] should return the correct values when size changes from 500 to 499', () => {
     const prevIndex = 1;
     const prevSize = 500;
     const size = 499;
@@ -46,7 +46,7 @@ describe("computeOffsetIfSizeChanged", () => {
     expect(finallyIndex).toEqual(prevIndex);
   });
 
-  it("[CASE 4] should return the correct values when size changes from 500 to 501", () => {
+  it('[CASE 4] should return the correct values when size changes from 500 to 501', () => {
     const prevIndex = 1;
     const prevSize = 500;
     const size = 501;
@@ -61,7 +61,7 @@ describe("computeOffsetIfSizeChanged", () => {
     expect(finallyIndex).toEqual(prevIndex);
   });
 
-  it("[CASE 5] should return the correct values when size changes from 224 to 524", () => {
+  it('[CASE 5] should return the correct values when size changes from 224 to 524', () => {
     const prevIndex = 1;
     const prevSize = 224;
     const size = 524;

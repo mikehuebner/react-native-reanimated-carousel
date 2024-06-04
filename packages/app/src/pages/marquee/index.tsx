@@ -1,24 +1,22 @@
-import * as React from "react";
-import { View, Text } from "react-native";
-import Animated, { Easing } from "react-native-reanimated";
-import Carousel from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { Text, View } from 'react-native';
 
-import { windowDimensions } from "../../constants";
+import Animated, { Easing } from 'react-native-reanimated';
+import Carousel from 'react-native-reanimated-carousel';
+
+import { windowDimensions } from '../../constants';
 
 const PAGE_WIDTH = windowDimensions.width / 2;
 
 function ReactionContainer(props: {
   text: string;
-  children: (
-    text: React.ReactElement,
-    layout?: { width: number },
-  ) => React.ReactElement;
+  children: (text: React.ReactElement, layout?: { width: number }) => React.ReactElement;
 }) {
   const [width, setWidth] = React.useState<number>();
   const [layout, setLayout] = React.useState<{ width: number }>();
 
   React.useEffect(() => {
-    if (typeof width === "number") setLayout({ width });
+    if (typeof width === 'number') setLayout({ width });
   }, [width]);
 
   React.useEffect(() => {
@@ -29,14 +27,14 @@ function ReactionContainer(props: {
     <Animated.View
       style={[
         {
-          flexWrap: "wrap",
+          flexWrap: 'wrap',
           width: layout?.width,
         },
       ]}
     >
       <Text
         onLayout={({ nativeEvent }) => {
-          if (typeof layout === "undefined") setWidth(nativeEvent.layout.width);
+          if (typeof layout === 'undefined') setWidth(nativeEvent.layout.width);
         }}
       >
         {props.text}
@@ -56,7 +54,7 @@ function Index() {
         return (
           <View
             style={{
-              alignItems: "center",
+              alignItems: 'center',
               flex: 1,
               marginTop: 72,
             }}
@@ -74,7 +72,7 @@ function Index() {
               loop
               autoPlay
               withAnimation={{
-                type: "timing",
+                type: 'timing',
                 config: {
                   duration: 10000,
                   easing: Easing.linear,

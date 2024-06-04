@@ -1,6 +1,6 @@
-declare module "react-native-safe-area-context";
+declare module 'react-native-safe-area-context';
 
-declare module "*.jpg" {
-    const value: any;
-    export default value;
+declare module '*.jpg' {
+  const value: unknown;
+  export default value;
 }

@@ -1,11 +1,6 @@
-import type { FC } from 'react';
+import Animated, { useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
 
-import Animated, {
-  useAnimatedStyle,
-  useDerivedValue,
-} from 'react-native-reanimated';
-
-import { render, cleanup } from '@testing-library/react-native';
+import { cleanup, render } from '@testing-library/react-native';
 
 describe('useSharedValue', () => {
   afterEach(cleanup);
@@ -19,7 +14,7 @@ describe('useSharedValue', () => {
       value: number;
     }
 
-    const TestComponent: FC<Props> = (props) => {
+    const TestComponent = (props: Props) => {
       const opacity = useDerivedValue(() => props.value, [props.value]);
       const animatedStyle = useAnimatedStyle(
         () => ({
@@ -32,19 +27,13 @@ describe('useSharedValue', () => {
     };
 
     // When rendering with initial value
-    const { rerender, root } = render(
-      <TestComponent key="box" value={initialValue} />,
-    );
+    const { rerender, root } = render(<TestComponent key="box" value={initialValue} />);
 
-    expect(typeof root !== 'string' ? root.props.style.opacity : false).toBe(
-      initialValue,
-    );
+    expect(typeof root !== 'string' ? root.props.style.opacity : false).toBe(initialValue);
 
     // When rendering with updated value
     rerender(<TestComponent key="box" value={updatedValue} />);
 
-    expect(typeof root !== 'string' ? root.props.style.opacity : false).toBe(
-      initialValue,
-    );
+    expect(typeof root !== 'string' ? root.props.style.opacity : false).toBe(initialValue);
   });
 });

@@ -1,26 +1,23 @@
-import * as React from "react";
-import { View, useWindowDimensions } from "react-native";
-import Animated, {
-  interpolate,
-  interpolateColor,
-  useAnimatedStyle,
-} from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import { useCallback, useState } from 'react';
+import { View, useWindowDimensions } from 'react-native';
 
-import { SBItem } from "../../components/SBItem";
-import SButton from "../../components/SButton";
-import { ElementsText } from "../../constants";
+import Animated, { SharedValue, interpolate, interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
+
+import { SBItem } from '../../components/SBItem';
+import SButton from '../../components/SButton';
+import { ElementsText } from '../../constants';
 
 interface ItemProps {
   index: number;
-  animationValue: Animated.SharedValue<number>;
+  animationValue: SharedValue<number>;
 }
-const CustomItem: React.FC<ItemProps> = ({ index, animationValue }) => {
+const CustomItem = ({ index, animationValue }: ItemProps) => {
   const maskStyle = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       animationValue.value,
       [-1, 0, 1],
-      ["#000000dd", "transparent", "#000000dd"],
+      ['#000000dd', 'transparent', '#000000dd'],
     );
 
     return {
@@ -35,7 +32,7 @@ const CustomItem: React.FC<ItemProps> = ({ index, animationValue }) => {
         pointerEvents="none"
         style={[
           {
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
@@ -48,23 +45,22 @@ const CustomItem: React.FC<ItemProps> = ({ index, animationValue }) => {
   );
 };
 function Index() {
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
   const windowWidth = useWindowDimensions().width;
-  const animationStyle: TAnimationStyle = React.useCallback((value: number) => {
-    "worklet";
+  const animationStyle: TAnimationStyle = useCallback(
+    (value: number) => {
+      'worklet';
 
-    const zIndex = interpolate(value, [-1, 0, 1], [10, 20, 30]);
-    const translateX = interpolate(
-      value,
-      [-2, 0, 1],
-      [-windowWidth, 0, windowWidth],
-    );
+      const zIndex = interpolate(value, [-1, 0, 1], [10, 20, 30]);
+      const translateX = interpolate(value, [-2, 0, 1], [-windowWidth, 0, windowWidth]);
 
-    return {
-      transform: [{ translateX }],
-      zIndex,
-    };
-  }, []);
+      return {
+        transform: [{ translateX }],
+        zIndex,
+      };
+    },
+    [windowWidth],
+  );
 
   return (
     <View style={{ flex: 1 }}>
@@ -75,13 +71,7 @@ function Index() {
         width={windowWidth}
         data={[...new Array(6).keys()]}
         renderItem={({ index, animationValue }) => {
-          return (
-            <CustomItem
-              key={index}
-              index={index}
-              animationValue={animationValue}
-            />
-          );
+          return <CustomItem key={index} index={index} animationValue={animationValue} />;
         }}
         customAnimation={animationStyle}
         scrollAnimationDuration={1200}

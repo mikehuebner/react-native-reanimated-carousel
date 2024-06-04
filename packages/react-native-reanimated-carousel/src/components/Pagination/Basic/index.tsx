@@ -1,25 +1,26 @@
-import React from "react";
-import type { StyleProp, ViewStyle } from "react-native";
-import { View } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import type { SharedValue } from "react-native-reanimated";
+import type { StyleProp, ViewStyle } from 'react-native';
+import { View } from 'react-native';
 
-import type { DotStyle } from "./PaginationItem";
-import { PaginationItem } from "./PaginationItem";
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import type { SharedValue } from 'react-native-reanimated';
 
-export interface BasicProps<T extends {} = {}> {
-  progress: SharedValue<number>
-  horizontal?: boolean
-  data: Array<T>
-  renderItem?: (item: T, index: number) => React.ReactNode
-  containerStyle?: StyleProp<ViewStyle>
-  dotStyle?: DotStyle
-  activeDotStyle?: DotStyle
-  size?: number
-  onPress?: (index: number) => void
+import { PaginationItem } from './PaginationItem';
+
+import type { DotStyle } from './PaginationItem';
+
+export interface BasicProps<T extends Record<string, never> = Record<string, never>> {
+  progress: SharedValue<number>;
+  horizontal?: boolean;
+  data: Array<T>;
+  renderItem?: (item: T, index: number) => React.ReactNode;
+  containerStyle?: StyleProp<ViewStyle>;
+  dotStyle?: DotStyle;
+  activeDotStyle?: DotStyle;
+  size?: number;
+  onPress?: (index: number) => void;
 }
 
-export const Basic = <T extends {}>(props: BasicProps<T>) => {
+export const Basic = <T extends Record<string, never>>(props: BasicProps<T>) => {
   const {
     activeDotStyle,
     dotStyle,
@@ -32,36 +33,29 @@ export const Basic = <T extends {}>(props: BasicProps<T>) => {
     onPress,
   } = props;
 
-  if (
-    typeof size === "string"
-    || typeof dotStyle?.width === "string"
-    || typeof dotStyle?.height === "string"
-  )
-    throw new Error("size/width/height must be a number");
+  if (typeof size === 'string' || typeof dotStyle?.width === 'string' || typeof dotStyle?.height === 'string')
+    throw new Error('size/width/height must be a number');
 
   return (
     <View
       style={[
         {
-          justifyContent: "space-between",
-          alignSelf: "center",
+          justifyContent: 'space-between',
+          alignSelf: 'center',
         },
         horizontal
           ? {
-            flexDirection: "row",
-          }
+              flexDirection: 'row',
+            }
           : {
-            flexDirection: "column",
-          },
+              flexDirection: 'column',
+            },
         containerStyle,
       ]}
     >
       {data.map((item, index) => {
         return (
-          <TouchableWithoutFeedback
-            key={index}
-            onPress={() => onPress?.(index)}
-          >
+          <TouchableWithoutFeedback key={index} onPress={() => onPress?.(index)}>
             <PaginationItem
               index={index}
               size={size}

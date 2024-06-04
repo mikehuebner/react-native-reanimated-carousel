@@ -1,14 +1,10 @@
-import {
-  useSharedValue,
-  useAnimatedReaction,
-  type SharedValue,
-} from "react-native-reanimated";
+import { type SharedValue, useAnimatedReaction, useSharedValue } from 'react-native-reanimated';
 
-import type { TInitializeCarouselProps } from "./useInitProps";
+import { computeOffsetIfDataChanged } from '../utils/compute-offset-if-data-changed';
+import { computeOffsetIfSizeChanged } from '../utils/compute-offset-if-size-changed';
+import { handlerOffsetDirection } from '../utils/handleroffset-direction';
 
-import { computeOffsetIfDataChanged } from "../utils/compute-offset-if-data-changed";
-import { computeOffsetIfSizeChanged } from "../utils/compute-offset-if-size-changed";
-import { handlerOffsetDirection } from "../utils/handleroffset-direction";
+import type { TInitializeCarouselProps } from './useInitProps';
 
 interface ICommonVariables {
   size: number;
@@ -16,18 +12,8 @@ interface ICommonVariables {
   handlerOffset: SharedValue<number>;
 }
 
-export function useCommonVariables(
-  props: TInitializeCarouselProps<any>,
-): ICommonVariables {
-  const {
-    vertical,
-    height,
-    width,
-    dataLength,
-    defaultIndex,
-    defaultScrollOffsetValue,
-    loop,
-  } = props;
+export function useCommonVariables(props: TInitializeCarouselProps<unknown>): ICommonVariables {
+  const { vertical, height, width, dataLength, defaultIndex, defaultScrollOffsetValue, loop } = props;
   const size = vertical ? height : width;
   const defaultHandlerOffsetValue = -Math.abs(defaultIndex * size);
   const _handlerOffset = useSharedValue<number>(defaultHandlerOffsetValue);

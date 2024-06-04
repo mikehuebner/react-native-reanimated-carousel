@@ -1,16 +1,12 @@
-import * as React from "react";
-import { View } from "react-native";
-import Animated, {
-  Extrapolate,
-  interpolate,
-  interpolateColor,
-  useAnimatedStyle,
-} from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { View } from 'react-native';
 
-import { SBItem } from "../../components/SBItem";
-import { windowDimensions } from "../../constants";
-import { withAnchorPoint } from "../../utils/anchor-point";
+import Animated, { Extrapolation, interpolate, interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
+
+import { SBItem } from '../../components/SBItem';
+import { windowDimensions } from '../../constants';
+import { withAnchorPoint } from '../../utils/anchor-point';
 
 const count = 4;
 
@@ -18,7 +14,7 @@ function Index() {
   const size = windowDimensions.width / 4;
 
   return (
-    <View style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+    <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
       {Array.from({
         length: count * 3,
       }).map((_, i) => {
@@ -37,47 +33,28 @@ function CubeItem() {
   const PAGE_HEIGHT = PAGE_WIDTH;
   const animationStyle: TAnimationStyle = React.useCallback(
     (value: number) => {
-      "worklet";
+      'worklet';
       const zIndex = interpolate(value, [-1, 0, 1], [-1000, 0, -1000]);
 
-      const translateX = interpolate(
-        value,
-        [-1, 0, 1],
-        [-PAGE_WIDTH, 0, PAGE_WIDTH],
-        Extrapolate.CLAMP,
-      );
+      const translateX = interpolate(value, [-1, 0, 1], [-PAGE_WIDTH, 0, PAGE_WIDTH], Extrapolation.CLAMP);
 
-      const scale = interpolate(
-        value,
-        [-1, 0, 1],
-        [0.49, 1, 0.49],
-        Extrapolate.CLAMP,
-      );
+      const scale = interpolate(value, [-1, 0, 1], [0.49, 1, 0.49], Extrapolation.CLAMP);
 
       const perspective = interpolate(
         value,
         [-1, 0, 1],
         [PAGE_WIDTH * 0.89, PAGE_WIDTH * 1.5, PAGE_WIDTH * 0.89],
-        Extrapolate.CLAMP,
+        Extrapolation.CLAMP,
       );
 
-      const rotateY = `${interpolate(
-        value,
-        [-1, 0, 1],
-        [-90, 0, 90],
-        Extrapolate.CLAMP,
-      )}deg`;
+      const rotateY = `${interpolate(value, [-1, 0, 1], [-90, 0, 90], Extrapolation.CLAMP)}deg`;
 
       const transform = {
         transform: [{ scale }, { translateX }, { perspective }, { rotateY }],
       };
 
       return {
-        ...withAnchorPoint(
-          transform,
-          { x: 0.5, y: 0.5 },
-          { width: PAGE_WIDTH, height: PAGE_HEIGHT },
-        ),
+        ...withAnchorPoint(transform, { x: 0.5, y: 0.5 }, { width: PAGE_WIDTH, height: PAGE_HEIGHT }),
         zIndex,
       };
     },
@@ -91,8 +68,8 @@ function CubeItem() {
         style={{
           width: PAGE_WIDTH,
           height: PAGE_HEIGHT,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
         pagingEnabled={false}
         snapEnabled={false}
@@ -100,13 +77,7 @@ function CubeItem() {
         height={PAGE_HEIGHT}
         data={[...new Array(6).keys()]}
         renderItem={({ index, animationValue }) => {
-          return (
-            <CustomItem
-              key={index}
-              index={index}
-              animationValue={animationValue}
-            />
-          );
+          return <CustomItem key={index} index={index} animationValue={animationValue} />;
         }}
         customAnimation={animationStyle}
         scrollAnimationDuration={1200}
@@ -125,7 +96,7 @@ const CustomItem: React.FC<ItemProps> = ({ index, animationValue }) => {
     const backgroundColor = interpolateColor(
       animationValue.value,
       [-1, 0, 1],
-      ["#000000dd", "transparent", "#000000dd"],
+      ['#000000dd', 'transparent', '#000000dd'],
     );
 
     return {
@@ -140,7 +111,7 @@ const CustomItem: React.FC<ItemProps> = ({ index, animationValue }) => {
         pointerEvents="none"
         style={[
           {
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
             right: 0,

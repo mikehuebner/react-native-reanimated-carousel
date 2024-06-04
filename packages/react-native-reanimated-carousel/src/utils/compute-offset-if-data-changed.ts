@@ -1,19 +1,18 @@
 export function omitZero(a: number, b: number) {
-  "worklet";
-  if (a === 0)
-    return 0;
+  'worklet';
+  if (a === 0) return 0;
 
   return b;
 }
 
 export function computeOffsetIfDataChanged(params: {
-  direction: number
-  handlerOffset: number
-  size: number
-  previousLength: number
-  currentLength: number
+  direction: number;
+  handlerOffset: number;
+  size: number;
+  previousLength: number;
+  currentLength: number;
 }) {
-  "worklet";
+  'worklet';
   const { direction, handlerOffset: _handlerOffset, size, previousLength, currentLength } = params;
 
   let handlerOffset = _handlerOffset;
@@ -23,10 +22,9 @@ export function computeOffsetIfDataChanged(params: {
   const isPositive = direction < 0;
 
   if (isPositive) {
-    positionIndex = (Math.abs(handlerOffset)) / size;
+    positionIndex = Math.abs(handlerOffset) / size;
     round = parseInt(String(omitZero(previousLength, positionIndex / previousLength)));
-  }
-  else {
+  } else {
     positionIndex = (Math.abs(handlerOffset) - size) / size;
     round = parseInt(String(omitZero(previousLength, positionIndex / previousLength))) + 1;
   }
@@ -36,16 +34,11 @@ export function computeOffsetIfDataChanged(params: {
   const changedLength = round * (currentLength - previousLength);
   const changedOffset = changedLength * size;
   if (prevIndex > currentLength - 1 && currentLength < previousLength) {
-    if (isPositive)
-      handlerOffset = (currentLength - 1) * size * direction;
-
-    else
-      handlerOffset = (currentLength - 1) * size * -1;
-  }
-  else {
+    if (isPositive) handlerOffset = (currentLength - 1) * size * direction;
+    else handlerOffset = (currentLength - 1) * size * -1;
+  } else {
     handlerOffset += changedOffset * direction;
   }
 
   return handlerOffset;
 }
-

@@ -1,27 +1,16 @@
-import * as React from "react";
-import { View } from "react-native";
-import Animated, {
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
-import Carousel from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { View } from 'react-native';
 
-import { SBItem } from "../../components/SBItem";
-import SButton from "../../components/SButton";
-import { ElementsText, windowDimensions } from "../../constants";
-import { withAnchorPoint } from "../../utils/anchor-point";
+import Animated, { Extrapolation, interpolate, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import Carousel from 'react-native-reanimated-carousel';
+
+import { SBItem } from '../../components/SBItem';
+import SButton from '../../components/SButton';
+import { ElementsText, windowDimensions } from '../../constants';
+import { withAnchorPoint } from '../../utils/anchor-point';
 
 const PAGE_WIDTH = windowDimensions.width / 5;
-const colors = [
-  "#26292E",
-  "#899F9C",
-  "#B3C680",
-  "#5C6265",
-  "#F5D399",
-  "#F1F1F1",
-];
+const colors = ['#26292E', '#899F9C', '#B3C680', '#5C6265', '#F5D399', '#F1F1F1'];
 
 function Index() {
   const [autoPlay, setAutoPlay] = React.useState(false);
@@ -35,7 +24,7 @@ function Index() {
   return (
     <View
       style={{
-        alignItems: "center",
+        alignItems: 'center',
       }}
     >
       <Carousel
@@ -44,24 +33,17 @@ function Index() {
         style={{
           height: windowDimensions.width / 2,
           width: windowDimensions.width,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
         autoPlay={autoPlay}
         autoPlayInterval={150}
         scrollAnimationDuration={600}
-        onProgressChange={(_, absoluteProgress) =>
-          (progressValue.value = absoluteProgress)
-        }
+        onProgressChange={(_, absoluteProgress) => (progressValue.value = absoluteProgress)}
         customAnimation={(value: number) => {
-          "worklet";
+          'worklet';
           const size = PAGE_WIDTH;
-          const scale = interpolate(
-            value,
-            [-2, -1, 0, 1, 2],
-            [1.7, 1.2, 1, 1.2, 1.7],
-            Extrapolate.CLAMP,
-          );
+          const scale = interpolate(value, [-2, -1, 0, 1, 2], [1.7, 1.2, 1, 1.2, 1.7], Extrapolation.CLAMP);
 
           const translate = interpolate(
             value,
@@ -77,12 +59,7 @@ function Index() {
               },
               { perspective: 150 },
               {
-                rotateY: `${interpolate(
-                  value,
-                  [-1, 0, 1],
-                  [30, 0, -30],
-                  Extrapolate.CLAMP,
-                )}deg`,
+                rotateY: `${interpolate(value, [-1, 0, 1], [30, 0, -30], Extrapolation.CLAMP)}deg`,
               },
             ],
           };
@@ -108,11 +85,11 @@ function Index() {
       {!!progressValue && (
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
+            flexDirection: 'row',
+            justifyContent: 'space-between',
             width: 100,
             marginTop: 10,
-            alignSelf: "center",
+            alignSelf: 'center',
           }}
         >
           {colors.map((backgroundColor, index) => {
@@ -128,9 +105,7 @@ function Index() {
           })}
         </View>
       )}
-      <SButton
-        onPress={() => setAutoPlay(!autoPlay)}
-      >{`${ElementsText.AUTOPLAY}:${autoPlay}`}</SButton>
+      <SButton onPress={() => setAutoPlay(!autoPlay)}>{`${ElementsText.AUTOPLAY}:${autoPlay}`}</SButton>
     </View>
   );
 }
@@ -157,12 +132,7 @@ const PaginationItem: React.FC<{
     return {
       transform: [
         {
-          translateX: interpolate(
-            animValue?.value,
-            inputRange,
-            outputRange,
-            Extrapolate.CLAMP,
-          ),
+          translateX: interpolate(animValue?.value, inputRange, outputRange, Extrapolation.CLAMP),
         },
       ],
     };
@@ -170,14 +140,14 @@ const PaginationItem: React.FC<{
   return (
     <View
       style={{
-        backgroundColor: "white",
+        backgroundColor: 'white',
         width,
         height: width,
         borderRadius: 50,
-        overflow: "hidden",
+        overflow: 'hidden',
         transform: [
           {
-            rotateZ: isRotate ? "90deg" : "0deg",
+            rotateZ: isRotate ? '90deg' : '0deg',
           },
         ],
       }}

@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.74.1",
     "react-native-reanimated-carousel": "workspace:*",
     "react-native-reanimated-carousel-example-app": "workspace:*"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "flow-remove-types": "^2.237.1",
     "typescript": "^5.4.5",

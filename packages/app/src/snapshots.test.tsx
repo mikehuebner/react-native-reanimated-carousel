@@ -1,32 +1,27 @@
-import { act, render, screen, waitFor } from "@testing-library/react-native";
-import {
-  withReanimatedTimer,
-  advanceAnimationByTime,
-} from "react-native-reanimated/src/reanimated2/jestUtils";
+import { advanceAnimationByTime, withReanimatedTimer } from 'react-native-reanimated/src/reanimated2/jestUtils';
+
+import { act, render, screen, waitFor } from '@testing-library/react-native';
 
 // @ts-expect-error import/no-webpack-loader-syntax
-import * as Carousels from "./pages/!(snap-carousel-*)/index.js";
+// eslint-disable-next-line import/no-unresolved
+import * as Carousels from './pages/!(snap-carousel-*)/index.js';
 
-jest.mock("@faker-js/faker", () => ({
+jest.mock('@faker-js/faker', () => ({
   faker: {
     name: {
-      findName: jest.fn(() => "__"),
+      findName: jest.fn(() => '__'),
     },
     image: {
-      nature: jest.fn(
-        () => "http://loremflickr.com/405/100/nature?random=0.5328608422981651",
-      ),
-      animals: jest.fn(
-        () => "http://loremflickr.com/405/100/nature?random=0.5328608422981651",
-      ),
+      nature: jest.fn(() => 'http://loremflickr.com/405/100/nature?random=0.5328608422981651'),
+      animals: jest.fn(() => 'http://loremflickr.com/405/100/nature?random=0.5328608422981651'),
     },
     animal: {
-      dog: jest.fn(() => "__"),
+      dog: jest.fn(() => '__'),
     },
   },
 }));
 
-describe("Test all cases.", () => {
+describe('Test all cases.', () => {
   const originalMathRandom = Math.random;
 
   beforeEach(() => {
@@ -40,7 +35,7 @@ describe("Test all cases.", () => {
   beforeAll(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    jest.useFakeTimers("modern");
+    jest.useFakeTimers('modern');
   });
 
   afterAll(() => {
@@ -48,7 +43,7 @@ describe("Test all cases.", () => {
   });
 
   it.each(Object.keys(Carousels))(
-    "renders %s correctly",
+    'renders %s correctly',
     async (exampleKey) => {
       let renderResult: ReturnType<typeof render>;
       withReanimatedTimer(() => {
@@ -60,7 +55,7 @@ describe("Test all cases.", () => {
       withReanimatedTimer(() => {
         act(() => advanceAnimationByTime(250));
       });
-      await waitFor(() => screen.findAllByTestId("__CAROUSEL_ITEM_0_READY__"));
+      await waitFor(() => screen.findAllByTestId('__CAROUSEL_ITEM_0_READY__'));
       expect(toJSON()).toMatchSnapshot();
     },
     0,

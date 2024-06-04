@@ -1,32 +1,19 @@
-import {
-  Extrapolation,
-  SharedValue,
-  interpolate,
-  useDerivedValue,
-} from "react-native-reanimated";
+import { Extrapolation, SharedValue, interpolate, useDerivedValue } from 'react-native-reanimated';
 
-import type { IVisibleRanges } from "./useVisibleRanges";
+import type { IVisibleRanges } from './useVisibleRanges';
 
 export interface IOpts {
   index: number;
   size: number;
   handlerOffset: SharedValue<number>;
   dataLength: number;
-  type?: "positive" | "negative";
+  type?: 'positive' | 'negative';
   viewCount?: number;
   loop?: boolean;
 }
 
 export const useOffsetX = (opts: IOpts, visibleRanges: IVisibleRanges) => {
-  const {
-    handlerOffset,
-    index,
-    size,
-    loop,
-    dataLength,
-    type = "positive",
-    viewCount: _viewCount,
-  } = opts;
+  const { handlerOffset, index, size, loop, dataLength, type = 'positive', viewCount: _viewCount } = opts;
 
   const ITEM_LENGTH = dataLength;
   const VALID_LENGTH = ITEM_LENGTH - 1;
@@ -34,8 +21,7 @@ export const useOffsetX = (opts: IOpts, visibleRanges: IVisibleRanges) => {
   const HALF_WIDTH = 0.5 * size;
 
   const viewCount = _viewCount ?? Math.round((ITEM_LENGTH - 1) / 2);
-  const positiveCount =
-    type === "positive" ? viewCount : VALID_LENGTH - viewCount;
+  const positiveCount = type === 'positive' ? viewCount : VALID_LENGTH - viewCount;
 
   let startPos = size * index;
   if (index > positiveCount) startPos = (index - ITEM_LENGTH) * size;
@@ -71,19 +57,14 @@ export const useOffsetX = (opts: IOpts, visibleRanges: IVisibleRanges) => {
           startPos,
         ];
 
-        return interpolate(
-          handlerOffset.value,
-          inputRange,
-          outputRange,
-          Extrapolation.CLAMP,
-        );
+        return interpolate(handlerOffset.value, inputRange, outputRange, Extrapolation.CLAMP);
       }
 
       return handlerOffset.value + size * index;
     }
 
     return Number.MAX_SAFE_INTEGER;
-  }, [loop, dataLength, viewCount, type, size, visibleRanges]);
+  }, [loop, size, visibleRanges, handlerOffset, HALF_WIDTH, TOTAL_WIDTH, MIN, MAX, index, startPos]);
 
   return x;
 };

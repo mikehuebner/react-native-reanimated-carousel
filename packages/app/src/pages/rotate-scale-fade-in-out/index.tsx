@@ -1,11 +1,12 @@
-import * as React from "react";
-import { View } from "react-native";
-import { interpolate } from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { View } from 'react-native';
 
-import { SBItem } from "../../components/SBItem";
-import { ElementsText, windowDimensions } from "../../constants";
-import { useToggleButton } from "../../hooks/useToggleButton";
+import { interpolate } from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
+
+import { SBItem } from '../../components/SBItem';
+import { ElementsText, windowDimensions } from '../../constants';
+import { useToggleButton } from '../../hooks/useToggleButton';
 
 const scale = 0.8;
 const PAGE_WIDTH = windowDimensions.width * scale;
@@ -18,16 +19,12 @@ function Index() {
   });
 
   const animationStyle: TAnimationStyle = React.useCallback((value: number) => {
-    "worklet";
+    'worklet';
 
     const zIndex = interpolate(value, [-1, 0, 1], [10, 20, 30]);
     const scale = interpolate(value, [-1, 0, 1], [1.25, 1, 0.25]);
     const rotateZ = `${interpolate(value, [-1, 0, 1], [-45, 0, 45])}deg`;
-    const translateX = interpolate(
-      value,
-      [-1, 0, 1],
-      [-PAGE_WIDTH, 0, PAGE_WIDTH],
-    );
+    const translateX = interpolate(value, [-1, 0, 1], [-PAGE_WIDTH, 0, PAGE_WIDTH]);
     const opacity = interpolate(value, [-0.75, 0, 1], [0, 1, 0]);
 
     return {
@@ -44,8 +41,8 @@ function Index() {
         style={{
           width: windowDimensions.width,
           height: 240,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
         width={PAGE_WIDTH}
         height={PAGE_HEIGHT}

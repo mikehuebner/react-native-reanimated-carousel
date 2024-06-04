@@ -1,24 +1,15 @@
-import * as React from "react";
-import { View } from "react-native";
-import { useSharedValue } from "react-native-reanimated";
-import Carousel, {
-  ICarouselInstance,
-  Pagination,
-} from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { View } from 'react-native';
 
-import { SBItem } from "../../components/SBItem";
-import SButton from "../../components/SButton";
-import { ElementsText, windowDimensions } from "../../constants";
+import { useSharedValue } from 'react-native-reanimated';
+import Carousel, { ICarouselInstance, Pagination } from 'react-native-reanimated-carousel';
+
+import { SBItem } from '../../components/SBItem';
+import SButton from '../../components/SButton';
+import { ElementsText, windowDimensions } from '../../constants';
 
 const PAGE_WIDTH = windowDimensions.width;
-const colors = [
-  "#26292E",
-  "#899F9C",
-  "#B3C680",
-  "#5C6265",
-  "#F5D399",
-  "#F1F1F1",
-];
+const colors = ['#26292E', '#899F9C', '#B3C680', '#5C6265', '#F5D399', '#F1F1F1'];
 
 function Index() {
   const [isVertical, setIsVertical] = React.useState(false);
@@ -54,7 +45,7 @@ function Index() {
   return (
     <View
       style={{
-        alignItems: "center",
+        alignItems: 'center',
       }}
     >
       <Carousel
@@ -81,7 +72,7 @@ function Index() {
       <Pagination.Basic
         progress={progress}
         data={colors}
-        dotStyle={{ backgroundColor: "rgba(0,0,0,0.2)" }}
+        dotStyle={{ backgroundColor: 'rgba(0,0,0,0.2)' }}
         containerStyle={{ gap: 5, marginBottom: 10 }}
         onPress={onPressPagination}
       />
@@ -92,15 +83,15 @@ function Index() {
         dotStyle={{
           width: 25,
           height: 4,
-          backgroundColor: "rgba(0,0,0,0.2)",
+          backgroundColor: 'rgba(0,0,0,0.2)',
         }}
         activeDotStyle={{
-          overflow: "hidden",
+          overflow: 'hidden',
         }}
         containerStyle={[
           isVertical
             ? {
-                position: "absolute",
+                position: 'absolute',
                 width: 25,
                 right: 5,
                 top: 40,
@@ -121,16 +112,16 @@ function Index() {
         size={20}
         dotStyle={{
           borderRadius: 100,
-          backgroundColor: "rgba(0,0,0,0.2)",
+          backgroundColor: 'rgba(0,0,0,0.2)',
         }}
         activeDotStyle={{
           borderRadius: 100,
-          overflow: "hidden",
+          overflow: 'hidden',
         }}
         containerStyle={[
           isVertical
             ? {
-                position: "absolute",
+                position: 'absolute',
                 width: 20,
                 right: 5,
                 top: 40,
@@ -151,16 +142,16 @@ function Index() {
         size={20}
         dotStyle={{
           borderRadius: 100,
-          backgroundColor: "rgba(0,0,0,0.2)",
+          backgroundColor: 'rgba(0,0,0,0.2)',
         }}
         activeDotStyle={{
           borderRadius: 100,
-          overflow: "hidden",
+          overflow: 'hidden',
         }}
         containerStyle={[
           isVertical
             ? {
-                position: "absolute",
+                position: 'absolute',
                 width: 20,
                 right: 5,
                 top: 40,
@@ -179,15 +170,13 @@ function Index() {
         onPress={onPressPagination}
       />
 
-      <SButton
-        onPress={() => setAutoPlay(!autoPlay)}
-      >{`${ElementsText.AUTOPLAY}:${autoPlay}`}</SButton>
+      <SButton onPress={() => setAutoPlay(!autoPlay)}>{`${ElementsText.AUTOPLAY}:${autoPlay}`}</SButton>
       <SButton
         onPress={() => {
           setIsVertical(!isVertical);
         }}
       >
-        {isVertical ? "Set horizontal" : "Set Vertical"}
+        {isVertical ? 'Set horizontal' : 'Set Vertical'}
       </SButton>
       <SButton
         onPress={() => {

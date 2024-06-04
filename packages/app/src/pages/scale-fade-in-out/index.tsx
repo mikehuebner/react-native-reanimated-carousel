@@ -1,16 +1,17 @@
-import * as React from "react";
-import { View } from "react-native";
-import { interpolate } from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import * as React from 'react';
+import { View } from 'react-native';
 
-import { SBItem } from "../../components/SBItem";
-import { windowDimensions } from "../../constants";
+import { interpolate } from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
+
+import { SBItem } from '../../components/SBItem';
+import { windowDimensions } from '../../constants';
 
 const PAGE_WIDTH = windowDimensions.width;
 
 function Index() {
   const animationStyle: TAnimationStyle = React.useCallback((value: number) => {
-    "worklet";
+    'worklet';
 
     const zIndex = interpolate(value, [-1, 0, 1], [10, 20, 30]);
     const scale = interpolate(value, [-1, 0, 1], [1.25, 1, 0.25]);
@@ -30,8 +31,8 @@ function Index() {
         style={{
           width: PAGE_WIDTH,
           height: 240,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
         width={PAGE_WIDTH * 0.7}
         height={240 * 0.7}

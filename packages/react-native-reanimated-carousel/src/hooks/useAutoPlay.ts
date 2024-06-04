@@ -1,57 +1,45 @@
-import * as React from "react";
+import { useCallback, useEffect, useRef } from 'react';
 
-import type { ICarouselController } from "./useCarouselController";
+import type { ICarouselController } from './useCarouselController';
 
 export function useAutoPlay(opts: {
-  autoPlay?: boolean
-  autoPlayInterval?: number
-  autoPlayReverse?: boolean
-  carouselController: ICarouselController
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+  autoPlayReverse?: boolean;
+  carouselController: ICarouselController;
 }) {
-  const {
-    autoPlay = false,
-    autoPlayReverse = false,
-    autoPlayInterval,
-    carouselController,
-  } = opts;
+  const { autoPlay = false, autoPlayReverse = false, autoPlayInterval, carouselController } = opts;
 
   const { prev, next } = carouselController;
-  const timer = React.useRef<ReturnType<typeof setTimeout>>();
-  const stopped = React.useRef<boolean>(!autoPlay);
+  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const stopped = useRef<boolean>(!autoPlay);
 
-  const play = React.useCallback(() => {
-    if (stopped.current)
-      return;
+  const play = useCallback(() => {
+    if (stopped.current) return;
 
     timer.current && clearTimeout(timer.current);
     timer.current = setTimeout(() => {
-      autoPlayReverse
-        ? prev({ onFinished: play })
-        : next({ onFinished: play });
+      autoPlayReverse ? prev({ onFinished: play }) : next({ onFinished: play });
     }, autoPlayInterval);
   }, [autoPlayReverse, autoPlayInterval, prev, next]);
 
-  const pause = React.useCallback(() => {
-    if (!autoPlay)
-      return;
+  const pause = useCallback(() => {
+    if (!autoPlay) return;
 
     timer.current && clearTimeout(timer.current);
     stopped.current = true;
   }, [autoPlay]);
 
-  const start = React.useCallback(() => {
-    if (!autoPlay)
-      return;
+  const start = useCallback(() => {
+    if (!autoPlay) return;
 
     stopped.current = false;
     play();
   }, [play, autoPlay]);
 
-  React.useEffect(() => {
-    if (autoPlay)
-      start();
-    else
-      pause();
+  useEffect(() => {
+    if (autoPlay) start();
+    else pause();
 
     return pause;
   }, [pause, start, autoPlay]);

@@ -1,23 +1,20 @@
-import * as React from "react";
-import type { ImageSourcePropType } from "react-native";
-import { View } from "react-native";
-import Animated, {
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
-} from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import * as React from 'react';
+import type { ImageSourcePropType } from 'react-native';
+import { View } from 'react-native';
 
-import SButton from "../../components/SButton";
-import { ElementsText, windowDimensions } from "../../constants";
-import { ImageItems } from "../../utils/items";
+import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
+
+import SButton from '../../components/SButton';
+import { ElementsText, windowDimensions } from '../../constants';
+import { ImageItems } from '../../utils/items';
 
 const PAGE_WIDTH = windowDimensions.width;
 
 function Index() {
   const [isAutoPlay, setIsAutoPlay] = React.useState(false);
   const animationStyle: TAnimationStyle = React.useCallback((value: number) => {
-    "worklet";
+    'worklet';
 
     const zIndex = interpolate(value, [-1, 0, 1], [300, 0, -300]);
     const translateX = interpolate(value, [-1, 0, 1], [0, 0, 0]);
@@ -37,14 +34,7 @@ function Index() {
         width={PAGE_WIDTH}
         data={[...ImageItems, ...ImageItems]}
         renderItem={({ index, item, animationValue }) => {
-          return (
-            <Item
-              key={index}
-              width={PAGE_WIDTH}
-              animationValue={animationValue}
-              imageSource={item}
-            />
-          );
+          return <Item key={index} width={PAGE_WIDTH} animationValue={animationValue} imageSource={item} />;
         }}
         customAnimation={animationStyle}
         scrollAnimationDuration={1200}
@@ -67,24 +57,14 @@ interface ItemProps {
 }
 const Item: React.FC<ItemProps> = ({ width, imageSource, animationValue }) => {
   const leftStyle = useAnimatedStyle(() => {
-    const left = interpolate(
-      animationValue.value,
-      [-1, 0, 1],
-      [-(width / 2), 0, 0],
-      Extrapolate.CLAMP,
-    );
+    const left = interpolate(animationValue.value, [-1, 0, 1], [-(width / 2), 0, 0], Extrapolation.CLAMP);
     return {
       left,
     };
   }, [animationValue, width]);
 
   const rightStyle = useAnimatedStyle(() => {
-    const right = interpolate(
-      animationValue.value,
-      [-1, 0, 1],
-      [-(width / 2), 0, 0],
-      Extrapolate.CLAMP,
-    );
+    const right = interpolate(animationValue.value, [-1, 0, 1], [-(width / 2), 0, 0], Extrapolation.CLAMP);
 
     return {
       right,
@@ -92,15 +72,15 @@ const Item: React.FC<ItemProps> = ({ width, imageSource, animationValue }) => {
   }, [animationValue, width]);
 
   return (
-    <View style={{ position: "absolute", height: "100%", width }}>
+    <View style={{ position: 'absolute', height: '100%', width }}>
       <Animated.View
         style={[
           {
             left: 0,
-            position: "absolute",
+            position: 'absolute',
             width: width / 2,
-            height: "100%",
-            overflow: "hidden",
+            height: '100%',
+            overflow: 'hidden',
           },
           leftStyle,
         ]}
@@ -109,9 +89,9 @@ const Item: React.FC<ItemProps> = ({ width, imageSource, animationValue }) => {
           source={imageSource}
           style={{
             width,
-            height: "100%",
+            height: '100%',
             left: 0,
-            position: "absolute",
+            position: 'absolute',
           }}
           resizeMode="cover"
         />
@@ -120,10 +100,10 @@ const Item: React.FC<ItemProps> = ({ width, imageSource, animationValue }) => {
         style={[
           {
             right: 0,
-            position: "absolute",
+            position: 'absolute',
             width: width / 2,
-            height: "100%",
-            overflow: "hidden",
+            height: '100%',
+            overflow: 'hidden',
           },
           rightStyle,
         ]}
@@ -132,9 +112,9 @@ const Item: React.FC<ItemProps> = ({ width, imageSource, animationValue }) => {
           source={imageSource}
           style={{
             width,
-            height: "100%",
+            height: '100%',
             right: 0,
-            position: "absolute",
+            position: 'absolute',
           }}
           resizeMode="cover"
         />

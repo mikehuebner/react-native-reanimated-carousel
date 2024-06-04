@@ -1,15 +1,11 @@
-import * as React from "react";
-import { Image, ImageSourcePropType, View } from "react-native";
-import Animated, {
-  Extrapolate,
-  FadeInDown,
-  interpolate,
-  useSharedValue,
-} from "react-native-reanimated";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
+import { useCallback } from 'react';
+import { Image, ImageSourcePropType, View } from 'react-native';
 
-import { windowDimensions } from "../../constants";
-import { getImages } from "../../utils/get-images";
+import Animated, { Extrapolation, FadeInDown, interpolate, useSharedValue } from 'react-native-reanimated';
+import Carousel, { TAnimationStyle } from 'react-native-reanimated-carousel';
+
+import { windowDimensions } from '../../constants';
+import { getImages } from '../../utils/get-images';
 
 const data = getImages();
 
@@ -20,47 +16,33 @@ function Index() {
 
   const directionAnimVal = useSharedValue(0);
 
-  const animationStyle: TAnimationStyle = React.useCallback(
+  const animationStyle: TAnimationStyle = useCallback(
     (value: number) => {
-      "worklet";
+      'worklet';
       const translateY = interpolate(value, [0, 1], [0, -18]);
 
-      const translateX =
-        interpolate(value, [-1, 0], [PAGE_WIDTH, 0], Extrapolate.CLAMP) *
-        directionAnimVal.value;
+      const translateX = interpolate(value, [-1, 0], [PAGE_WIDTH, 0], Extrapolation.CLAMP) * directionAnimVal.value;
 
-      const rotateZ =
-        interpolate(value, [-1, 0], [15, 0], Extrapolate.CLAMP) *
-        directionAnimVal.value;
+      const rotateZ = interpolate(value, [-1, 0], [15, 0], Extrapolation.CLAMP) * directionAnimVal.value;
 
       const zIndex = interpolate(
         value,
         [0, 1, 2, 3, 4],
         [0, 1, 2, 3, 4].map((v) => (data.length - v) * 10),
-        Extrapolate.CLAMP,
+        Extrapolation.CLAMP,
       );
 
       const scale = interpolate(value, [0, 1], [1, 0.95]);
 
-      const opacity = interpolate(
-        value,
-        [-1, -0.8, 0, 1],
-        [0, 0.9, 1, 0.85],
-        Extrapolate.EXTEND,
-      );
+      const opacity = interpolate(value, [-1, -0.8, 0, 1], [0, 0.9, 1, 0.85], Extrapolation.EXTEND);
 
       return {
-        transform: [
-          { translateY },
-          { translateX },
-          { rotateZ: `${rotateZ}deg` },
-          { scale },
-        ],
+        transform: [{ translateY }, { translateX }, { rotateZ: `${rotateZ}deg` }, { scale }],
         zIndex,
         opacity,
       };
     },
-    [PAGE_HEIGHT, PAGE_WIDTH],
+    [PAGE_WIDTH, directionAnimVal],
   );
 
   return (
@@ -70,9 +52,9 @@ function Index() {
         style={{
           width: PAGE_WIDTH,
           height: PAGE_HEIGHT,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "white",
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'white',
         }}
         defaultIndex={0}
         vertical={false}
@@ -93,27 +75,27 @@ function Index() {
   );
 }
 
-const Item: React.FC<{ img: ImageSourcePropType }> = ({ img }) => {
+const Item = ({ img }: { img: ImageSourcePropType }) => {
   const width = windowDimensions.width * 0.7;
   const height = windowDimensions.height * 0.5;
 
   return (
     <Animated.View
       entering={FadeInDown.duration(300)}
-      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
     >
       <View
         style={{
           width,
           height,
           borderWidth: 1,
-          borderColor: "black",
+          borderColor: 'black',
           borderRadius: 20,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "white",
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'white',
 
-          shadowColor: "#000000d1",
+          shadowColor: '#000000d1',
           shadowOffset: {
             width: 0,
             height: 10,

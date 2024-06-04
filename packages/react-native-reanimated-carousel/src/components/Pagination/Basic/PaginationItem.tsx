@@ -1,20 +1,16 @@
-import type { PropsWithChildren } from "react";
-import React from "react";
-import type { ViewStyle } from "react-native";
-import { View } from "react-native";
-import Animated, {
-  Extrapolation,
-  interpolate,
-  useAnimatedStyle,
-} from "react-native-reanimated";
+import type { PropsWithChildren } from 'react';
+import type { ViewStyle } from 'react-native';
+import { View } from 'react-native';
 
-export type DotStyle = Omit<ViewStyle, "width" | "height"> & {
+import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+
+export type DotStyle = Omit<ViewStyle, 'width' | 'height'> & {
   width?: number;
   height?: number;
 };
 
-export const PaginationItem: React.FC<
-  PropsWithChildren<{
+export const PaginationItem = (
+  props: PropsWithChildren<{
     index: number;
     count: number;
     size?: number;
@@ -22,18 +18,9 @@ export const PaginationItem: React.FC<
     horizontal?: boolean;
     dotStyle?: DotStyle;
     activeDotStyle?: DotStyle;
-  }>
-> = (props) => {
-  const {
-    animValue,
-    dotStyle,
-    activeDotStyle,
-    index,
-    count,
-    size,
-    horizontal,
-    children,
-  } = props;
+  }>,
+) => {
+  const { animValue, dotStyle, activeDotStyle, index, count, size, horizontal, children } = props;
 
   const defaultDotSize = 10;
 
@@ -67,16 +54,11 @@ export const PaginationItem: React.FC<
     return {
       transform: [
         {
-          translateX: interpolate(
-            animValue?.value,
-            inputRange,
-            outputRange,
-            Extrapolation.CLAMP,
-          ),
+          translateX: interpolate(animValue?.value, inputRange, outputRange, Extrapolation.CLAMP),
         },
       ],
     };
-  }, [animValue, index, count, horizontal]);
+  }, [horizontal, height, width, index, animValue, count]);
 
   return (
     <View
@@ -84,10 +66,10 @@ export const PaginationItem: React.FC<
         {
           width,
           height,
-          overflow: "hidden",
+          overflow: 'hidden',
           transform: [
             {
-              rotateZ: horizontal ? "90deg" : "0deg",
+              rotateZ: horizontal ? '90deg' : '0deg',
             },
           ],
         },
@@ -97,7 +79,7 @@ export const PaginationItem: React.FC<
       <Animated.View
         style={[
           {
-            backgroundColor: "black",
+            backgroundColor: 'black',
             flex: 1,
           },
           animStyle,

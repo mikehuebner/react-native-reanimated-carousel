@@ -1,10 +1,12 @@
-import { Plugin as VitePlugin, defineConfig, transformWithEsbuild } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
-import type { Plugin as ESBuildPlugin } from 'esbuild';
+import fs from 'fs/promises';
+
+import react from '@vitejs/plugin-react-swc';
 // @ts-expect-error == types do not exist
 import flowRemoveTypes from 'flow-remove-types';
-import fs from 'fs/promises';
-import react from '@vitejs/plugin-react-swc';
+import { Plugin as VitePlugin, defineConfig, transformWithEsbuild } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+
+import type { Plugin as ESBuildPlugin } from 'esbuild';
 
 const extensions = [
   '.web.mjs',
@@ -66,13 +68,6 @@ const reactNativeWeb = () =>
         },
       },
       optimizeDeps: {
-        include: [
-          'react-native-reanimated',
-          '@react-navigation/native',
-          'react-native-gesture-handler',
-          '@react-navigation/stack',
-        ],
-        jsx: 'transform',
         esbuildOptions: {
           plugins: [esbuildPlugin()],
           resolveExtensions: extensions,
@@ -100,6 +95,14 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+  },
+  optimizeDeps: {
+    include: [
+      '@react-navigation/native',
+      '@react-navigation/stack',
+      'react-native-gesture-handler',
+      'react-native-reanimated',
+    ],
   },
   plugins: [react(), reactNativeWeb(), tsconfigPaths()],
 });

@@ -1,9 +1,9 @@
-import React from "react";
+import { useEffect, useRef } from 'react';
 
 export function useCheckMounted() {
-  const mounted = React.useRef(false);
+  const mounted = useRef(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     mounted.current = true;
     return () => {
       mounted.current = false;
