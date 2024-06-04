@@ -1,5 +1,6 @@
-import type { PropsWithChildren } from 'react';
+// @ts-expect-error -- This is required for Vite to work, not sure why
 import React, { useCallback, useContext } from 'react';
+import type { PropsWithChildren } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
 import type { GestureStateChangeEvent, PanGestureHandlerEventPayload } from 'react-native-gesture-handler';
