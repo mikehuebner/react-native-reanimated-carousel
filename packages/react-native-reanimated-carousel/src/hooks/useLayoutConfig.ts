@@ -1,4 +1,4 @@
-import React from 'react';
+import { useMemo } from 'react';
 
 import { Layouts } from '../layouts';
 
@@ -10,7 +10,7 @@ type TLayoutConfigOpts<T> = TInitializeCarouselProps<T> & { size: number };
 export function useLayoutConfig<T>(opts: TLayoutConfigOpts<T>): TAnimationStyle {
   const { size, vertical } = opts as Required<TLayoutConfigOpts<T>>;
 
-  return React.useMemo(() => {
+  return useMemo(() => {
     const baseConfig = { size, vertical };
     switch (opts.mode) {
       case 'parallax':

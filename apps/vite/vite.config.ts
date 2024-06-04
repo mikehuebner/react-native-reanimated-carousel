@@ -1,12 +1,12 @@
 import fs from 'fs/promises';
 
 import react from '@vitejs/plugin-react-swc';
+// @ts-expect-error == types do not exist
 import flowRemoveTypes from 'flow-remove-types';
 import { Plugin as VitePlugin, defineConfig, transformWithEsbuild } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 import type { Plugin as ESBuildPlugin } from 'esbuild';
-// @ts-expect-error == types do not exist
 
 const extensions = [
   '.web.mjs',

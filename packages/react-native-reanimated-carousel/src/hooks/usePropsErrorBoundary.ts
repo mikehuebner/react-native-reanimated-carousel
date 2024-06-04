@@ -1,9 +1,9 @@
-import React from 'react';
+import { useEffect } from 'react';
 
 import type { TCarouselProps } from '../types';
 
 export function usePropsErrorBoundary(props: TCarouselProps & { dataLength: number }) {
-  React.useEffect(() => {
+  useEffect(() => {
     const { defaultIndex, dataLength: viewCount } = props;
 
     if (typeof defaultIndex === 'number' && viewCount > 0) {

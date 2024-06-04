@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 
 import Animated, { SharedValue, useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
 
@@ -20,7 +20,7 @@ export const BaseLayout = (props: {
 }) => {
   const { handlerOffset, index, children, visibleRanges, animationStyle } = props;
 
-  const context = React.useContext(CTX);
+  const context = useContext(CTX);
   const {
     props: { loop, dataLength, width, height, vertical, customConfig, mode, modeConfig },
   } = context;

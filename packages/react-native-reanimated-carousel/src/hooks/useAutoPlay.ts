@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import type { ICarouselController } from './useCarouselController';
 
@@ -11,10 +11,10 @@ export function useAutoPlay(opts: {
   const { autoPlay = false, autoPlayReverse = false, autoPlayInterval, carouselController } = opts;
 
   const { prev, next } = carouselController;
-  const timer = React.useRef<ReturnType<typeof setTimeout>>();
-  const stopped = React.useRef<boolean>(!autoPlay);
+  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const stopped = useRef<boolean>(!autoPlay);
 
-  const play = React.useCallback(() => {
+  const play = useCallback(() => {
     if (stopped.current) return;
 
     timer.current && clearTimeout(timer.current);
@@ -23,21 +23,21 @@ export function useAutoPlay(opts: {
     }, autoPlayInterval);
   }, [autoPlayReverse, autoPlayInterval, prev, next]);
 
-  const pause = React.useCallback(() => {
+  const pause = useCallback(() => {
     if (!autoPlay) return;
 
     timer.current && clearTimeout(timer.current);
     stopped.current = true;
   }, [autoPlay]);
 
-  const start = React.useCallback(() => {
+  const start = useCallback(() => {
     if (!autoPlay) return;
 
     stopped.current = false;
     play();
   }, [play, autoPlay]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (autoPlay) start();
     else pause();
 

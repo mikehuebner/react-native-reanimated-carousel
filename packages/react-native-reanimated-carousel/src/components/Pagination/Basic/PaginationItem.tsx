@@ -1,5 +1,4 @@
 import type { PropsWithChildren } from 'react';
-import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { View } from 'react-native';
 
@@ -10,8 +9,8 @@ export type DotStyle = Omit<ViewStyle, 'width' | 'height'> & {
   height?: number;
 };
 
-export const PaginationItem: React.FC<
-  PropsWithChildren<{
+export const PaginationItem = (
+  props: PropsWithChildren<{
     index: number;
     count: number;
     size?: number;
@@ -19,8 +18,8 @@ export const PaginationItem: React.FC<
     horizontal?: boolean;
     dotStyle?: DotStyle;
     activeDotStyle?: DotStyle;
-  }>
-> = (props) => {
+  }>,
+) => {
   const { animValue, dotStyle, activeDotStyle, index, count, size, horizontal, children } = props;
 
   const defaultDotSize = 10;

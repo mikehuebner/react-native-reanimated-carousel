@@ -1,4 +1,4 @@
-import React from 'react';
+import { useMemo } from 'react';
 
 import { computedFillDataWithAutoFillData } from '../utils/computed-with-auto-fill-data';
 
@@ -38,7 +38,7 @@ export function useInitProps<T>(props: TCarouselProps<T>): TInitializeCarouselPr
   const height = Math.round(_height || 0);
   const autoPlayInterval = Math.max(_autoPlayInterval, 0);
 
-  const data = React.useMemo<T[]>(() => {
+  const data = useMemo<T[]>(() => {
     return computedFillDataWithAutoFillData<T>({
       loop,
       autoFillData,

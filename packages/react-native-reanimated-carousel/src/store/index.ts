@@ -1,4 +1,4 @@
-import React from 'react';
+import { createContext } from 'react';
 
 import type { TInitializeCarouselProps } from '../hooks/useInitProps';
 
@@ -10,4 +10,4 @@ export interface IContext {
   };
 }
 
-export const CTX = React.createContext<IContext>({} as IContext);
+export const CTX = createContext<IContext>({} as IContext);
