@@ -31,7 +31,7 @@
     "test:dev": "jest dev src/**/* --watch",
     "typescript": "tsc --noEmit",
     "dev": "watch 'pnpm prepare' ./src",
-    "prepare": "bob build",
+    "prepare": "rollup -c",
     "clean": "del-cli lib"
   },
   "peerDependencies": {
@@ -39,24 +39,5 @@
     "react-native": ">=0.74.1",
     "react-native-gesture-handler": ">=2.16.0",
     "react-native-reanimated": ">=3.10.0"
-  },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      [
-        "commonjs",
-        {
-          "configFile": "../../babel.config.js"
-        }
-      ],
-      "module",
-      [
-        "typescript",
-        {
-          "tsc": "../../node_modules/.bin/tsc"
-        }
-      ]
-    ]
   }
 }
