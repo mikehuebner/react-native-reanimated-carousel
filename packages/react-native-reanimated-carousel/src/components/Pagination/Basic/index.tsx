@@ -9,7 +9,7 @@ import { PaginationItem } from './PaginationItem';
 
 import type { DotStyle } from './PaginationItem';
 
-export interface BasicProps<T extends Record<string, never> = Record<string, never>> {
+export interface BasicProps<T extends object = object> {
   progress: SharedValue<number>;
   horizontal?: boolean;
   data: Array<T>;
@@ -21,7 +21,7 @@ export interface BasicProps<T extends Record<string, never> = Record<string, nev
   onPress?: (index: number) => void;
 }
 
-export const Basic = <T extends Record<string, never>>(props: BasicProps<T>) => {
+export const Basic = <T extends object>(props: BasicProps<T>) => {
   const {
     activeDotStyle,
     dotStyle,

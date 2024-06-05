@@ -56,7 +56,6 @@ export function useInitProps<T>(props: TCarouselProps<T>): TInitializeCarouselPr
     props.modeConfig.showLength = props.modeConfig?.showLength ?? dataLength - 1;
   }
 
-  // @ts-expect-error == types do not exist
   return {
     ...props,
     defaultIndex,

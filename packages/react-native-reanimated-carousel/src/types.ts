@@ -8,7 +8,7 @@ import type Animated from 'react-native-reanimated';
 import type { TParallaxModeProps } from './layouts/parallax';
 import type { TStackModeProps } from './layouts/stack';
 
-export type IComputedDirectionTypes<T, VP = Record<string, never>, HP = Record<string, never>> =
+export type IComputedDirectionTypes<T, VP = object, HP = object> =
   | (T &
       VP & {
         /**
