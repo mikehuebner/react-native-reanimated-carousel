@@ -66,7 +66,7 @@ const Carousel = forwardRef<ICarouselInstance, TCarouselProps<unknown>>((_props,
 
   usePropsErrorBoundary({ ...props, dataLength });
 
-  const progressValue = useOnProgressChange({
+  useOnProgressChange({
     autoFillData,
     loop,
     size,
@@ -134,9 +134,8 @@ const Carousel = forwardRef<ICarouselInstance, TCarouselProps<unknown>>((_props,
       prev,
       getCurrentIndex,
       scrollTo,
-      progressValue,
     }),
-    [getCurrentIndex, next, prev, progressValue, scrollTo],
+    [getCurrentIndex, next, prev, scrollTo],
   );
 
   const layoutConfig = useLayoutConfig({ ...props, size });

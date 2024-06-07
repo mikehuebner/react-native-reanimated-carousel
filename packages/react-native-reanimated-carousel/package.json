@@ -1,6 +1,6 @@
 {
   "name": "@mikehuebner/react-native-reanimated-carousel",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple carousel component. Fully implemented using Reanimated. Infinitely scrolling, very smooth.",
   "author": "Doho <zhaodonghao586@outlook.com> (https://github.com/dohooo)",
   "license": "MIT",

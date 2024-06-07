@@ -192,10 +192,8 @@ export type TCarouselProps<T = unknown> = {
    * On progress change
    * @param offsetProgress Total of offset distance (0 390 780 ...)
    * @param absoluteProgress Convert to index (0 1 2 ...)
-   *
-   * If you want to update a shared value automatically, you can use the shared value as a parameter directly.
    */
-  onProgressChange?: ((offsetProgress: number, absoluteProgress: number) => void) | SharedValue<number>;
+  onProgressChange?: (offsetProgress: number, absoluteProgress: number) => void;
 
   // ============================== deprecated props ==============================
   /**
