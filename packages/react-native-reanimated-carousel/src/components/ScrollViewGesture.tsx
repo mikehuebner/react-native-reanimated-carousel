@@ -51,7 +51,7 @@ const IScrollViewGesture = (props: PropsWithChildren<Props>) => {
       overscrollEnabled,
       maxScrollDistancePerSwipe,
       minScrollDistancePerSwipe,
-      fixedDirection,          
+      fixedDirection,
     },
   } = useContext(CTX);
 
