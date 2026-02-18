@@ -39,6 +39,7 @@ const IScrollViewGesture = (props: PropsWithChildren<Props>) => {
   const {
     props: {
       onConfigurePanGesture,
+      touchAction,
       vertical,
       pagingEnabled,
       snapEnabled,
@@ -50,7 +51,7 @@ const IScrollViewGesture = (props: PropsWithChildren<Props>) => {
       overscrollEnabled,
       maxScrollDistancePerSwipe,
       minScrollDistancePerSwipe,
-      fixedDirection,
+      fixedDirection,          
     },
   } = useContext(CTX);
 
@@ -374,7 +375,7 @@ const IScrollViewGesture = (props: PropsWithChildren<Props>) => {
   });
 
   return (
-    <GestureDetector gesture={gesture}>
+    <GestureDetector gesture={gesture} touchAction={touchAction}>
       <Animated.View
         ref={containerRef}
         id="animated-view-test"

@@ -113,6 +113,13 @@ export type TCarouselProps<T = unknown> = {
    */
   onConfigurePanGesture?: (panGesture: PanGesture) => void;
   /**
+   * Controls the CSS `touch-action` property on the GestureDetector wrapper (web only).
+   * Set to `"pan-y"` to allow native vertical scrolling while the carousel handles
+   * horizontal swipes.
+   * @default undefined (GestureDetector defaults to `"none"`)
+   */
+  touchAction?: 'auto' | 'none' | 'pan-x' | 'pan-y' | 'manipulation';
+  /**
    * Determines the maximum number of items will respond to pan gesture events,
    * windowSize={11} will active visible item plus up to 5 items above and 5 below the viewpor,
    * Reducing this number will reduce the calculation of the animation value and may improve performance.
@@ -240,3 +247,4 @@ export interface TCarouselActionOptions {
   animated?: boolean;
   onFinished?: () => void;
 }
+
