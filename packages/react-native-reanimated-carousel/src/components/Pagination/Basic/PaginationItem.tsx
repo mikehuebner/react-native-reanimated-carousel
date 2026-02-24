@@ -2,7 +2,7 @@ import type { PropsWithChildren } from 'react';
 import type { ViewStyle } from 'react-native';
 import { View } from 'react-native';
 
-import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+import Animated, { SharedValue, Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 
 export type DotStyle = Omit<ViewStyle, 'width' | 'height'> & {
   width?: number;
@@ -14,7 +14,7 @@ export const PaginationItem = (
     index: number;
     count: number;
     size?: number;
-    animValue: Animated.SharedValue<number>;
+    animValue: SharedValue<number>;
     horizontal?: boolean;
     dotStyle?: DotStyle;
     activeDotStyle?: DotStyle;

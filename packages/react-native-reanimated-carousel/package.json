@@ -1,6 +1,6 @@
 {
   "name": "@mikehuebner/react-native-reanimated-carousel",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "Simple carousel component. Fully implemented using Reanimated. Infinitely scrolling, very smooth.",
   "author": "Doho <zhaodonghao586@outlook.com> (https://github.com/dohooo)",
   "license": "MIT",
@@ -35,9 +35,9 @@
     "clean": "del-cli lib"
   },
   "peerDependencies": {
-    "react": ">=18.2.0",
+    "react": "18.3.1",
     "react-native": ">=0.74.1",
-    "react-native-gesture-handler": ">=2.16.0",
-    "react-native-reanimated": ">=3.10.0"
+    "react-native-gesture-handler": "2.22.0",
+    "react-native-reanimated": "3.16.7"
   }
 }
